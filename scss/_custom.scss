@@ -1,0 +1,51 @@
+/* The top bar */
+body {
+    background: #2962FF;
+}
+
+.top-bar-left {
+    a {
+        color: $white;
+    }
+}
+
+.top-bar-right {
+    a {
+        color: $white;
+    }
+
+    li {
+        text-transform: uppercase;
+    }
+
+    #signin {
+        text-decoration: none;
+        font-family: $body-font-family;
+        border: none;
+        background: #FFC107;
+        color: white;
+        padding: 5px 25px;
+        border-radius: 30px;
+        text-align: center;
+        margin-right: 0;
+        display: inline-block;
+    }
+}
+
+/* The showcase */
+
+.showcase {
+    min-height: 450px;
+    color: white;
+
+    .showcase-box {
+        margin-top: 30px;
+        h1 {
+            font-size: 8em;
+            font-weight: 700;
+        }
+        #quora {
+            color: maroon;
+        }
+    }
+}

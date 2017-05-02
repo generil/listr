@@ -8,18 +8,30 @@
     <link rel="stylesheet" href="css/app.css">
   </head>
   <body>
+    <!-- The header -->
     <div class="top-bar">
-        <div class="top-bar-left">
-            <h3>Listr.io</h3>
-        </div>
-        <div class="top-bar-right">
-            <ul class="menu">
-                <li><a href="#">ABOUT</a></li>
-                <li><a href="#">SUPPORT</a></li>
-                <li><input type="button" name="" value="Sign in/up"></li>
-            </ul>
+        <div class="row">
+            <div class="top-bar-right">
+                <ul class="menu">
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Support</a></li>
+                    <li><input type="button" name="" value="Sign in/up" id="signin"></li>
+                </ul>
+            </div>
         </div>
     </div>
+
+    <!-- The body -->
+    <section class="showcase">
+        <div class="row">
+            <div class="columns large-5 medium-5 large-offset-1 medium-offset-1">
+                <div class="showcase-box">
+                    <h1>Listr.io</h1>
+                    <h3>It's like <span id="quora"><b>Quora</b></span>, but with <u>steps</u></h3>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/what-input/dist/what-input.js"></script>
