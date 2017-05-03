@@ -5,3 +5,6 @@ def index(request):
 
 def login(request):
 	return HttpResponse("<h1> Login to Listr.io </h1>")
+
+def signup(request):
+	return HttpResponse("<h1> Signup to Listr.io </h1>")
