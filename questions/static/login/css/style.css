@@ -16,10 +16,6 @@ h1 {
   padding: 40px 20px 40px 20px;
 }
 
-#login {
-  text-align: center
-}
-
 #submit {
     background-color: #FFC107;
     color: rgba(0, 0, 0, 0.8);
