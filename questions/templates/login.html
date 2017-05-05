@@ -4,15 +4,18 @@
     <head>
         <meta charset="utf-8">
         <title></title>
+        <link rel="icon" href="{% static 'questions/favicon.ico' %}" type="image/x-icon">
+        <link rel="shortcut icon" href="{% static 'questions/favicon.ico' %}" type="image/x-icon">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/css/foundation.min.css" integrity="sha256-itWEYdFWzZPBG78bJOOiQIn06QCgN/F0wMDcC4nOhxY=" crossorigin="anonymous" />
-        <link rel="stylesheet" href="{% static 'login/style.css' %}">
+        <link rel="stylesheet" href="{% static 'questions/css/style.css' %}">
     </head>
     <body>
         <div class="large-3 large-centered columns">
           <div class="login-box">
             <div class="row">
-              <div class="large-12 columns" id="login">
-                <h1>Login</h1>
+              <div class="large-12 columns">
+                <img src="{% static 'questions/assets/logo.png' %}" alt="Listr.io">
+                <h6 style="margin: 25px 0;">Sign in with your Listr.io account</h6>
                 <form>
                    <div class="row">
                      <div class="large-12 columns">
@@ -26,8 +29,8 @@
                   </div>
                   <div class="row">
                     <div class="large-12 large-centered columns">
-                      <input type="submit" class="button expand" value="LOG IN"/ id="submit"><br>
-                      <small><a href="#" style="color: blue;" >New user?</a></small>
+                      <input type="submit" class="button expand login-listr" value="LOG IN"/ ><br>
+                      <a href="#"><input type="button" value="SIGN UP" class="login-listr signup-listr"></a>
                     </div>
                   </div>
                 </form>
