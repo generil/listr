@@ -1,0 +1,28 @@
+body {
+  background: #F0F0F3;
+}
+.login-box {
+  background: #fff;
+  border: 1px solid #ddd;
+  margin: 100px 0;
+  padding: 40px 20px 40px 20px;
+}
+
+#submit {
+    background-color: red;
+    border: none;
+    border-radius: 50px;
+    padding: 10px 40px;
+}
+
+.inputfill {
+    border: none;
+    box-shadow: none;
+    border-bottom: 1px solid blue;
+}
+
+.inputfill:focus {
+    box-shadow: none;
+    border: none;
+    border-bottom: 1px solid orange;
+}
