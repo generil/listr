@@ -10,35 +10,59 @@
         <link rel="stylesheet" href="{% static 'questions/css/style.css' %}">
     </head>
     <body>
-        <div class="large-3 large-centered columns">
-          <div class="login-box">
-            <div class="row">
-              <div class="large-12 columns">
-                <img src="{% static 'questions/assets/logo.png' %}" alt="Listr.io">
-                <h6 style="margin: 25px 0;">Sign in with your Listr.io account</h6>
-                <form method="POST">
-                   <div class="row">
-                     <div class="large-12 columns">
-                         <input type="text" name="username" placeholder="Username" class="inputfill"/>
-                     </div>
-                   </div>
-                  <div class="row">
-                     <div class="large-12 columns">
-                         <input type="password" name="password" placeholder="Password" class="inputfill"/>
-                     </div>
-                  </div>
-                  <div class="row">
-                    <div class="large-12 large-centered columns">
-                      <input type="submit" class="button expand login-listr" value="LOG IN"/ ><br>
-                      <a href="#"><input type="button" value="SIGN UP" class="login-listr signup-listr"></a>
-                    </div>
-                  </div>
-                </form>
-              </div>
+      <div class="top-bar">
+        <div class="row">
+          <div class="top-bar-left"></div>
+          <div class="top-bar-right">
+            <ul class="menu">
+              <li><a href="#">ABOUT</a></li>
+              <li><a href="#">CONTACT</a></li>
+              <li><a href="#">SUPPORT</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <section class="showcase" style="margin-top: 100px;">
+        <div class="row">
+          <div class="large-7 columns">
+            <div class="showcase-box">
+              <img src="{% static 'questions/assets/logo-white.png' %}" alt="" style="margin: 25px 0;">
+              <h3 style="color:white">It's like
+                <a href="http://quora.com" id="quora">Quora</a>
+                , but even better.
+              </h3>
+              <a href="#" class="button landing-btn" onclick="login()">Log In</a><br>
+              <small style="color: white">New user? <a href="#" style="color: #f7882f" onclick="signup()">Sign up here.</a></small>
             </div>
           </div>
-          <small style="color: white;">&copy; Listr.io</small>
+          <div class="large-5 columns">
+            <div class="login-section" style="display: none">
+              <div class="login-box">
+                <div class="row">
+                  <div class="large-12 columns">
+                    <h1 class="headering">Log In</h1>
+                    <form method="POST">
+                       <div class="row">
+                         <div class="large-12 columns">
+                            <input type="text" name="username" placeholder="Username" class="inputfill" style="color: white">
+                            <input type="password" name="password" placeholder="Password" class="inputfill" style="color: white">
+                            <p style="color: red"></p>
+                            <input type="submit" class="button expand login-listr" value="LOG IN"/ ><br>
+                         </div>
+                       </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="signup-section" style="display: none">
+              <h1 class="headering">Sign up</h1>
+            </div>
+          </div>
         </div>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/js/foundation.min.js" integrity="sha256-Nd2xznOkrE9HkrAMi4xWy/hXkQraXioBg9iYsBrcFrs=" crossorigin="anonymous"></script>
+      </section>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/js/foundation.min.js" integrity="sha256-Nd2xznOkrE9HkrAMi4xWy/hXkQraXioBg9iYsBrcFrs=" crossorigin="anonymous"></script>
+      <script src="{% static 'questions/js/script.js' %}"></script>
     </body>
 </html>

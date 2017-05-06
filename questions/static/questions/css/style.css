@@ -1,47 +1,115 @@
+* {
+  font-family: 'Museo Sans', --apple-system, BlinkMacSystemFont, 'Segoe UI', 'Ubuntu', 'Helvetica', arial, sans-serif;
+}
 body {
-  background: #4484ce;
+  background: linear-gradient(53deg, #5947FF, #006ba6, #4484ce, #0496ff, #41ead4);
+  background-size: 800% 800%;
+
+  -webkit-animation: AnimationName 59s ease infinite;
+  -moz-animation: AnimationName 59s ease infinite;
+  animation: AnimationName 59s ease infinite;
 }
 
+@-webkit-keyframes AnimationName {
+    0%{background-position:0% 90%}
+    50%{background-position:100% 11%}
+    100%{background-position:0% 90%}
+}
+@-moz-keyframes AnimationName {
+    0%{background-position:0% 90%}
+    50%{background-position:100% 11%}
+    100%{background-position:0% 90%}
+}
+@keyframes AnimationName {
+    0%{background-position:0% 90%}
+    50%{background-position:100% 11%}
+    100%{background-position:0% 90%}
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: inherit;
+}
+
+.top-bar, .top-bar ul {
+  background: none;
+}
+
+.top-bar ul li a   {
+  color: white;
+}
+
+/* Login styles */
+
 .login-box {
-  background: #fff;
-  border: none;
-  border-radius: 4px;
-  margin: 100px auto 20px;
-  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
-  padding: 40px 20px 40px 20px;
+  background: none;
+  padding: 0 20px 40px 20px;
+  font-family: inherit;
 }
 
 .login-listr {
-    background-color: #4484ce;
+    font-family: inherit;
+    background: #f7882f;
     color: white;
     font-weight: bold;
     font-size: 1em;
     border: none;
     border-radius: 4px;
-    margin-top: 15px;
     padding: 10px 10px;
     width: 100px;
     transition-duration: 0.4s;
 }
 
 .login-listr:hover {
+  background: #f7882f;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
-}
-
-.signup-listr {
-  background-color: #f7882f;
-  color: rgba(0, 0, 0, 0.8);
-  margin-top: 0;
 }
 
 .inputfill {
     border: none;
     box-shadow: none;
-    border-bottom: 1px solid grey;
+    background: none;
+    border-radius: 4px;
+    border: 3px solid white;
 }
 
 .inputfill:focus {
     box-shadow: none;
     border: none;
-    border-bottom: 1px solid #f7882f;
+    background: none;
+    border: 3px solid white;
+}
+
+
+/* Landing page */
+
+#quora {
+  color: maroon;
+}
+
+#quora:hover {
+  color: white;
+  background-color: maroon;
+  padding: 5px;
+}
+
+.landing-btn {
+  background: #f7882f;
+  padding: 10px 50px;
+  border-radius: 4px;
+}
+
+.landing-btn:hover {
+  background: #f7882f;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+}
+
+.headering {
+  color: white;
+  font-family: 'Museo Slab', --apple-system, BlinkMacSystemFont, 'Segoe UI', 'Ubuntu', 'Helvetica', arial, sans-serif;
+  font-size: 4em;
+  font-weight: 800;
+}
+
+.other-links {
+  background: none;
 }
