@@ -30,7 +30,7 @@ class Question(models.Model):
 	question_date = models.DateField()
 	upvotes = models.IntegerField()
 	downvotes = models.IntegerField()
-	topic = models.ForeignKey(Topic, on_delete = models.CASCADE)
+	topic = models.ForeignKey(Topic, blank = True, null = True, on_delete = models.CASCADE)
 
 	def __str__(self):
 		return self.question
