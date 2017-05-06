@@ -38,6 +38,13 @@ h1, h2, h3, h4, h5, h6 {
   color: white;
 }
 
+.bottom-bar {
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  margin-bottom: 0px;
+}
+
 /* Login styles */
 
 .login-box {
