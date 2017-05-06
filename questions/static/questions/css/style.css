@@ -53,8 +53,26 @@ h1, h2, h3, h4, h5, h6 {
   background: #4484ce;
 }
 
+.large-12 [type=submit]:hover {
+  border: 1px solid #f7882f;
+}
+
 .error-signup {
   color: red;
+}
+
+.inputfill {
+  background: none;
+  border: 1px solid #4484ce;
+  box-shadow: none;
+}
+
+.inputfill:hover {
+  border: 1px solid #006ba6;
+}
+
+.inputfill:focus {
+  border: 1px solid #f7882f;
 }
 
 /* Landing page */
@@ -66,6 +84,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .landing-btn:hover {
+  background: #f7882f;
+}
+
+.landing-btn:visited {
   background: #f7882f;
 }
 
