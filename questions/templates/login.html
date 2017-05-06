@@ -12,12 +12,17 @@
     <body>
       <div class="top-bar">
         <div class="row">
-          <div class="top-bar-left"></div>
+          <div class="top-bar-left">
+            <ul class="menu">
+              <li><a href="#"><img src="{% static 'questions/assets/logo.png' %}" alt=""></a></li>
+            </ul>
+          </div>
           <div class="top-bar-right">
             <ul class="menu">
               <li><a href="#">ABOUT</a></li>
               <li><a href="#">CONTACT</a></li>
               <li><a href="#">SUPPORT</a></li>
+              <li><a href="#" class="button landing-btn">Log In</a></li>
             </ul>
           </div>
         </div>
@@ -25,45 +30,44 @@
 
       <section class="showcase" style="margin-top: 100px;">
         <div class="row">
-          <div class="large-7 columns">
+          <div class="large-8 columns">
             <div class="showcase-box">
-              <img src="{% static 'questions/assets/logo-white.png' %}" alt="" style="margin: 25px 0;">
-              <h3 style="color:white">It's like
-                <a href="http://quora.com" id="quora">Quora</a>
-                , but even better.
-              </h3>
-              <a href="#" class="button landing-btn" onclick="login()">Log In</a><br>
-              <small style="color: white">New user? <a href="#" style="color: #f7882f" onclick="signup()">Sign up here.</a></small><br><br><br>
-              <small style="color: rgba(255, 255, 255, 0.7)">&copy; Listr.io</small>
+              <div class="large-9 columns">
+                <p class="headerer">Be steps ahead</p>
+                <p style="color: white">Listr.io is the question-and-answer platform where the community of users answers a question but specifically and strictly on a list or step-by-step form. This makes sharing and acquiring information easier and more effective because it is just like reading a list or guide where each item contains a direct instruction or information that you answer your question.</p>
+                <a href="#" class="button landing-btn">Learn More</a>
+              </div>
+
             </div>
           </div>
-          <div class="large-5 columns">
-            <div class="login-section" style="display: none">
-              <div class="login-box">
-                <div class="row">
-                  <div class="large-12 columns">
-                    <h1 class="headering">Log In</h1>
-                    <form method="POST">
-                       <div class="row">
-                         <div class="large-12 columns">
-                            <input type="text" name="username" placeholder="Username" class="inputfill" style="color: white">
-                            <input type="password" name="password" placeholder="Password" class="inputfill" style="color: white">
-                            <p style="color: red"></p>
-                            <input type="submit" class="button expand login-listr" value="LOG IN"/ ><br>
-                         </div>
+          <div class="large-4 columns">
+            <div class="login-box" style="margin-top: -75px">
+              <div class="row">
+                <div class="large-12 columns">
+                  <p>New user? Sign up here</p>
+                  <form method="POST">
+                     <div class="row">
+                       <div class="large-12 columns">
+                          <input type="text" name="firstname" placeholder="First Name">
+                          <input type="text" name="lastname" placeholder="Last Name">
+                          <input type="text" name="username" placeholder="User Name">
+                          <p class="error-signup"><!--Error if username already exists--></p>
+                          <input type="email" name="email" placeholder="Email address">
+                          <input type="password" name="password" placeholder="Password">
+                          <input type="text" name="institution" placeholder="Institution">
+                          <input type="text" name="position" placeholder="Position">
+                          <input type="submit" class="button expanded" value="Sign Up"/ style="margin-bottom: 0">
                        </div>
-                    </form>
-                  </div>
+                     </div>
+                  </form>
                 </div>
               </div>
-            </div>
-            <div class="signup-section" style="display: none">
-              <h1 class="headering">Sign up</h1>
             </div>
           </div>
         </div>
       </section>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/js/foundation.min.js" integrity="sha256-Nd2xznOkrE9HkrAMi4xWy/hXkQraXioBg9iYsBrcFrs=" crossorigin="anonymous"></script>
+      <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
       <script src="{% static 'questions/js/script.js' %}"></script>
     </body>
 </html>
