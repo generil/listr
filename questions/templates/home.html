@@ -1,0 +1,108 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <link rel="icon" href="{% static 'questions/favicon.ico' %}" type="image/x-icon">
+        <link rel="shortcut icon" href="{% static 'questions/favicon.ico' %}" type="image/x-icon">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/css/foundation.min.css" integrity="sha256-itWEYdFWzZPBG78bJOOiQIn06QCgN/F0wMDcC4nOhxY=" crossorigin="anonymous" />
+        <link rel="stylesheet" href="{% static 'questions/css/style.css' %}">
+    </head>
+    <body>
+      <div class="top-bar" id="top">
+        <div class="row">
+          <div class="top-bar-left">
+            <ul class="menu">
+              <li><a href="#"><img src="{% static 'questions/assets/logo.png' %}" alt=""></a></li>
+            </ul>
+          </div>
+          <div class="top-bar-right">
+            <ul class="menu">
+              <li><a href="#">ABOUT</a></li>
+              <li><a href="#">CONTACT</a></li>
+              <li><a href="#">SUPPORT</a></li>
+              <li><a href="#" class="button landing-btn triggered" onclick="login()">Log In</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <section class="showcase" style="margin-top: 100px;">
+        <div class="row">
+          <div class="large-8 columns">
+            <div class="showcase-box">
+              <div class="large-9 columns">
+                <p class="headerer">Be steps ahead.</p>
+                <p style="color: white">Listr.io is the question-and-answer platform where the community of users answers a question but specifically and strictly on a list or step-by-step form. This makes sharing and acquiring information easier and more effective because it is just like reading a list or guide where each item contains a direct instruction or information that you answer your question.</p>
+                <a href="#lm" class="button landing-btn">Learn More</a>
+              </div>
+            </div>
+          </div>
+          <div class="large-4 columns">
+            <div class="signup-section">
+              <div class="login-box" style="margin-top: -75px">
+                <div class="row">
+                  <div class="large-12 columns">
+                    <h4 style="color: #4484ce">New user? Sign up here</h4>
+                    <form method="POST">
+                      <input type="text" class="inputfill" name="firstname" placeholder="First Name">
+                      <input type="text" class="inputfill" name="lastname" placeholder="Last Name">
+                      <input type="text" class="inputfill" name="username" placeholder="User Name">
+                      <p class="error-signup"><!--Error if username already exists--></p>
+                      <input type="email" class="inputfill" name="email" placeholder="Email address">
+                      <input type="password" class="inputfill" name="password" placeholder="Password">
+                      <input type="text" class="inputfill" name="institution" placeholder="Institution">
+                      <input type="text" class="inputfill" name="position" placeholder="Position">
+                      <input type="submit" class="button expanded" value="Sign Up"/ style="margin-bottom: 0">
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="login-section" style="display:none">
+              <div class="login-box">
+                <div class="row">
+                  <div class="large-12 columns">
+                    <h1 style="color: #4484ce">Log in</h1>
+                    <form method="POST">
+                      <input type="text" class="inputfill" name="username" placeholder="User Name">
+                      <input type="password" class="inputfill" name="password" placeholder="Password">
+                      <input type="submit" class="button expanded" value="Log in"/ style="margin-bottom: 0">
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="showcase" id="lm" style="margin-top: 50px">
+        <div class="row">
+          <div class="large-12 columns">
+            <div class="showcase-box">
+              <div class="large-9 columns learn-more" style="margin: 100px auto">
+                <p class="headerer">What is Listr.io?</p>
+                <p style="color: white">People on the internet are always looking for simple and direct answers to their questions. May it be about cooking like "How to prepare turkey?” or about technology like “What are the best phones of 2016?”; we want precise answers that we can read as fast as possible and learn from it immediately. And more often than not, we search google for a question and it just returns a bunch of links leading nowhere and we end up losing some valuable time. Listr.io is the question-and-answer platform where the community of users answers a question but specifically and strictly on a list or step-by-step form. This makes sharing and acquiring information easier and more effective because it is just like reading a list or guide where each item contains a direct instruction or information that you answers your question.</p>
+                <ul style="list-style-image: url('{% static 'questions/assets/triangle.png' %}')">
+                  <li><p style="color: white">For example, i post a question: “How to go to Manila from Cebu”. Then the answers I’m expecting must be in step by step, numbered form where each item clearly describes an instruction: </p></li>
+                  <ol style="list-style-image: url('{% static 'questions/assets/circle.png' %}')">
+                    <li><p style="color:white">Go to the <a href="http://united.com" style="color: #f7882f">Airlines's</a> site</p></li>
+                    <li><p style="color:white">Find flights by inputting the information you have.</p></li>
+                    <li><p style="color:white">If you find the flight you want, book it.</p></li>
+                    <li><p style="color:white">Complete the continuing steps</p></li>
+                  </ol>
+                </ul>
+                <p style="color: white">All answers will be in this kind of list form, ordered or unordered, ranked or unranked. There will be lots of topics users can ask and answer from.</p>
+                <p style="color: white">We want to do this for the sake of knowledge. We want information to be as easily accessible as possible and we want to do this in a way as simple as possible - by providing a list. Because we may want people to be experimental as possible - to find and discover things their own way by experiencing them, but isn’t it a little better if we help them be one step ahead by sharing the basic steps?</p><br><br>
+                <a href="#top" class="button landing-btn">Back to Top</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/js/foundation.min.js" integrity="sha256-Nd2xznOkrE9HkrAMi4xWy/hXkQraXioBg9iYsBrcFrs=" crossorigin="anonymous"></script>
+      <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+      <script src="{% static 'questions/js/script.js' %}"></script>
+    </body>
+</html>

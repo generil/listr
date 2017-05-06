@@ -5,10 +5,7 @@ from models import Question
 from models import Answer
 
 def index(request):
-  return render(request, 'login.html')
-
-def signup(request):
-	return render(request, 'signup.html')
+  return render(request, 'home.html')
 
 def questions(request):
 	all_questions = Question.objects.all()
