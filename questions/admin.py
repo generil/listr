@@ -1,5 +1,5 @@
 from django.contrib import admin
-# from models import User
+from models import User
 from models import Topic
 from models import Question
 from models import Answer

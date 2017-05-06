@@ -40,13 +40,17 @@ h1, h2, h3, h4, h5, h6 {
 /* Login styles */
 .login-box {
   background: white;
-  padding: 40px 20px;
-
+  padding: 40px 30px;
+  text-align: center;
+  border-radius: 4px;
 }
 
-/*Sign up*/
-.login-box {
+.large-12 input {
   border-radius: 4px;
+}
+
+.large-12 [type=submit] {
+  background: #4484ce;
 }
 
 .error-signup {
