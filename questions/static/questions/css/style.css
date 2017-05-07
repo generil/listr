@@ -1,29 +1,49 @@
 * {
   font-family: 'Museo Sans', --apple-system, BlinkMacSystemFont, 'Segoe UI', 'Ubuntu', 'Helvetica', arial, sans-serif;
 }
-body {
+
+body .landing {
   background: linear-gradient(53deg, #5947FF, #006ba6, #4484ce, #0496ff, #41ead4);
   background-size: 800% 800%;
-
   -webkit-animation: AnimationName 59s ease infinite;
   -moz-animation: AnimationName 59s ease infinite;
   animation: AnimationName 59s ease infinite;
 }
 
 @-webkit-keyframes AnimationName {
-    0%{background-position:0% 90%}
-    50%{background-position:100% 11%}
-    100%{background-position:0% 90%}
+  0% {
+    background-position: 0% 90%
+  }
+  50% {
+    background-position: 100% 11%
+  }
+  100% {
+    background-position: 0% 90%
+  }
 }
+
 @-moz-keyframes AnimationName {
-    0%{background-position:0% 90%}
-    50%{background-position:100% 11%}
-    100%{background-position:0% 90%}
+  0% {
+    background-position: 0% 90%
+  }
+  50% {
+    background-position: 100% 11%
+  }
+  100% {
+    background-position: 0% 90%
+  }
 }
+
 @keyframes AnimationName {
-    0%{background-position:0% 90%}
-    50%{background-position:100% 11%}
-    100%{background-position:0% 90%}
+  0% {
+    background-position: 0% 90%
+  }
+  50% {
+    background-position: 100% 11%
+  }
+  100% {
+    background-position: 0% 90%
+  }
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -34,10 +54,13 @@ h1, h2, h3, h4, h5, h6 {
   background: none;
 }
 
-.top-bar ul li a   {
+.top-bar ul li a {
   color: white;
 }
+
+
 /* Login styles */
+
 .login-box {
   background: white;
   padding: 40px 30px;
@@ -74,6 +97,7 @@ h1, h2, h3, h4, h5, h6 {
 .inputfill:focus {
   border: 1px solid #f7882f;
 }
+
 
 /* Landing page */
 
