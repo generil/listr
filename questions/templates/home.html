@@ -51,8 +51,14 @@
               <div class="large-12 columns">
                 <h4 style="color: #4484ce">New user? Sign up here</h4>
                 <form method="POST">
-                  <input type="text" class="inputfill" name="firstname" placeholder="First Name">
-                  <input type="text" class="inputfill" name="lastname" placeholder="Last Name">
+                  <div class="row">
+                    <div class="large-6 columns">
+                      <input type="text" class="inputfill" name="firstname" placeholder="First Name">
+                    </div>
+                    <div class="large-6 columns" style="padding-left:0">
+                      <input type="text" class="inputfill" name="lastname" placeholder="Last Name">
+                    </div>
+                  </div>
                   <input type="text" class="inputfill" name="username" placeholder="User Name">
                   <p class="error-signup">
                     <!--Error if username already exists-->
