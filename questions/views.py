@@ -35,11 +35,6 @@ def questions(request):
     questions_list = Question.objects.all()
     context = {'questions': questions_list}
     return render(request, 'questions_page.html', context)
-	# html = "<h1> Questions by the Community</h1></br>"
-	# for question in all_questions:
-	# 	url = '/questions/' + str(question.id) +'/'
-	# 	html += "<h3><a href = '" + url + "'>" + question.question + " </a> by " + str(question.user_id) + "<h3><br>"
-	# return HttpResponse(html)
 
 def question_detail(request, question_id):
     question = Question.objects.get(id = question_id)
@@ -60,8 +55,6 @@ def topic_detail(request, topic_id):
     all_questions = Question.objects.filter(topic = topic)
     html = "<h1>" + str(topic) + "</h1></br><h2>" + topic.details + "</h2><br>"
     for question in all_questions:
-        url = '/questions/' + str(question.id) + '/' 
+        url = '/questions/' + str(question.id) + '/'
         html += "<h3><a href = '" + url + "'>" + question.question + " </a> by " + str(question.questioner) + "<h3><br>"
     return HttpResponse(html)
-
-
