@@ -27,7 +27,7 @@ def login_view(request):
             return redirect('topics')
         else:
             print "stage 4 check"
-            context['error_message'] = 'wrong username or password'
+            context['error_message'] = 'Wrong username or password'
             context['username'] = username
     return render(request, 'home.html', context=context)
 
