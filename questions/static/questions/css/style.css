@@ -2,7 +2,7 @@
   font-family: 'Museo Sans', --apple-system, BlinkMacSystemFont, 'Segoe UI', 'Ubuntu', 'Helvetica', arial, sans-serif;
 }
 
-body .landing {
+body {
   background: linear-gradient(53deg, #5947FF, #006ba6, #4484ce, #0496ff, #41ead4);
   background-size: 800% 800%;
   -webkit-animation: AnimationName 59s ease infinite;
