@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <link rel="icon" href="{% static 'questions/favicon.ico' %}" type="image/x-icon">
+  <link rel="shortcut icon" href="{% static 'questions/favicon.ico' %}" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/css/foundation.min.css" integrity="sha256-itWEYdFWzZPBG78bJOOiQIn06QCgN/F0wMDcC4nOhxY=" crossorigin="anonymous" />
+  <link rel="stylesheet" href="{% static 'questions/css/home.css' %}">
+</head>
+
+<body>
+  <h1>Questions</h1>
+  {% for question in questions %}
+    <a href="/questions/{{question.id}}">{{question.question}}</a>
+    <p>from {{question.questioner}}</p>
+  {% endfor %}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/js/foundation.min.js" integrity="sha256-Nd2xznOkrE9HkrAMi4xWy/hXkQraXioBg9iYsBrcFrs=" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="{% static 'questions/js/script.js' %}"></script>
+</body>
+
+</html>

@@ -12,10 +12,10 @@
 </head>
 
 <body>
-  <h1>Questions</h1>
-  {% for item in questions %}
-    <p>from {{item.user_id}}</p>
-    <a href="/questions/{{item.id}}">{{item.question}}</a>
+  <h1>Topics</h1>
+  {% for topic in topics %}
+    <a href="/topics/{{topic.id}}">{{topic.topic}}</a>
+    <p>from {{topic.creator}}</p>
   {% endfor %}
   <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/js/foundation.min.js" integrity="sha256-Nd2xznOkrE9HkrAMi4xWy/hXkQraXioBg9iYsBrcFrs=" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>

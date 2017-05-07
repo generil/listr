@@ -76,10 +76,25 @@
           <div class="login-box">
             <div class="row">
               <div class="large-12 columns">
+
+              <!-- h1>Login</h1>
+        {{ error_message }}
+        {{ success }}
+        <form action="{% url 'login' %}" method="POST">
+            {% csrf_token %}
+            <label for="username">Username: </label>
+            <input type="text" id="username" name="username" value="{{ username }}">
+            <label for="password">Password: </label>
+            <input type="password" id="password" name="password">
+            <button>Login</button>
+        </form> -->
                 <h1 style="color: #4484ce">Log in</h1>
-                <form method="POST">
+                <form action="{% url 'login'%}" method="POST">
+                  {% csrf_token %}
                   <input type="text" class="inputfill" name="username" placeholder="User Name">
                   <input type="password" class="inputfill" name="password" placeholder="Password">
+                  {{ error_message }}
+                  {{ success }}
                   <input type="submit" class="button expanded" value="Log in" / style="margin-bottom: 0">
                 </form>
               </div>

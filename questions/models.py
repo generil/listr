@@ -1,56 +1,62 @@
 from django.db import models
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
 
-class User(models.Model):
-	first_name = models.CharField(max_length = 30)
-	last_name = models.CharField(max_length = 30)
-	username = models.CharField(max_length = 15, unique = True)
-	password = models.CharField(max_length = 30)
+class Person(models.Model):
+	user = models.OneToOneField(User)
+	
 	email = models.CharField(max_length = 30, unique = True)
 	institution = models.CharField(max_length = 30)
 	position = models.CharField(max_length = 30)
-	join_date = models.DateField()
+	join_date = models.DateField(auto_now_add=True)
 	is_verified = models.BooleanField(default = True)
 
-	def __str__(self):
-		return self.first_name + ' ' + self.last_name
+	def __unicode__(self):
+		return str(self.user)
+
+def create_person(sender, instance, created, **kwargs):  
+  if created:  
+    profile, created = Person.objects.get_or_create(user=instance)  
+
+post_save.connect(create_person, sender=User) 
 
 class Topic(models.Model):
 	topic = models.CharField(max_length = 30, unique = True)
-	details = models.CharField(max_length = 100)
-	user_id = models.ForeignKey(User, on_delete = models.CASCADE)
-	create_date = models.DateField()
+	details = models.CharField(max_length = 100, default = "")
+	creator = models.ForeignKey(User, on_delete = models.CASCADE)
+	create_date = models.DateField(auto_now_add=True)
 
-	def __str__(self):
+	def __unicode__(self):
 		return self.topic
 
 class Question(models.Model):
 	question = models.CharField(max_length = 30)
-	details = models.CharField(max_length = 100)
-	user_id = models.ForeignKey(User, on_delete = models.CASCADE)
-	question_date = models.DateField()
+	details = models.CharField(max_length = 100, default = "")
+	questioner = models.ForeignKey(User, on_delete = models.CASCADE)
+	question_date = models.DateField(auto_now_add=True)
 	upvotes = models.IntegerField()
 	downvotes = models.IntegerField()
 	topic = models.ForeignKey(Topic, blank = True, null = True, on_delete = models.CASCADE)
 
-	def __str__(self):
+	def __unicode__(self):
 		return self.question
 
 class Answer(models.Model):
 	answer = models.CharField(max_length = 500)
 	question = models.ForeignKey(Question, on_delete = models.CASCADE)
-	user_id = models.ForeignKey(User, on_delete = models.CASCADE)
-	answer_date = models.DateField()
+	respondent = models.ForeignKey(User, on_delete = models.CASCADE)
+	answer_date = models.DateField(auto_now_add=True)
 	upvotes = models.IntegerField()
 	downvotes = models.IntegerField()
 
-	def __str__(self):
+	def __unicode__(self):
 		return self.answer
 
 class Comment(models.Model):
 	comment = models.CharField(max_length = 50)
 	answer = models.ForeignKey(Answer, on_delete = models.CASCADE)
-	user_id = models.ForeignKey(User, on_delete = models.CASCADE)
-	comment_date = models.DateField()
+	commenter = models.ForeignKey(User, on_delete = models.CASCADE)
+	comment_date = models.DateField(auto_now_add=True)
 
-	def __str__(self):
+	def __unicode__(self):
 		return self.comment
