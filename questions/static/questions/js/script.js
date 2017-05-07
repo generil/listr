@@ -7,6 +7,10 @@ showlogin = function() {
     x[0].style.display = 'block';
     y[0].style.display = 'none';
     z[0].innerText = 'Sign up'
+  } else {
+    x[0].style.display = 'none';
+    y[0].style.display = 'block';
+    z[0].innerText = 'Log in'
   }
 }
 
@@ -18,6 +22,7 @@ login = function() {
     x[0].style.display = 'block';
     y[0].style.display = 'none';
     z[0].innerText = 'Sign up'
+    document.getElementById('errorlogin').innerText = "";
   } else {
     x[0].style.display = 'none';
     y[0].style.display = 'block';
