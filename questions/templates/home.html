@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="{% static 'questions/css/style.css' %}">
 </head>
 
-<body class="landing">
+<body class="landing" onload="showlogin()">
   <div class="top-bar" id="top">
     <div class="row">
       <div class="top-bar-left">
@@ -81,8 +81,7 @@
                   {% csrf_token %}
                   <input type="text" class="inputfill" name="username" placeholder="User Name">
                   <input type="password" class="inputfill" name="password" placeholder="Password">
-                  {{ error_message }}
-                  {{ success }}
+                  <p style="color: #EA0730;" id="errorlogin">{{ error_message }}</p>
                   <input type="submit" class="button expanded" value="Log in" / style="margin-bottom: 0">
                 </form>
               </div>
@@ -130,8 +129,8 @@
       </div>
     </div>
   </section>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/js/foundation.min.js" integrity="sha256-Nd2xznOkrE9HkrAMi4xWy/hXkQraXioBg9iYsBrcFrs=" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/js/foundation.min.js" integrity="sha256-Nd2xznOkrE9HkrAMi4xWy/hXkQraXioBg9iYsBrcFrs=" crossorigin="anonymous"></script>
   <script src="{% static 'questions/js/script.js' %}"></script>
 </body>
 
