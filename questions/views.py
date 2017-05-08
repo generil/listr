@@ -28,6 +28,9 @@ def login_view(request):
 	return render(request, 'home.html', context=context)
 
 def signup_view(request):
+	if request.user.is_authenticated:
+		return redirect('topics')
+	context = {}
 	if request.method == 'POST':
 		first_name = request.POST['first_name']
 		last_name = request.POST['last_name']
