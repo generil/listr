@@ -7,6 +7,8 @@ urlpatterns = [
   # /login/
   url(r'^login/$', views.login_view, name='login'),
   # /questions/
+  url(r'^signup/$', views.signup_view, name='signup'),
+  # /questions/
   url(r'^questions/$', views.questions, name='questions'),
   # /qustions/id
   url(r'^questions/(?P<question_id>[0-9]+)/$', views.question_detail, name='question_detail'),

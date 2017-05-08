@@ -27,8 +27,14 @@ def login_view(request):
 			context['username'] = username
 	return render(request, 'home.html', context=context)
 
-def sign_up(request):
-	pass
+def signup_view(request):
+	if request.method == 'POST':
+		first_name = request.POST['first_name']
+		last_name = request.POST['last_name']
+		username = request.POST['username']
+		email = request.POST['email']
+		password = request.POST['password']
+
 
 def questions(request):
 	questions_list = Question.objects.all()
