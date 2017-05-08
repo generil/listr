@@ -50,7 +50,8 @@
             <div class="row">
               <div class="large-12 columns">
                 <h4 style="color: #4484ce">Join Listr. Sign up here!</h4>
-                <form method="POST">
+                <form action="{% url 'signup' %}" method="POST">
+                  {% csrf_token %}
                   <div class="row">
                     <div class="large-6 columns">
                       <input type="text" class="inputfill" name="firstname" placeholder="First Name">
@@ -60,12 +61,13 @@
                     </div>
                   </div>
                   <input type="text" class="inputfill" name="username" placeholder="User Name">
-                  <p class="error-signup">
-                    <!--Error if username already exists-->
-                  </p>
+                  <p style="color: #EA0730;" id="errorlogin">{{ username_error }}</p>
                   <input type="email" class="inputfill" name="email" placeholder="Email address">
+                  <p style="color: #EA0730;" id="errorlogin">{{ email_error }}</p>
                   <input type="password" class="inputfill" name="password1" placeholder="Password">
+                  <p style="color: #EA0730;" id="errorlogin">{{ password1_error }}</p>
                   <input type="password" class="inputfill" name="password2" placeholder="Retype Password">
+                  <p style="color: #EA0730;" id="errorlogin">{{ password2_error }}</p>
                   <input type="submit" class="button expanded" value="Sign Up" / style="margin-bottom: 0">
                 </form>
               </div>
