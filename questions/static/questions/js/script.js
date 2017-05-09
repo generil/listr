@@ -29,3 +29,14 @@ login = function() {
     z[0].innerText = 'Log in'
   }
 };
+
+showdescription = function() {
+  x = document.getElementById('lm');
+  if (x.style.display === 'none') {
+    x.style.display = 'block';
+    window.location.href = '#lm';
+  } else {
+    x.style.display = 'none';
+    window.location.href = '';
+  }
+}

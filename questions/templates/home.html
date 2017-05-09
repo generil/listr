@@ -38,9 +38,9 @@
         <div class="showcase-box">
           <div class="large-9 columns">
             <p class="headerer">Be steps ahead.</p>
-            <p style="color: white">Listr.io is the question-and-answer platform where the community of users answers a question but specifically and strictly on a list or step-by-step form. This makes sharing and acquiring information easier and more effective because it is
+            <p style="color: white">Listr is the question-and-answer platform where the community of users answers a question but specifically and strictly on a list or step-by-step form. This makes sharing and acquiring information easier and more effective because it is
               just like reading a list or guide where each item contains a direct instruction or information that you answer your question.</p>
-            <a href="#lm" class="button landing-btn">Learn More</a>
+            <a onclick="showdescription()" class="button landing-btn">Learn More</a>
           </div>
         </div>
       </div>
@@ -93,14 +93,14 @@
       </div>
     </div>
   </section>
-  <section class="showcase" id="lm" style="margin-top: 50px">
+  <section class="showcase" id="lm" style="display: none">
     <div class="row">
       <div class="large-12 columns">
         <div class="showcase-box">
-          <div class="large-9 columns learn-more" style="margin: 100px auto">
-            <p class="headerer">What is Listr.io?</p>
+          <div class="large-9 columns learn-more" style="margin: 50px auto">
+            <p class="headerer">What is Listr?</p>
             <p style="color: white">People on the internet are always looking for simple and direct answers to their questions. May it be about cooking like "How to prepare turkey?” or about technology like “What are the best phones of 2016?”; we want precise answers that we
-              can read as fast as possible and learn from it immediately. And more often than not, we search google for a question and it just returns a bunch of links leading nowhere and we end up losing some valuable time. Listr.io is the question-and-answer
+              can read as fast as possible and learn from it immediately. And more often than not, we search google for a question and it just returns a bunch of links leading nowhere and we end up losing some valuable time. Listr is the question-and-answer
               platform where the community of users answers a question but specifically and strictly on a list or step-by-step form. This makes sharing and acquiring information easier and more effective because it is just like reading a list or guide
               where each item contains a direct instruction or information that you answers your question.</p>
             <ul style="list-style-image: url('{% static 'questions/assets/triangle.png' %}')">
@@ -125,24 +125,12 @@
             <p style="color: white">All answers will be in this kind of list form, ordered or unordered, ranked or unranked. There will be lots of topics users can ask and answer from.</p>
             <p style="color: white">We want to do this for the sake of knowledge. We want information to be as easily accessible as possible and we want to do this in a way as simple as possible - by providing a list. Because we may want people to be experimental as possible
               - to find and discover things their own way by experiencing them, but isn’t it a little better if we help them be one step ahead by sharing the basic steps?</p><br><br>
-            <a href="#top" class="button landing-btn">Back to Top</a>
+            <a class="button landing-btn" onclick="showdescription()">Back to Top</a>
           </div>
         </div>
       </div>
     </div>
   </section>
-
-  <div class="top-bar" id="top">
-    <div class="row">
-      <div class="top-bar-left">
-        <ul class="menu">
-          <li>
-            <small style="color: white">&copy; Listr.io</small>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
   <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/js/foundation.min.js" integrity="sha256-Nd2xznOkrE9HkrAMi4xWy/hXkQraXioBg9iYsBrcFrs=" crossorigin="anonymous"></script>
   <script src="{% static 'questions/js/script.js' %}"></script>
