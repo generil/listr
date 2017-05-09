@@ -6,8 +6,10 @@ urlpatterns = [
   url(r'^$', views.index, name='index'),
   # /login/
   url(r'^login/$', views.login_view, name='login'),
-  # /questions/
+  # /signup/
   url(r'^signup/$', views.signup_view, name='signup'),
+  # /logout/
+  url(r'^logout/$', views.logout_view, name='logout'),
   # /questions/
   url(r'^questions/$', views.questions, name='questions'),
   # /qustions/id

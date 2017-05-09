@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.shortcuts import render, get_object_or_404, redirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 
 from .models import Person
 from .models import Question
@@ -23,7 +23,7 @@ def login_view(request):
 			login(request, user)
 			return redirect('topics')
 		else:
-			context['error_message'] = 'wrong username or password'
+			context['error_message'] = 'Invalid Username or Password'
 			context['username'] = username
 	return render(request, 'home.html', context=context)
 
@@ -38,6 +38,9 @@ def signup_view(request):
 		email = request.POST['email']
 		password = request.POST['password']
 
+def logout_view(request):
+  logout(request)
+  return redirect('index')
 
 def questions(request):
 	questions_list = Question.objects.all()
