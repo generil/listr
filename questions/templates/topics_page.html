@@ -8,17 +8,75 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="{% static 'questions/favicon.ico' %}" type="image/x-icon">
   <link rel="shortcut icon" href="{% static 'questions/favicon.ico' %}" type="image/x-icon">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+  <link rel="stylesheet" href="{% static 'questions/css/bootstrap.css' %}">
   <link rel="stylesheet" href="{% static 'questions/css/custom.css' %}">
 </head>
 
-<body>
-  <h1>Topics</h1>
-  {% for topic in topics %}
-    <a href="/topics/{{topic.id}}">{{topic.topic}}</a>
-    <p>from {{topic.creator}}</p>
-  {% endfor %}
+<body style="padding-top:60px; padding-bottom:40px">
+  <nav class="navbar navbar-fixed-top navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#"><img src="{% static 'questions/assets/logo-small.png' %}" alt="Listr"></a>
+      </div>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color: white"> {{user}}    <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-1 sidenav">
+        <ul id="sidebar" class="nav nav-pills nav-stacked affix">
+          <li><a href="/questions">Questions</a></li>
+          <li class="active"><a href="#">Topics</a></li>
+          <li><a href="#">Users</a></li>
+        </ul>
+      </div>
+      <div class="col-sm-7">
+        <h4><small>TOPICS</small></h4>
+        <hr>
+        <button type="button" class="btn btn-primary btn-block">CREATE TOPIC</button>
+        <hr>
+        {% for topic in topics %}
+        <div class="thumbnail">
+          <div class="caption" style="text-align:center">
+            <a href="/topics/{{topic.id}}">
+              <h1>{{topic.topic}}</h1>
+            </a>
+            <small>from {{topic.creator}}</small>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="col-sm-4">
+        <h4><small>ASK A QUESTION</small></h4>
+        <hr>
+        <div class="thumbnail">
+          <div class="caption">
+            <form class="" action="index.html" method="post">
+              <div class="form-group">
+                <textarea class="form-control" rows="1" placeholder="Question"></textarea>
+              </div>
+              <div class="form-group">
+                <textarea class="form-control" rows="1" placeholder="Description"></textarea>
+              </div>
+              <div class="form-group">
+                <textarea class="form-control" rows="1" placeholder="Topic (separate with commas)"></textarea>
+              </div>
+              <button type="button" class="btn btn-primary btn-block">POST QUESTION</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   <script src="{% static 'questions/js/script.js' %}"></script>
