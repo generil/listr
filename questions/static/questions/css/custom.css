@@ -1,0 +1,9 @@
+.navbar {
+  background: #23C9FF;
+  border-radius: 0;
+  border: none;
+}
+
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+  background-color: #FF9F1C;
+}
