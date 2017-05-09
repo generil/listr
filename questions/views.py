@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
 
 from .models import Person
 from .models import Question
@@ -13,7 +14,7 @@ def index(request):
 
 def login_view(request):
 	if request.user.is_authenticated:
-		return redirect('topics')
+		return redirect('questions')
 	context = {}
 	if request.method == 'POST':
 		username = request.POST['username']
@@ -21,7 +22,7 @@ def login_view(request):
 		user = authenticate(username=username, password=password)
 		if user is not None:
 			login(request, user)
-			return redirect('topics')
+			return redirect('questions')
 		else:
 			context['error_message'] = 'Invalid Username or Password'
 			context['username'] = username
@@ -29,14 +30,44 @@ def login_view(request):
 
 def signup_view(request):
 	if request.user.is_authenticated:
-		return redirect('topics')
+		return redirect('questions')
 	context = {}
+	data = {}
 	if request.method == 'POST':
-		first_name = request.POST['first_name']
-		last_name = request.POST['last_name']
-		username = request.POST['username']
-		email = request.POST['email']
-		password = request.POST['password']
+		data['first_name'] = request.POST.get('first_name')
+		data['last_name'] = request.POST.get('last_name')
+		data['username'] = request.POST.get('username')
+		data['email'] = request.POST.get('email')
+		data['password1'] = request.POST.get('password1')		
+		data['password2'] = request.POST.get('password2')
+
+		dataCheck = user_integrityCheck(data)
+		if dataCheck == True:
+			User.objects.get_or_create(first_name = data['first_name'], 
+				last_name = data['last_name'], username = data['username'], password = data['password1'], 
+				email = data['email'])
+			user_auth = authenticate(username=data['username'], password=['password1'])
+			print user
+			login(request, user_auth)
+			return redirect('questions')
+		else:
+			context = dataCheck[1]
+
+	return render(request, 'home.html', context=context)
+
+def user_integrityCheck(data):
+	errors = {}
+	
+	if len(User.objects.filter(username = data.get('username'))) > 0:
+		errors['username_error'] = "An account has this Username already. Pick another one."
+		return False, errors
+	if len(User.objects.filter(email = data.get('email'))) > 0:
+		errors['email_error'] = "An account has this Email already. Pick another one."
+		return False, errors
+	if data.get('password1') != data.get('password2'):
+		errors['password_error'] = "Passwords do not match"
+
+	return True
 
 def logout_view(request):
   logout(request)

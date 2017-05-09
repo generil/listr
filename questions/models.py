@@ -4,8 +4,7 @@ from django.db.models.signals import post_save
 
 class Person(models.Model):
 	user = models.OneToOneField(User)
-	
-	email = models.CharField(max_length = 30, unique = True)
+
 	institution = models.CharField(max_length = 30)
 	position = models.CharField(max_length = 30)
 	join_date = models.DateField(auto_now_add=True)
