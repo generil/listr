@@ -41,16 +41,16 @@
       <div class="col-sm-7">
         <h4><small>RECENT QUESTIONS</small></h4>
         <hr>
-
         {% for question in questions %}
         <div class="thumbnail">
           <div class="caption">
             <div class="container-fluid">
               <div class="row">
                 <div class="col-lg-11">
-                  <h5>{{question.questioner}} asks:</h6>
+                  <h5>{{question.questioner}} asks:</h5>
                   <h3><a href="/questions/{{question.id}}">{{question.question}}</a></h3>
-                  <h4><span class="label label-primary"><a href="#" class="topic">Topic</a></span></h4>
+                  <h4><span class="label label-primary"><a href="#" class="topic-btn">Topic</a></span></h4>
+                  <small>answers</small>
                 </div>
                 <div class="col-lg-1">
                   <small>date</small>
@@ -74,7 +74,7 @@
                 <textarea class="form-control" rows="1" placeholder="Description"></textarea>
               </div>
               <div class="form-group">
-                <textarea class="form-control" rows="1" placeholder="Topic (separate with commas)"></textarea>
+                <textarea class="form-control" rows="1" placeholder="Topic"></textarea>
               </div>
               <button type="button" class="btn btn-primary btn-block">POST QUESTION</button>
             </form>

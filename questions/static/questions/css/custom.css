@@ -8,7 +8,7 @@
   background-color: #FF9F1C;
 }
 
-.topic, .topic:hover, .topic:focus {
+.topic-btn, .topic-btn:hover, .topic-btn:focus {
   text-decoration: none;
   color: white
 }

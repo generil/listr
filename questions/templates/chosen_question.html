@@ -33,23 +33,38 @@
     <div class="row">
       <div class="col-sm-1 sidenav">
         <ul id="sidebar" class="nav nav-pills nav-stacked affix">
-          <li><a href="/questions">Questions</a></li>
-          <li class="active"><a href="#">Topics</a></li>
+          <li class="active"><a href="/questions">Questions</a></li>
+          <li><a href="/topics">Topics</a></li>
           <li><a href="#">Users</a></li>
         </ul>
       </div>
       <div class="col-sm-7">
-        <h4><small>TOPICS</small></h4>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-12">
+              <h3>{{question}}</h3>
+              <small>by {{question.details}}</small>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <h4><small>{{answers|length}} ANSWERED THE QUESTION</small></h4>
+            </div>
+          </div>
+        </div>
         <hr>
-        <button type="button" class="btn btn-primary btn-block">CREATE TOPIC</button>
-        <hr>
-        {% for topic in topics %}
+        {% for answer in answers %}
         <div class="thumbnail">
-          <div class="caption" style="text-align:center">
-            <a href="/topics/{{topic.id}}">
-              <h1>{{topic.topic}}</h1>
-            </a>
-            <small>from {{topic.creator}}</small>
+          <div class="caption">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-lg-12">
+                  <h5>{{answer.respondent}}</h5>
+                  <p><a href="/questions/{{question.id}}">{{answer.answer}}</a></p>
+                  <small>answered in ...</small>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         {% endfor %}

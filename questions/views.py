@@ -38,13 +38,13 @@ def signup_view(request):
 		data['last_name'] = request.POST.get('last_name')
 		data['username'] = request.POST.get('username')
 		data['email'] = request.POST.get('email')
-		data['password1'] = request.POST.get('password1')		
+		data['password1'] = request.POST.get('password1')
 		data['password2'] = request.POST.get('password2')
 
 		dataCheck = user_integrityCheck(data)
 		if dataCheck == True:
-			User.objects.get_or_create(first_name = data['first_name'], 
-				last_name = data['last_name'], username = data['username'], password = data['password1'], 
+			User.objects.get_or_create(first_name = data['first_name'],
+				last_name = data['last_name'], username = data['username'], password = data['password1'],
 				email = data['email'])
 			user_auth = authenticate(username=data['username'], password=['password1'])
 			print user
@@ -57,7 +57,7 @@ def signup_view(request):
 
 def user_integrityCheck(data):
 	errors = {}
-	
+
 	if len(User.objects.filter(username = data.get('username'))) > 0:
 		errors['username_error'] = "An account has this Username already. Pick another one."
 		return False, errors
@@ -81,11 +81,11 @@ def questions(request):
 def question_detail(request, question_id):
 	question = Question.objects.get(id = question_id)
 	all_answers = Answer.objects.filter(question = question)
-	html = "<h1>" + str(question) + "</h1></br><h2>" + question.details + "</h2><br>"
-	for answer in all_answers:
-		print answer.respondent
-		html += "<h3>" + answer.answer + " by " + str(answer.respondent) + "<h3><br>"
-	return HttpResponse(html)
+	context = {
+		'question': question,
+		'answers': all_answers
+	}
+	return render(request, 'chosen_question.html', context)
 
 def topics(request):
 	topics_list = Topic.objects.all()
@@ -95,8 +95,8 @@ def topics(request):
 def topic_detail(request, topic_id):
 	topic = Topic.objects.get(id = topic_id)
 	all_questions = Question.objects.filter(topic = topic)
-	html = "<h1>" + str(topic) + "</h1></br><h2>" + topic.details + "</h2><br>"
-	for question in all_questions:
-		url = '/questions/' + str(question.id) + '/'
-		html += "<h3><a href = '" + url + "'>" + question.question + " </a> by " + str(question.questioner) + "<h3><br>"
-	return HttpResponse(html)
+	context = {
+		'topic': topic,
+		'questions': all_questions,
+	}
+	return render(request, 'chosen_topic.html', context)
