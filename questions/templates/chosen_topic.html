@@ -36,7 +36,7 @@
         <ul id="sidebar" class="nav nav-pills nav-stacked affix">
           <li><a href="/questions">Questions</a></li>
           <li class="active"><a href="/topics">Topics</a></li>
-          <li><a href="#">Users</a></li>
+          <!-- <li><a href="#">Users</a></li> -->
         </ul>
       </div>
       <!-- FEED -->
@@ -45,6 +45,9 @@
           <div class="col-lg-12" style="text-align:center">
             <h1 class="topic-header" style="font-size:5em;font-weight:bold">{{topic}}</h1>
             <h4>{{topic.details}}</h4>
+            {% if topic.is_verified %}
+              <h5><i>Verified</i></h5> 
+            {% endif %}
           </div>
         </div>
         <!-- to make the feed beautiful -->

@@ -114,6 +114,8 @@ def logout_view(request):
   return redirect('index')
 
 def questions(request):
+	if not request.user.is_authenticated:
+		return redirect('/')
 	questions_list = Question.objects.all()
 	answers_count = []
 	date_relative = []
@@ -138,6 +140,8 @@ def questions(request):
 	return render(request, 'questions_page.html', context)
 
 def question_detail(request, question_id):
+	if not request.user.is_authenticated:
+		return redirect('/')
 	question = Question.objects.get(id = question_id)
 	all_answers = Answer.objects.filter(question = question)
 	context = {
@@ -147,6 +151,8 @@ def question_detail(request, question_id):
 	return render(request, 'chosen_question.html', context)
 
 def topics(request):
+	if not request.user.is_authenticated:
+		return redirect('/')
 	topics_list = Topic.objects.all()
 	for topic in topics_list:
 		que = Question.objects.filter(topic = topic).count()
@@ -155,6 +161,8 @@ def topics(request):
 	return render(request, 'topics_page.html', context)
 
 def topic_detail(request, topic_id):
+	if not request.user.is_authenticated:
+		return redirect('/')
 	topic = Topic.objects.get(id = topic_id)
 	all_questions = Question.objects.filter(topic = topic)
 	for question in all_questions:
@@ -167,6 +175,8 @@ def topic_detail(request, topic_id):
 	return render(request, 'chosen_topic.html', context)
 
 def addquestion(request, topic_id):
+	if not request.user.is_authenticated:
+		return redirect('/')
 	if request.method == 'POST':
 		topic = Topic.objects.get(pk = topic_id)
 		question = request.POST.get('question')
@@ -176,12 +186,22 @@ def addquestion(request, topic_id):
 	return redirect('topic_detail', topic_id)
 
 def addanswer(request, question_id):
+	if not request.user.is_authenticated:
+		return redirect('/')
 	if request.method == 'POST':
 		question = Question.objects.get(pk = question_id)
-		answer = request.POST.get('answerbaby')
+		answer = request.POST.get('answer')
 		user = request.user
-		print question
-		print answer
-		print user
 		Answer.objects.create(answer = answer, question = question, respondent = user)
 	return redirect('question_detail', question_id)
+
+def addtopic(request):
+	if not request.user.is_authenticated:
+		return redirect('/')
+	if request.method == 'POST':
+		topic = request.POST['topic']
+		details = request.POST['details']
+		creator = request.user
+		Topic.objects.create(topic = topic, details = details, creator = creator)
+
+	return redirect('topics')

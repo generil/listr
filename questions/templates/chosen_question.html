@@ -36,7 +36,7 @@
         <ul id="sidebar" class="nav nav-pills nav-stacked affix">
           <li class="active"><a href="/questions">Questions</a></li>
           <li><a href="/topics">Topics</a></li>
-          <li><a href="#">Users</a></li>
+          <!-- <li><a href="#">Users</a></li> -->
         </ul>
       </div>
       <!-- FEED -->
@@ -88,7 +88,7 @@
             <form class="" action="{% url 'addanswer' question_id=question.pk%}" method="POST">
               {% csrf_token %}
               <div class="form-group">
-                <textarea class="form-control" rows="1" name="answerbaby" placeholder="Answer"></textarea>
+                <textarea class="form-control" rows="1" name="answer" placeholder="Answer"></textarea>
               </div>
               <button type="submit" class="btn btn-primary btn-block">POST ANSWER</button>
             </form>

@@ -22,4 +22,6 @@ urlpatterns = [
   url(r'^addquestion/(?P<topic_id>[0-9]+)/$', views.addquestion, name='addquestion'),
   # /addanswer/
   url(r'^addanswer/(?P<question_id>[0-9]+)/$', views.addanswer, name='addanswer'),
+  # /addtopic/
+  url(r'^addtopic/$', views.addtopic, name='addtopic'),
 ]

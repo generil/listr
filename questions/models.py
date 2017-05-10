@@ -24,6 +24,7 @@ class Topic(models.Model):
 	details = models.CharField(max_length = 100, default = "")
 	creator = models.ForeignKey(User, on_delete = models.CASCADE)
 	create_date = models.DateTimeField(auto_now_add=True)
+	is_verified = models.BooleanField(default = False)
 
 	def __unicode__(self):
 		return self.topic
