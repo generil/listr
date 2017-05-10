@@ -30,7 +30,7 @@ class Topic(models.Model):
 		return self.topic
 
 	class Meta:
-		ordering = ['-create_date']
+		ordering = ['topic']
 
 class Question(models.Model):
 	question = models.CharField(max_length = 30)
