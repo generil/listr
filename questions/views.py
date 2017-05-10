@@ -122,13 +122,19 @@ def questions(request):
 	for question in questions_list:
 		ans = Answer.objects.filter(question = question).count()
 		question.ans_count = ans
+
 	for item in questions_list:
 		if isinstance(item.question_date, datetime):
-			print prettydate(item.question_date)
+			tmp = prettydate(item.question_date)
 		else:
-			print "No date specified"
+			tmp = "No date specified"
+
+		date_relative.append(tmp)
+
+	zipped_data = zip(questions_list, date_relative)
+
 	context = {
-		'questions': questions_list
+		'questions': zipped_data
 	}
 	return render(request, 'questions_page.html', context)
 
