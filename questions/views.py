@@ -165,12 +165,24 @@ def topic_detail(request, topic_id):
 		return redirect('/')
 	topic = Topic.objects.get(id = topic_id)
 	all_questions = Question.objects.filter(topic = topic)
+	date_relative = []
 	for question in all_questions:
 		ans = Answer.objects.filter(question = question).count()
 		question.ans_count = ans
+
+	for item in all_questions:
+		if isinstance(item.question_date, datetime):
+			tmp = prettydate(item.question_date)
+		else:
+			tmp = "No date specified"
+
+		date_relative.append(tmp)
+
+	zipped_data = zip(all_questions, date_relative)
+
 	context = {
 		'topic': topic,
-		'questions': all_questions,
+		'questions': zipped_data,
 	}
 	return render(request, 'chosen_topic.html', context)
 

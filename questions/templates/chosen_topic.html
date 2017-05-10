@@ -46,7 +46,7 @@
             <h1 class="topic-header" style="font-size:5em;font-weight:bold">{{topic}}</h1>
             <h4>{{topic.details}}</h4>
             {% if topic.is_verified %}
-              <h5><i>Verified</i></h5> 
+              <h5><i>Verified by the Listr team</i></h5>
             {% endif %}
           </div>
         </div>
@@ -55,7 +55,7 @@
           <div class="row">
             <div class="col-lg-12">
               <hr>
-              {% for question in questions %}
+              {% for question, date in questions %}
               <div class="thumbnail">
                 <div class="caption">
                   <div class="container-fluid">
@@ -63,8 +63,7 @@
                       <div class="col-lg-12">
                         <p>{{question.questioner.first_name}} {{ question.questioner.last_name}} @{{question.questioner}} asks:</p>
                         <h3><a href="/questions/{{question.id}}">{{question.question}}</a></h3>
-                        <small> {{question.ans_count}} Answers</small><br>
-                        <small>{{question.question_date}}</small>
+                        <small> {{question.ans_count}} Answers - <span style="color:darkgray">{{date}}</span></small>
                       </div>
                     </div>
                   </div>
@@ -81,6 +80,7 @@
         <hr>
         <div class="thumbnail">
           <div class="caption">
+            <p style="font-weight: bold">To {{topic}}</p>
             <form class="" action="{% url 'addquestion' topic_id=topic.pk%}" method="POST">
               {% csrf_token %}
               <div class="form-group">
