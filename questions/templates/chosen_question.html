@@ -5,6 +5,7 @@
 <head>
   <meta charset="utf-8">
   <title></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="{% static 'questions/favicon.ico' %}" type="image/x-icon">
   <link rel="shortcut icon" href="{% static 'questions/favicon.ico' %}" type="image/x-icon">
   <link rel="stylesheet" href="{% static 'questions/css/bootstrap.css' %}">
@@ -12,7 +13,6 @@
 </head>
 
 <body style="padding-top:60px; padding-bottom:40px">
-
   <nav class="navbar navbar-fixed-top navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
@@ -33,27 +33,36 @@
     <div class="row">
       <div class="col-sm-1 sidenav">
         <ul id="sidebar" class="nav nav-pills nav-stacked affix">
-          <li class="active"><a href="#">Questions</a></li>
+          <li class="active"><a href="/questions">Questions</a></li>
           <li><a href="/topics">Topics</a></li>
           <li><a href="#">Users</a></li>
         </ul>
       </div>
       <div class="col-sm-7">
-        <h4><small>RECENT QUESTIONS</small></h4>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-12">
+              <h3>{{question}}</h3>
+              <h5><i>{{question.details}}</i></h5>
+              <small>by {{question.questioner.first_name}} {{question.questioner.first_name}} @{{question.questioner}}</small>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <h4><small>{{answers|length}} ANSWERED THE QUESTION</small></h4>
+            </div>
+          </div>
+        </div>
         <hr>
-        {% for question in questions %}
+        {% for answer in answers %}
         <div class="thumbnail">
           <div class="caption">
             <div class="container-fluid">
               <div class="row">
-                <div class="col-lg-11">
-                  <h5> {{question.questioner.first_name}} {{ question.questioner.last_name}} @{{question.questioner}} asks:</h5>
-                  <h3><a href="/questions/{{question.id}}">{{question.question}}</a></h3>
-                  <h4><span class="label label-primary"><a href="/topics/{{question.topic.id}}" class="topic-btn"> {{question.topic}} </a></span></h4>
-                  <small> {{question.ans_count}} Answers</small>
-                </div>
-                <div class="col-lg-1">
-                  <small> {{question.question_date}}</small>
+                <div class="col-lg-12">
+                  <h5>{{answer.respondent}} @{{answer.respondent.username}} says:</h5>
+                  <p><a href="/questions/{{question.id}}">{{answer.answer}}</a></p>
+                  <small>answered in {{answer.answer_date}}</small>
                 </div>
               </div>
             </div>
@@ -62,21 +71,16 @@
         {% endfor %}
       </div>
       <div class="col-sm-4">
-        <h4><small>ASK A QUESTION</small></h4>
+        <h4><small>ANSWER THIS QUESTION</small></h4>
         <hr>
         <div class="thumbnail">
           <div class="caption">
-            <form class="" action="index.html" method="post">
+            <form class="" action="{% url 'addanswer' question_id=question.pk%}" method="POST">
+              {% csrf_token %}
               <div class="form-group">
-                <textarea class="form-control" rows="1" placeholder="Question"></textarea>
+                <textarea class="form-control" rows="1" name="answerbaby" placeholder="Answer"></textarea>
               </div>
-              <div class="form-group">
-                <textarea class="form-control" rows="1" placeholder="Description"></textarea>
-              </div>
-              <div class="form-group">
-                <textarea class="form-control" rows="1" placeholder="Topic"></textarea>
-              </div>
-              <button type="button" class="btn btn-primary btn-block">POST QUESTION</button>
+              <button type="submit" class="btn btn-primary btn-block">POST ANSWER</button>
             </form>
           </div>
         </div>
@@ -85,7 +89,7 @@
   </div>
 
   <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-  <script src="{% static 'questions/js/bootstrap.js' %}"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   <script src="{% static 'questions/js/script.js' %}"></script>
 </body>
 

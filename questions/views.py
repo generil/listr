@@ -38,13 +38,13 @@ def signup_view(request):
 		data['last_name'] = request.POST.get('last_name')
 		data['username'] = request.POST.get('username')
 		data['email'] = request.POST.get('email')
-		data['password1'] = request.POST.get('password1')		
+		data['password1'] = request.POST.get('password1')
 		data['password2'] = request.POST.get('password2')
 
 		dataCheck = user_integrityCheck(data)
 		if dataCheck == True:
-			User.objects.get_or_create(first_name = data['first_name'], 
-				last_name = data['last_name'], username = data['username'], password = data['password1'], 
+			User.objects.get_or_create(first_name = data['first_name'],
+				last_name = data['last_name'], username = data['username'], password = data['password1'],
 				email = data['email'])
 			user_auth = authenticate(username=data['username'], password=['password1'])
 			print user
@@ -57,7 +57,7 @@ def signup_view(request):
 
 def user_integrityCheck(data):
 	errors = {}
-	
+
 	if len(User.objects.filter(username = data.get('username'))) > 0:
 		errors['username_error'] = "An account has this Username already. Pick another one."
 		return False, errors
@@ -75,28 +75,60 @@ def logout_view(request):
 
 def questions(request):
 	questions_list = Question.objects.all()
-	context = {'questions': questions_list}
+	answers_count = []
+	for question in questions_list:
+		ans = Answer.objects.filter(question = question).count()
+		question.ans_count = ans
+	context = {
+		'questions': questions_list
+	}
 	return render(request, 'questions_page.html', context)
 
 def question_detail(request, question_id):
 	question = Question.objects.get(id = question_id)
 	all_answers = Answer.objects.filter(question = question)
-	html = "<h1>" + str(question) + "</h1></br><h2>" + question.details + "</h2><br>"
-	for answer in all_answers:
-		print answer.respondent
-		html += "<h3>" + answer.answer + " by " + str(answer.respondent) + "<h3><br>"
-	return HttpResponse(html)
+	context = {
+		'question': question,
+		'answers': all_answers
+	}
+	return render(request, 'chosen_question.html', context)
 
 def topics(request):
 	topics_list = Topic.objects.all()
+	for topic in topics_list:
+		que = Question.objects.filter(topic = topic).count()
+		topic.question_count = que
 	context = {'topics': topics_list}
 	return render(request, 'topics_page.html', context)
 
 def topic_detail(request, topic_id):
 	topic = Topic.objects.get(id = topic_id)
 	all_questions = Question.objects.filter(topic = topic)
-	html = "<h1>" + str(topic) + "</h1></br><h2>" + topic.details + "</h2><br>"
 	for question in all_questions:
-		url = '/questions/' + str(question.id) + '/'
-		html += "<h3><a href = '" + url + "'>" + question.question + " </a> by " + str(question.questioner) + "<h3><br>"
-	return HttpResponse(html)
+		ans = Answer.objects.filter(question = question).count()
+		question.ans_count = ans
+	context = {
+		'topic': topic,
+		'questions': all_questions,
+	}
+	return render(request, 'chosen_topic.html', context)
+
+def addquestion(request, topic_id):
+	if request.method == 'POST':
+		topic = Topic.objects.get(pk = topic_id)
+		question = request.POST.get('question')
+		details = request.POST.get('description')
+		user = request.user
+		Question.objects.create(question = question, details = details, questioner = user, topic = topic)
+	return redirect('topic_detail', topic_id)
+
+def addanswer(request, question_id):
+	if request.method == 'POST':
+		question = Question.objects.get(pk = question_id)
+		answer = request.POST.get('answerbaby')
+		user = request.user
+		print question
+		print answer
+		print user
+		Answer.objects.create(answer = answer, question = question, respondent = user)
+	return redirect('question_detail', question_id)

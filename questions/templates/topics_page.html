@@ -5,20 +5,81 @@
 <head>
   <meta charset="utf-8">
   <title></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="{% static 'questions/favicon.ico' %}" type="image/x-icon">
   <link rel="shortcut icon" href="{% static 'questions/favicon.ico' %}" type="image/x-icon">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/css/foundation.min.css" integrity="sha256-itWEYdFWzZPBG78bJOOiQIn06QCgN/F0wMDcC4nOhxY=" crossorigin="anonymous" />
-  <link rel="stylesheet" href="{% static 'questions/css/home.css' %}">
+  <link rel="stylesheet" href="{% static 'questions/css/bootstrap.css' %}">
+  <link rel="stylesheet" href="{% static 'questions/css/custom.css' %}">
 </head>
 
-<body>
-  <h1>Topics</h1>
-  {% for topic in topics %}
-    <a href="/topics/{{topic.id}}">{{topic.topic}}</a>
-    <p>from {{topic.creator}}</p>
-  {% endfor %}
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/js/foundation.min.js" integrity="sha256-Nd2xznOkrE9HkrAMi4xWy/hXkQraXioBg9iYsBrcFrs=" crossorigin="anonymous"></script>
+<body style="padding-top:60px; padding-bottom:40px">
+  <nav class="navbar navbar-fixed-top navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#"><img src="{% static 'questions/assets/logo-small.png' %}" alt="Listr"></a>
+      </div>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color: white"> {{user}}    <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-1 sidenav">
+        <ul id="sidebar" class="nav nav-pills nav-stacked affix">
+          <li><a href="/questions">Questions</a></li>
+          <li class="active"><a href="#">Topics</a></li>
+          <li><a href="#">Users</a></li>
+        </ul>
+      </div>
+      <div class="col-sm-7">
+        <h4><small>TOPICS</small></h4>
+        <hr>
+        <button type="button" class="btn btn-primary btn-block">CREATE TOPIC</button>
+        <hr>
+        {% for topic in topics %}
+        <div class="thumbnail">
+          <div class="caption" style="text-align:center">
+            <a href="/topics/{{topic.id}}">
+              <h1>{{topic.topic}}</h1>
+            </a>
+            <small>{{topic.question_count}} Question/s</small>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="col-sm-4">
+        <h4><small>ASK A QUESTION</small></h4>
+        <hr>
+        <div class="thumbnail">
+          <div class="caption">
+            <form class="" action="{% url 'addquestion' topic_id=1%}" method="POST">
+              {% csrf_token %}
+              <div class="form-group">
+                <textarea class="form-control" rows="1" placeholder="Question" name="question"></textarea>
+              </div>
+              <div class="form-group">
+                <textarea class="form-control" rows="1" placeholder="Description" name="description"></textarea>
+              </div>
+              <div class="form-group">
+                <textarea class="form-control" rows="1" placeholder="Topic" name="topic"></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary btn-block">POST QUESTION</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   <script src="{% static 'questions/js/script.js' %}"></script>
 </body>
 
