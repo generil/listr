@@ -31,6 +31,7 @@
 
   <div class="container-fluid">
     <div class="row">
+      <!-- SIDEBAR -->
       <div class="col-sm-1 sidenav">
         <ul id="sidebar" class="nav nav-pills nav-stacked affix">
           <li><a href="/questions">Questions</a></li>
@@ -38,6 +39,7 @@
           <li><a href="#">Users</a></li>
         </ul>
       </div>
+      <!-- FEED -->
       <div class="col-sm-7">
         <div class="row">
           <div class="col-lg-12" style="text-align:center">
@@ -45,26 +47,32 @@
             <h4>{{topic.details}}</h4>
           </div>
         </div>
-        <hr>
-        {% for question in questions %}
-        <div class="thumbnail">
-          <div class="caption">
-            <div class="container-fluid">
-              <div class="row">
-                <div class="col-lg-11">
-                  <h5>{{question.questioner.first_name}} {{ question.questioner.last_name}} @{{question.questioner}} asks:</h5>
-                  <h3><a href="/questions/{{question.id}}">{{question.question}}</a></h3>
-                  <small> {{question.ans_count}} Answers</small>
-                </div>
-                <div class="col-lg-1">
-                  <small>{{question.question_date}}</small>
+        <!-- to make the feed beautiful -->
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-12">
+              <hr>
+              {% for question in questions %}
+              <div class="thumbnail">
+                <div class="caption">
+                  <div class="container-fluid">
+                    <div class="row">
+                      <div class="col-lg-12">
+                        <p>{{question.questioner.first_name}} {{ question.questioner.last_name}} @{{question.questioner}} asks:</p>
+                        <h3><a href="/questions/{{question.id}}">{{question.question}}</a></h3>
+                        <small> {{question.ans_count}} Answers</small><br>
+                        <small>{{question.question_date}}</small>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
+              {% endfor %}
             </div>
           </div>
         </div>
-        {% endfor %}
       </div>
+      <!-- QUESTION BAR -->
       <div class="col-sm-4">
         <h4><small>ASK A QUESTION</small></h4>
         <hr>

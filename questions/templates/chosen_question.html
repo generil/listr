@@ -31,6 +31,7 @@
 
   <div class="container-fluid">
     <div class="row">
+      <!-- SIDEBAR -->
       <div class="col-sm-1 sidenav">
         <ul id="sidebar" class="nav nav-pills nav-stacked affix">
           <li class="active"><a href="/questions">Questions</a></li>
@@ -38,6 +39,7 @@
           <li><a href="#">Users</a></li>
         </ul>
       </div>
+      <!-- FEED -->
       <div class="col-sm-7">
         <div class="container-fluid">
           <div class="row">
@@ -53,23 +55,31 @@
             </div>
           </div>
         </div>
-        <hr>
-        {% for answer in answers %}
-        <div class="thumbnail">
-          <div class="caption">
-            <div class="container-fluid">
-              <div class="row">
-                <div class="col-lg-12">
-                  <h5>{{answer.respondent}} @{{answer.respondent.username}} says:</h5>
-                  <p><a href="/questions/{{question.id}}">{{answer.answer}}</a></p>
-                  <small>answered in {{answer.answer_date}}</small>
+        <!-- to make the feed beautiful -->
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-12">
+              <hr>
+              {% for answer in answers %}
+              <div class="thumbnail">
+                <div class="caption">
+                  <div class="container-fluid">
+                    <div class="row">
+                      <div class="col-lg-12">
+                        <h5>{{answer.respondent}} @{{answer.respondent.username}} says:</h5>
+                        <p><a href="/questions/{{question.id}}">{{answer.answer}}</a></p>
+                        <small>answered in {{answer.answer_date}}</small>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
+              {% endfor %}
             </div>
           </div>
         </div>
-        {% endfor %}
       </div>
+      <!-- QUESTION BAR -->
       <div class="col-sm-4">
         <h4><small>ANSWER THIS QUESTION</small></h4>
         <hr>

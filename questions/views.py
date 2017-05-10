@@ -3,11 +3,52 @@ from django.shortcuts import render
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
+from datetime import tzinfo, timedelta, datetime
 
 from .models import Person
 from .models import Question
 from .models import Answer
 from .models import Topic
+
+# functions for the date
+
+ZERO = timedelta(0)
+
+class UTC(tzinfo):
+	def utcoffset(self, dt):
+		return ZERO
+
+	def tzname(self, dt):
+		return "UTC"
+
+	def dst(self, dt):
+		return ZERO
+
+
+def prettydate(d):
+	utc = UTC()
+	diff = datetime.now(utc) - d
+	s = diff.seconds
+	if diff.days > 7 or diff.days < 0:
+		return d.strftime('%b %d, %y')
+	elif diff.days == 1:
+		return '1 day ago'
+	elif diff.days > 1:
+		return '{} days ago'.format(diff.days)
+	elif s <= 1:
+		return 'just now'
+	elif s < 60:
+		return '{} seconds ago'.format(s)
+	elif s < 120:
+		return '1 minute ago'
+	elif s < 3600:
+		return '{} minutes ago'.format(s/60)
+	elif s < 7200:
+		return '1 hour ago'
+	else:
+		return '{} hours ago'.format(s/3600)
+
+# end of function
 
 def index(request):
 	return render(request, 'home.html')
@@ -76,9 +117,16 @@ def logout_view(request):
 def questions(request):
 	questions_list = Question.objects.all()
 	answers_count = []
+	date_relative = []
+	# number of answers in the question
 	for question in questions_list:
 		ans = Answer.objects.filter(question = question).count()
 		question.ans_count = ans
+	for item in questions_list:
+		if isinstance(item.question_date, datetime):
+			print prettydate(item.question_date)
+		else:
+			print "No date specified"
 	context = {
 		'questions': questions_list
 	}
