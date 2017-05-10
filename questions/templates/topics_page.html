@@ -34,8 +34,8 @@
       <!-- SIDEBAR -->
       <div class="col-sm-1 sidenav">
         <ul id="sidebar" class="nav nav-pills nav-stacked affix">
-          <li><a href="/questions">Questions</a></li>
           <li class="active"><a href="#">Topics</a></li>
+          <li><a href="/questions">Questions</a></li>
           <!-- <li><a href="#">Users</a></li> -->
         </ul>
       </div>
@@ -55,7 +55,13 @@
                     <h1>{{topic.topic}}</h1>
                   </a>
                   <h5>{{topic.details}}</h5>
-                  <small>{{topic.question_count}} Question/s</small>
+                  {% if topic.question_count == 1 %}
+                    <small>{{topic.question_count}} Question</small>
+                  {% elif topic.question_count > 1 %}
+                    <small>{{topic.question_count}} Questions</small>
+                  {% else %}
+                    <small>No Questions</small>
+                  {% endif %}
                 </div>
               </div>
               {% endfor %}
