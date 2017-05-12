@@ -46,13 +46,11 @@
           <div class="row">
             <div class="col-lg-12">
               <h4><small>TOPICS</small></h4>
-              <!-- <hr> -->
-              <!-- <button type="button" class="btn btn-primary btn-block">CREATE TOPIC</button> -->
               <hr> {% for topic in topics %}
               <div class="thumbnail">
                 <div class="caption" style="text-align:center">
                   <a href="/topics/{{topic.id}}">
-                    <h1>{{topic.topic}}</h1>
+                    <h1 style="font-weight: bold;">{{topic.topic}}</h1>
                   </a>
                   <h5>{{topic.details}}</h5>
                   {% if topic.question_count == 1 %}

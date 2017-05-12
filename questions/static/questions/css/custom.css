@@ -16,3 +16,7 @@ body {
   text-decoration: none;
   color: white
 }
+
+.nav-pills > li.active > a {
+  background: #0496ff;
+}
