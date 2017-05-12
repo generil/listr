@@ -199,7 +199,17 @@ def topic_detail(request, topic_id):
 	}
 	return render(request, 'chosen_topic.html', context)
 
-# def answer(request, )
+def answer(request, answer_id):
+	if not request.user.is_authenticated:
+		return redirect('/')
+	answer = Answer.objects.get(pk = answer_id)
+	# if request.method == 'POST':
+	# answers_list = Answer.objects.filter(question = question)
+	# for topic in topics_list:
+	# 	que = Question.objects.filter(topic = topic).count()
+	# 	topic.question_count = que
+	context = {'answer': answer}
+	return render(request, 'answer.html', context)
 
 def addquestion(request, topic_id):
 	if not request.user.is_authenticated:
