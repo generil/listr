@@ -199,6 +199,8 @@ def topic_detail(request, topic_id):
 	}
 	return render(request, 'chosen_topic.html', context)
 
+# def answer(request, )
+
 def addquestion(request, topic_id):
 	if not request.user.is_authenticated:
 		return redirect('/')
@@ -216,8 +218,11 @@ def addanswer(request, question_id):
 	if request.method == 'POST':
 		question = Question.objects.get(pk = question_id)
 		answer = request.POST.get('answer')
-		user = request.user
-		Answer.objects.create(answer = answer, question = question, respondent = user)
+		if not answer:
+			pass
+		else:
+			user = request.user
+			Answer.objects.create(answer = answer, question = question, respondent = user)
 	return redirect('question_detail', question_id)
 
 def addtopic(request):
