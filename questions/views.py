@@ -199,6 +199,22 @@ def topic_detail(request, topic_id):
 	}
 	return render(request, 'chosen_topic.html', context)
 
+def answer(request, answer_id):
+	if not request.user.is_authenticated:
+		return redirect('/')
+	answer = Answer.objects.get(pk = answer_id)
+	comments = Comment.objects.filter(answer = answer)
+	# if request.method == 'POST':
+	# answers_list = Answer.objects.filter(question = question)
+	# for topic in topics_list:
+	# 	que = Question.objects.filter(topic = topic).count()
+	# 	topic.question_count = que
+	context = {
+		'answer': answer,
+		'comments': comments
+	}
+	return render(request, 'answer.html', context)
+
 def addquestion(request, topic_id):
 	if not request.user.is_authenticated:
 		return redirect('/')
@@ -216,8 +232,11 @@ def addanswer(request, question_id):
 	if request.method == 'POST':
 		question = Question.objects.get(pk = question_id)
 		answer = request.POST.get('answer')
-		user = request.user
-		Answer.objects.create(answer = answer, question = question, respondent = user)
+		if not answer:
+			pass
+		else:
+			user = request.user
+			Answer.objects.create(answer = answer, question = question, respondent = user)
 	return redirect('question_detail', question_id)
 
 def addtopic(request):
