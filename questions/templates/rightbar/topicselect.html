@@ -1,0 +1,18 @@
+<h4><small>ASK A QUESTION</small></h4>
+<hr>
+<div class="thumbnail">
+  <div class="caption">
+    <p style="font-weight: bold">To {{topic}}</p>
+    <form class="" action="{% url 'addquestion' topic_id=topic.pk%}" method="POST">
+      {% csrf_token %}
+      <div class="form-group">
+        <textarea class="form-control" rows="1" placeholder="Question" name="question"></textarea>
+      </div>
+      <div class="form-group">
+        <textarea class="form-control" rows="1" placeholder="Description" name="description"></textarea>
+        <!-- <textarea hidden="" name="topic" value=" "+ {{topic}} +""></textarea> -->
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">POST QUESTION</button>
+    </form>
+  </div>
+</div>

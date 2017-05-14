@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Questions{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-12">
+      <h4><small>RECENT QUESTIONS</small></h4>
+      <hr> {% for question, date in questions %}
+      <div class="thumbnail">
+        <div class="caption">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-lg-12">
+                <h5> {{question.questioner.first_name}} {{ question.questioner.last_name}} @{{question.questioner}} asks:</h5>
+                <h3><a href="/questions/{{question.id}}">{{question.question}}</a></h3>
+                <h4><i>{{question.details}}</i></h4>
+                <h5><span class="label label-primary"><a href="/topics/{{question.topic.id}}" class="topic-btn"> {{question.topic}} </a></span></h5>
+                {% if question.ans_count == 1 %}
+                  <small> {{question.ans_count}} answer - <span style="color:darkgray">{{date}}</span></small>
+                {% elif question.ans_count > 1 %}
+                  <small> {{question.ans_count}} answers - <span style="color:darkgray">{{date}}</span></small>
+                {% else %}
+                  <small> No answers - <span style="color:darkgray">{{date}}</span></small>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block rightbar %}
+  {% include "rightbar/question.html" %}
+{% endblock %}

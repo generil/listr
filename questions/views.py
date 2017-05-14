@@ -137,7 +137,7 @@ def questions(request):
 	context = {
 		'questions': zipped_data
 	}
-	return render(request, 'questions_page.html', context)
+	return render(request, 'questions.html', context)
 
 def question_detail(request, question_id):
 	if not request.user.is_authenticated:
@@ -161,7 +161,7 @@ def question_detail(request, question_id):
 		'answers': zipped_data,
 		'question_date': date
 	}
-	return render(request, 'chosen_question.html', context)
+	return render(request, 'question_select.html', context)
 
 def topics(request):
 	if not request.user.is_authenticated:
@@ -171,7 +171,7 @@ def topics(request):
 		que = Question.objects.filter(topic = topic).count()
 		topic.question_count = que
 	context = {'topics': topics_list}
-	return render(request, 'topics_page.html', context)
+	return render(request, 'topics.html', context)
 
 def topic_detail(request, topic_id):
 	if not request.user.is_authenticated:
@@ -197,7 +197,7 @@ def topic_detail(request, topic_id):
 		'topic': topic,
 		'questions': zipped_data,
 	}
-	return render(request, 'chosen_topic.html', context)
+	return render(request, 'topic_select.html', context)
 
 def answer(request, answer_id):
 	if not request.user.is_authenticated:
