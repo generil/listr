@@ -3,51 +3,42 @@
 {% block title %}{{question}}{% endblock %}
 
 {% block content %}
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-lg-12">
-      <h3>{{question}}</h3>
-      <h5><i>{{question.details}}</i></h5>
-      <small>
-        Asked {{question_date}} by {{question.questioner.first_name}} {{question.questioner.first_name}} @{{question.questioner}} in <span class="label label-primary" style="font-size: 12px"><a href="/topics/{{question.topic.id}}" class="topic-btn"> {{question.topic}} </a></span>
-      </small>
-    </div>
-  </div>
-</div>
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-lg-12">
-      {% if answers|length > 0%}
-        <br>
-        {% if answers|length > 1%}
-          <h4><small>{{answers|length}} ANSWERS</small></h4>
-        {% else %}
-          <h4><small>{{answers|length}} ANSWER</small></h4>
-        {% endif %}
-        <hr>
-        {% for answer, date_answered in answers %}
-        <div class="thumbnail">
-          <div class="caption">
-            <div class="container-fluid">
-              <div class="row">
-                <div class="col-lg-12">
-                  <h5>According to @{{answer.respondent.username}}:</h5>
-                  <p><a href="{% url 'answer' answer_id=answer.id %}">{{answer.answer}}</a></p>
-                  <small style="color: darkgray">Answered {{date_answered}}</small>
-                </div>
-              </div>
-            </div>
+<h3>{{question}}</h3>
+<h5><i>{{question.details}}</i></h5>
+<small>
+  Asked {{question_date}} by {{question.questioner.first_name}} {{question.questioner.first_name}} @{{question.questioner}} in <span class="label label-primary" style="font-size: 12px"><a href="/topics/{{question.topic.id}}" class="topic-btn"> {{question.topic}} </a></span>
+</small>
+
+
+{% if answers|length > 0%}
+  <br>
+  {% if answers|length > 1%}
+    <h4><small>{{answers|length}} ANSWERS</small></h4>
+  {% else %}
+    <h4><small>{{answers|length}} ANSWER</small></h4>
+  {% endif %}
+  <hr>
+  {% for answer, date_answered in answers %}
+  <div class="thumbnail">
+    <div class="caption">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-12">
+            <h5>According to @{{answer.respondent.username}}:</h5>
+            <p><a href="{% url 'answer' answer_id=answer.id %}">{{answer.answer}}</a></p>
+            <small style="color: darkgray">Answered {{date_answered}}</small>
           </div>
         </div>
-        {% endfor %}
-      {% else %}
-        <br>
-        <p>No one answered the question.</p>
-      {% endif %}
+      </div>
     </div>
   </div>
-</div>
+  {% endfor %}
+{% else %}
+  <br>
+  <p>No one answered the question.</p>
+{% endif %}
+
 {% endblock %}
 
 {% block rightbar %}

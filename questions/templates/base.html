@@ -11,22 +11,17 @@
     <link rel="stylesheet" href="{% static 'questions/css/app.css' %}">
     {% block styles %}{% endblock %}
   </head>
-  <body style="padding-top:60px; padding-bottom:40px">
+  <body>
     {% block nav %}
         {% include "navbar.html" %}
     {% endblock %}
     <div class="container-fluid">
-      <div class="row">
-        {% block sidebar %}
-          {% include "sidebar.html" %}
-        {% endblock %}
-        <div class="col-sm-7">
-          {% block content %}{% endblock %}
-        </div>
-        <div class="col-sm-4">
-          {% block rightbar %}{% endblock %}
-        </div>
+      <div class="col-md-6 col-md-offset-1">
+        {% block content %}{% endblock %}
       </div>
+      <div class="col-md-4">
+        {% block rightbar %}{% endblock %}
+      </div
     </div>
     <!-- SCRIPTS -->
     <script src="{% static 'questions/js/jquery.js' %}"></script>

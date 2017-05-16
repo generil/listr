@@ -3,46 +3,39 @@
 {% block title %}{{topic}}{% endblock %}
 
 {% block content %}
-<div class="row">
-  <div class="col-lg-12" style="text-align:center">
-    <h1 class="topic-header" style="font-size:5em;font-weight:bold">{{topic}}</h1>
-    <h4>{{topic.details}}</h4>
-    {% if topic.is_verified %}
-      <h5><img class="icon icons8-Ok" width="16" height="16" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABTklEQVQ4T6WTTVLCQBCFX0+SwiVHIFXK1pQewHgDbqBs1OzCScAVpRviCfQG6AHAcYsLPALuwGSmrYlOCkKCVJnt9Pte/7wQ/vlRlT64nwWOxhmA4PddKoEXedWW5foNQDCaN51V2ifQZRWYwYlqeD3Z9Rf2vQAYsbtKxwBZ15rhWGYN79xCCsDpcJYQ0cU+K2Hmh0nUzrvMAWZmV9PrLjGD38CQ1iRj15eR/5EDTu7eY8Ho1wGMWDW8UCzTjiAamTpN6E2vjwY5YFf7Vux8qZCYH60Jg24nN4fxFoCBTyU4dBRiEALjjDRtOZrGBDQrAeURNHN3GrUTc5kq8dYIVUs0EO1Alp1tBxtLrNsDA4v1tov2y2fMT/mTwmcCHf91TrOXrSAVkGU6qAuUCZA68OLKKK+7BsN5S4isQ5rzWLMgqbX7ZIKz82faJ8blmm80i64RIxJvhAAAAABJRU5ErkJggg=="><i> Verified by the Listr team</i></h5>
-    {% endif %}
-  </div>
-</div>
+
+<h1 class="topic-header" style="font-size:5em;font-weight:bold">{{topic}}</h1>
+<h4>{{topic.details}}</h4>
+{% if topic.is_verified %}
+  <h5><img class="icon icons8-Ok" width="16" height="16" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABTklEQVQ4T6WTTVLCQBCFX0+SwiVHIFXK1pQewHgDbqBs1OzCScAVpRviCfQG6AHAcYsLPALuwGSmrYlOCkKCVJnt9Pte/7wQ/vlRlT64nwWOxhmA4PddKoEXedWW5foNQDCaN51V2ifQZRWYwYlqeD3Z9Rf2vQAYsbtKxwBZ15rhWGYN79xCCsDpcJYQ0cU+K2Hmh0nUzrvMAWZmV9PrLjGD38CQ1iRj15eR/5EDTu7eY8Ho1wGMWDW8UCzTjiAamTpN6E2vjwY5YFf7Vux8qZCYH60Jg24nN4fxFoCBTyU4dBRiEALjjDRtOZrGBDQrAeURNHN3GrUTc5kq8dYIVUs0EO1Alp1tBxtLrNsDA4v1tov2y2fMT/mTwmcCHf91TrOXrSAVkGU6qAuUCZA68OLKKK+7BsN5S4isQ5rzWLMgqbX7ZIKz82faJ8blmm80i64RIxJvhAAAAABJRU5ErkJggg=="><i> Verified by the Listr team</i></h5>
+{% endif %}
+
 {% if questions|length > 0 %}
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-lg-12">
-        {% if questions|length > 1 %}
-          <h4><small>{{ questions|length }} QUESTIONS</small></h4>
-        {% else %}
-          <h4><small>{{ questions|length }} QUESTION</small></h4>
-        {% endif %}
-        <hr>
-        {% for question, date in questions %}
-        <div class="thumbnail">
-          <div class="caption">
-            <div class="container-fluid">
-              <div class="row">
-                <div class="col-lg-12">
-                  <p>{{question.questioner.first_name}} {{ question.questioner.last_name}} @{{question.questioner}} asks:</p>
-                  <h3><a href="/questions/{{question.id}}">{{question.question}}</a></h3>
-                  <small> {{question.ans_count}} Answers - <span style="color:darkgray">{{date}}</span></small>
-                </div>
-              </div>
-            </div>
+  {% if questions|length > 1 %}
+    <h4><small>{{ questions|length }} QUESTIONS</small></h4>
+  {% else %}
+    <h4><small>{{ questions|length }} QUESTION</small></h4>
+  {% endif %}
+  <hr>
+  {% for question, date in questions %}
+  <div class="thumbnail">
+    <div class="caption">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-12">
+            <p>{{question.questioner.first_name}} {{ question.questioner.last_name}} @{{question.questioner}} asks:</p>
+            <h3><a href="/questions/{{question.id}}">{{question.question}}</a></h3>
+            <small> {{question.ans_count}} Answers - <span style="color:darkgray">{{date}}</span></small>
           </div>
         </div>
-        {% endfor %}
       </div>
     </div>
   </div>
+  {% endfor %}
 {% else %}
   <p style="text-align: center">No questions asked. Ask one on the right pane.</p>
 {% endif %}
+
 {% endblock %}
 
 {% block rightbar %}
