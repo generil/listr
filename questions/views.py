@@ -202,16 +202,13 @@ def topic_detail(request, topic_id):
 def answer(request, answer_id):
 	if not request.user.is_authenticated:
 		return redirect('/')
+	question = Question.objects.get(id = question_id)
 	answer = Answer.objects.get(pk = answer_id)
 	comments = Comment.objects.filter(answer = answer)
-	# if request.method == 'POST':
-	# answers_list = Answer.objects.filter(question = question)
-	# for topic in topics_list:
-	# 	que = Question.objects.filter(topic = topic).count()
-	# 	topic.question_count = que
 	context = {
 		'answer': answer,
-		'comments': comments
+		'comments': comments,
+		'question': question
 	}
 	return render(request, 'answer.html', context)
 

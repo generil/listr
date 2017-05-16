@@ -40,3 +40,7 @@ showdescription = function() {
     window.location.href = '';
   }
 }
+
+addstep = function() {
+  
+}
