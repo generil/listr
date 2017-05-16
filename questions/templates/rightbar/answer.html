@@ -5,13 +5,13 @@
     <form class="" action="{% url 'addanswer' question_id=question.pk%}" method="POST">
       {% csrf_token %}
       <div class="form-group">
-        <textarea class="form-control" rows="1" name="answer" placeholder="Description of your answer"></textarea>
+        <textarea class="form-control" rows="3" name="description" placeholder="Description" required></textarea>
       </div>
       <!-- DONT MIND THIS -->
-      <p><small id="step-indicator">STEPS</small></p>
+      <p><small id="step-indicator">ANSWER</small></p>
       <div class="form-group">
         <ul style="list-style-type: none; padding: 0;" class="step-list">
-          <li><textarea class="form-control" rows="1" id="textarea"></textarea></li>
+          <li><textarea class="form-control" name="0" rows="5" id="textarea" placeholder="Step or Item" required></textarea></li>
           <!-- <small style="color:red">hey</small> -->
         </ul>
         <button type="button" class="btn btn-default btn-block add-step" onclick="addstep()">Add Step</button>

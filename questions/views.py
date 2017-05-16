@@ -8,10 +8,21 @@ from .models import Person
 from .models import Question
 from .models import Answer
 from .models import Topic
+from .models import Instruction
+from .models import Comment
 
 # functions for the date
 
 ZERO = timedelta(0)
+# we have to settle for this for now
+nameArray = ['0','1', '2', '3', '4', '5', '6', '7', '8', '9', '10', 
+						'11', '12', '13', '14', '15', '16', '17', '18', '19', 
+						'20']
+# nameArray = //[100]
+# nameArray = []
+# for i in range(0, 10):
+# 	nameArray.append("'" + str(i) + "'")
+# this is fucking stupid
 
 class UTC(tzinfo):
 	def utcoffset(self, dt):
@@ -228,12 +239,26 @@ def addanswer(request, question_id):
 		return redirect('/')
 	if request.method == 'POST':
 		question = Question.objects.get(pk = question_id)
-		answer = request.POST.get('answer')
-		if not answer:
-			pass
-		else:
-			user = request.user
-			Answer.objects.create(answer = answer, question = question, respondent = user)
+		description = request.POST.get('description')
+		answers = []
+		i = 0
+
+		while request.POST.get(nameArray[i]) != None:
+			answer = request.POST.get(nameArray[i])
+			print i, answer
+			answers.append(answer)
+			i += 1 
+
+		print answers
+
+		a = Answer.objects.create(description = description, question = question, respondent = request.user)
+		a.save()
+
+		ai = 0
+		for answer in answers:
+			Instruction.objects.create(instruction = answer, answer = a, number = ai)
+			ai += 1
+
 	return redirect('question_detail', question_id)
 
 def addtopic(request):
@@ -246,3 +271,8 @@ def addtopic(request):
 		Topic.objects.create(topic = topic, details = details, creator = creator)
 
 	return redirect('topics')
+
+# def print_nameArray():
+# 	for name in nameArray:
+# 		# print type(name)
+# 		print name
