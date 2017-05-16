@@ -13,13 +13,6 @@ body {
   color: white;
 }*/
 
-.search-box {
-  border-radius: 4px;
-  border: 0;
-  background-color: rgba(0, 0, 0, 0.2);
-  box-shadow: none;
-}
-
 .topic-btn {
   color: white;
 }

@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}Questions{% endblock %}
 
@@ -6,7 +7,7 @@
   <h4><small>RECENT QUESTIONS</small></h4>
   <hr>
   {% for question, date in questions %}
-  <div class="thumbnail">
+  <!-- <div class="thumbnail">
     <div class="caption">
       <div class="container-fluid">
         <div class="row">
@@ -25,6 +26,22 @@
           </div>
         </div>
       </div>
+    </div>
+  </div> -->
+  <div class="panel panel-default">
+    <div class="panel-heading" style="padding-bottom:5;">
+      <div class="row">
+        <div class="col-xs-1">
+          <img src="{% static 'questions/assets/default-user-avatar.png' %}" width="36px">
+        </div>
+        <div class="col-xs-11" style="padding-left:10px;">
+          <h5 style="font-weight:bold; margin-top:0px;">{{question.questioner.first_name}} {{ question.questioner.last_name}}</h5>
+          <h6 style="margin: 0 auto;">@{{question.questioner}}</h6>
+        </div>
+      </div>
+    </div>
+    <div class="panel-body" style="padding-top:0;padding-bottom:0;">
+      <h3 style="margin-top:10px; font-weight:bold"><a href="/questions/{{question.id}}">{{question.question}}</a></h3>
     </div>
   </div>
   {% endfor %}
