@@ -4,12 +4,14 @@
 {% block title %}{{topic}}{% endblock %}
 
 {% block content %}
-
-<h1 class="topic-header" style="font-size:5em;font-weight:bold">{{topic}}</h1>
-<h4>{{topic.details}}</h4>
-{% if topic.is_verified %}
-  <h5><img class="icon icons8-Ok" width="16" height="16" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABTklEQVQ4T6WTTVLCQBCFX0+SwiVHIFXK1pQewHgDbqBs1OzCScAVpRviCfQG6AHAcYsLPALuwGSmrYlOCkKCVJnt9Pte/7wQ/vlRlT64nwWOxhmA4PddKoEXedWW5foNQDCaN51V2ifQZRWYwYlqeD3Z9Rf2vQAYsbtKxwBZ15rhWGYN79xCCsDpcJYQ0cU+K2Hmh0nUzrvMAWZmV9PrLjGD38CQ1iRj15eR/5EDTu7eY8Ho1wGMWDW8UCzTjiAamTpN6E2vjwY5YFf7Vux8qZCYH60Jg24nN4fxFoCBTyU4dBRiEALjjDRtOZrGBDQrAeURNHN3GrUTc5kq8dYIVUs0EO1Alp1tBxtLrNsDA4v1tov2y2fMT/mTwmcCHf91TrOXrSAVkGU6qAuUCZA68OLKKK+7BsN5S4isQ5rzWLMgqbX7ZIKz82faJ8blmm80i64RIxJvhAAAAABJRU5ErkJggg=="><i> Verified by the Listr team</i></h5>
-{% endif %}
+<div style="text-align: center; padding-top: 20px;">
+  <img src="{% static 'questions/assets/default-topic-avatar.png' %}" alt="" width="96px">
+  <h1 class="topic-header" style="font-size:5em;font-weight:bold">{{topic}}</h1>
+  <h4>{{topic.details}}</h4>
+  {% if topic.is_verified %}
+    <h5><img class="icon icons8-Ok" width="16" height="16" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABTklEQVQ4T6WTTVLCQBCFX0+SwiVHIFXK1pQewHgDbqBs1OzCScAVpRviCfQG6AHAcYsLPALuwGSmrYlOCkKCVJnt9Pte/7wQ/vlRlT64nwWOxhmA4PddKoEXedWW5foNQDCaN51V2ifQZRWYwYlqeD3Z9Rf2vQAYsbtKxwBZ15rhWGYN79xCCsDpcJYQ0cU+K2Hmh0nUzrvMAWZmV9PrLjGD38CQ1iRj15eR/5EDTu7eY8Ho1wGMWDW8UCzTjiAamTpN6E2vjwY5YFf7Vux8qZCYH60Jg24nN4fxFoCBTyU4dBRiEALjjDRtOZrGBDQrAeURNHN3GrUTc5kq8dYIVUs0EO1Alp1tBxtLrNsDA4v1tov2y2fMT/mTwmcCHf91TrOXrSAVkGU6qAuUCZA68OLKKK+7BsN5S4isQ5rzWLMgqbX7ZIKz82faJ8blmm80i64RIxJvhAAAAABJRU5ErkJggg=="><i> Verified by the Listr team</i></h5>
+  {% endif %}
+</div>
 
 {% if questions|length > 0 %}
   {% if questions|length > 1 %}
@@ -23,9 +25,9 @@
     <div class="panel-heading" style="padding-bottom:5;">
       <div class="row">
         <div class="col-xs-1">
-          <img src="{% static 'questions/assets/default-user-avatar.png' %}" width="30px">
+          <img src="{% static 'questions/assets/default-user-avatar.png' %}" height="30px">
         </div>
-        <div class="col-xs-11" style="padding-left:5px;">
+        <div class="col-xs-11">
           <h5 style="font-weight:bold; margin-top:0px; margin-bottom:5px;">{{question.questioner.first_name}} {{ question.questioner.last_name}}</h5>
           <h6 style="margin: 0 auto;">@{{question.questioner}}</h6>
         </div>
