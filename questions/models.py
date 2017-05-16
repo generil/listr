@@ -75,7 +75,7 @@ class Instruction(models.Model):
 		return self.instruction
 
 	class Meta:
-		ordering = ['-number']
+		ordering = ['number']
 
 class Comment(models.Model):
 	comment = models.CharField(max_length = 50)

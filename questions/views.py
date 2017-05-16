@@ -157,8 +157,10 @@ def question_detail(request, question_id):
 	all_answers = Answer.objects.filter(question = question)
 	date = prettydate(question.question_date)
 	date_relative = []
-
+	# instructions = []
 	for item in all_answers:
+		item.answers = Instruction.objects.filter(answer = item)
+		# print len(item.answers)
 		if isinstance(item.answer_date, datetime):
 			tmp = prettydate(item.answer_date)
 		else:
@@ -249,7 +251,7 @@ def addanswer(request, question_id):
 			answers.append(answer)
 			i += 1 
 
-		print answers
+		# print answers
 
 		a = Answer.objects.create(description = description, question = question, respondent = request.user)
 		a.save()

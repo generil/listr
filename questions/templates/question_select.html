@@ -26,8 +26,13 @@
         <div class="row">
           <div class="col-lg-12">
             <h5>According to @{{answer.respondent.username}}:</h5>
-            <p><a href="{% url 'answer' answer_id=answer.id %}">{{answer.answer}}</a></p>
-            <small>No Steps — </small><small style="color: darkgray">Answered {{date_answered}}</small>
+            <p><a href="{% url 'answer' answer_id=answer.id %}">{{answer.description}}</a></p>
+            <ul>
+              {% for steps in answer.answers %}
+                <li>{{steps}}</li>
+              {% endfor %}
+            </ul>
+            <small>{{answer.answers|length}} Items — </small><small style="color: darkgray">Answered {{date_answered}}</small>
           </div>
         </div>
       </div>
