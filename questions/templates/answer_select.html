@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Answer{% endblock %}
+{% block styles %}
+  <link rel="stylesheet" href='{% static 'questions/css/step.css' %}'>
+{% endblock %}
+
+{% block content %}
+  <small>From the question: <b>Question</b></small>
+  <h2>{{answer}}</h2>
+  <hr>
+  <ol class="rounded-list">
+    {% for step in instructions %}
+    <li>{{step}}</li>
+    {% endfor %}
+  </ol>
+{% endblock %}

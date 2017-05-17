@@ -15,8 +15,8 @@ from .models import Comment
 
 ZERO = timedelta(0)
 # we have to settle for this for now
-nameArray = ['0','1', '2', '3', '4', '5', '6', '7', '8', '9', '10', 
-						'11', '12', '13', '14', '15', '16', '17', '18', '19', 
+nameArray = ['0','1', '2', '3', '4', '5', '6', '7', '8', '9', '10',
+						'11', '12', '13', '14', '15', '16', '17', '18', '19',
 						'20']
 # nameArray = //[100]
 # nameArray = []
@@ -249,9 +249,7 @@ def addanswer(request, question_id):
 			answer = request.POST.get(nameArray[i])
 			print i, answer
 			answers.append(answer)
-			i += 1 
-
-		# print answers
+			i += 1
 
 		a = Answer.objects.create(description = description, question = question, respondent = request.user)
 		a.save()
@@ -274,7 +272,17 @@ def addtopic(request):
 
 	return redirect('topics')
 
-# def print_nameArray():
-# 	for name in nameArray:
-# 		# print type(name)
-# 		print name
+def answer_detail(request, answer_id):
+	if not request.user.is_authenticated:
+		return redirect('/')
+	answer = Answer.objects.get(id = answer_id)
+	instructions = Instruction.objects.filter(answer = answer)
+	date = prettydate(answer.answer_date)
+	date_relative = prettydate(answer.answer_date)
+
+	context = {
+		'answer': answer,
+		'instructions': instructions,
+		'date': date_relative,
+	}
+	return render(request, 'answer_select.html', context)
