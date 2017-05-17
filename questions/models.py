@@ -17,11 +17,11 @@ class Person(models.Model):
 	def __unicode__(self):
 		return str(self.user)
 
-def create_person(sender, instance, created, **kwargs):  
-  if created:  
-    profile, created = Person.objects.get_or_create(user=instance)  
+def create_person(sender, instance, created, **kwargs):
+  if created:
+    profile, created = Person.objects.get_or_create(user=instance)
 
-post_save.connect(create_person, sender=User) 
+post_save.connect(create_person, sender=User)
 
 class Topic(models.Model):
 	topic = models.CharField(max_length = 30, unique = True)
@@ -60,7 +60,7 @@ class Answer(models.Model):
 	downvotes = models.IntegerField(blank = True, null = True)
 
 	def __unicode__(self):
-		return self.answer
+		return self.description
 
 	class Meta:
 		ordering = ['-answer_date']

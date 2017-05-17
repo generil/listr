@@ -4,36 +4,40 @@
 {% block title %}Questions{% endblock %}
 
 {% block content %}
-  <h4><small>RECENT QUESTIONS</small></h4>
-  <hr>
-  {% for question, date in questions %}
-  <div class="panel panel-default">
-    <div class="panel-heading" style="padding-bottom:5px;">
-      <div class="row">
-        <div class="col-xs-1">
-          <img src="{% static 'questions/assets/default-user-avatar.png' %}" height="30px">
-        </div>
-        <div class="col-xs-11">
-          <h5 style="font-weight:bold; margin-top:0px; margin-bottom:5px;">{{question.questioner.first_name}} {{ question.questioner.last_name}}</h5>
-          <h6 style="margin: 0 auto;">@{{question.questioner}}</h6>
-          <h5 style="margin-bottom:0px; margin-top:5px;"><span class="label label-primary"><a href="/topics/{{question.topic.id}}" class="topic-btn"> {{question.topic}} </a></span></h5>
+  {% if questions|length > 0 %}
+    <h4><small>RECENT QUESTIONS</small></h4>
+    <hr>
+    {% for question, date in questions %}
+    <div class="panel panel-default">
+      <div class="panel-heading" style="padding-bottom:5px;">
+        <div class="row">
+          <div class="col-xs-1">
+            <img src="{% static 'questions/assets/default-user-avatar.png' %}" height="30px">
+          </div>
+          <div class="col-xs-11">
+            <h5 style="font-weight:bold; margin-top:0px; margin-bottom:5px;">{{question.questioner.first_name}} {{ question.questioner.last_name}}</h5>
+            <h6 style="margin: 0 auto;">@{{question.questioner}}</h6>
+            <h5 style="margin-bottom:0px; margin-top:5px;"><span class="label label-primary"><a href="/topics/{{question.topic.id}}" class="topic-btn"> {{question.topic}} </a></span></h5>
+          </div>
         </div>
       </div>
+      <div class="panel-body" style="padding-top:0;padding-bottom:0;">
+        <h3 style="margin-top:10px; font-weight:bold"><a href="/questions/{{question.id}}">{{question.question}}</a></h3>
+      </div>
+      <div class="panel-footer" style="padding-top:5px; padding-bottom:5px;">
+        {% if question.ans_count == 1 %}
+          <small> {{question.ans_count}} answer - <span style="color:darkgray">{{date}}</span></small>
+        {% elif question.ans_count > 1 %}
+          <small> {{question.ans_count}} answers - <span style="color:darkgray">{{date}}</span></small>
+        {% else %}
+          <small> No answers - <span style="color:darkgray">{{date}}</span></small>
+        {% endif %}
+      </div>
     </div>
-    <div class="panel-body" style="padding-top:0;padding-bottom:0;">
-      <h3 style="margin-top:10px; font-weight:bold"><a href="/questions/{{question.id}}">{{question.question}}</a></h3>
-    </div>
-    <div class="panel-footer" style="padding-top:5px; padding-bottom:5px;">
-      {% if question.ans_count == 1 %}
-        <small> {{question.ans_count}} answer - <span style="color:darkgray">{{date}}</span></small>
-      {% elif question.ans_count > 1 %}
-        <small> {{question.ans_count}} answers - <span style="color:darkgray">{{date}}</span></small>
-      {% else %}
-        <small> No answers - <span style="color:darkgray">{{date}}</span></small>
-      {% endif %}
-    </div>
-  </div>
-  {% endfor %}
+    {% endfor %}
+  {% else %}
+    <h1 style="font-weight:bold">Nobody posted questions 😞</h1>
+  {% endif %}
 {% endblock %}
 
 {% block rightbar %}
