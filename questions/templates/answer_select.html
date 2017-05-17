@@ -2,16 +2,17 @@
 {% load static %}
 {% block title %}Answer{% endblock %}
 {% block styles %}
-  <link rel="stylesheet" href='{% static 'questions/css/step.css' %}'>
+  <link rel="stylesheet" href="{% static 'questions/css/steps.css' %}">
 {% endblock %}
 
 {% block content %}
   <small>From the question: <b>Question</b></small>
-  <h2>{{answer}}</h2>
+  <h3 style="font-weight:bold; word-wrap: break-word;">{{answer}}</h2>
+  <small>@{{answer.respondent.username}} — <span style="color:darkgray">{{date}}</span></small>
   <hr>
-  <ol class="rounded-list">
+  <ol class="instructions">
     {% for step in instructions %}
-    <li>{{step}}</li>
+    <li style="word-wrap: break-word"><span>{{step}}</span></li>
     {% endfor %}
   </ol>
 {% endblock %}
