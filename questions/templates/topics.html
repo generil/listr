@@ -3,33 +3,36 @@
 {% block title %}Topics{% endblock %}
 
 {% block content %}
-  <h4><small>TOPICS</small></h4>
-  <hr>
-  <!-- <img src="{% static 'questions/assets/default-topic-avatar.png' %}" alt=""> -->
-  {% for topic in topics %}
-  <div class="thumbnail">
-    <div class="row">
-      <div class="col-xs-3 col-sm-3" style="padding: 20px 40px;">
-        <img src="{% static 'questions/assets/default-topic-avatar.png' %}" alt="" width="96px">
-      </div>
-      <div class="col-xs-9 col-sm-9">
-        <div class="caption">
-          <a href="/topics/{{topic.id}}">
-            <h1 style="font-weight: bold;">{{topic.topic}}{% if topic.is_verified %}<img class="icon icons8-Ok" width="16" height="16" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABTklEQVQ4T6WTTVLCQBCFX0+SwiVHIFXK1pQewHgDbqBs1OzCScAVpRviCfQG6AHAcYsLPALuwGSmrYlOCkKCVJnt9Pte/7wQ/vlRlT64nwWOxhmA4PddKoEXedWW5foNQDCaN51V2ifQZRWYwYlqeD3Z9Rf2vQAYsbtKxwBZ15rhWGYN79xCCsDpcJYQ0cU+K2Hmh0nUzrvMAWZmV9PrLjGD38CQ1iRj15eR/5EDTu7eY8Ho1wGMWDW8UCzTjiAamTpN6E2vjwY5YFf7Vux8qZCYH60Jg24nN4fxFoCBTyU4dBRiEALjjDRtOZrGBDQrAeURNHN3GrUTc5kq8dYIVUs0EO1Alp1tBxtLrNsDA4v1tov2y2fMT/mTwmcCHf91TrOXrSAVkGU6qAuUCZA68OLKKK+7BsN5S4isQ5rzWLMgqbX7ZIKz82faJ8blmm80i64RIxJvhAAAAABJRU5ErkJggg==" style="margin-left:10px; margin-bottom: 10px;">{% endif %}</h1>
-          </a>
-          <h5>{{topic.details}}</h5>
-          {% if topic.question_count == 1 %}
-            <small>{{topic.question_count}} Question</small>
-          {% elif topic.question_count > 1 %}
-            <small>{{topic.question_count}} Questions</small>
-          {% else %}
-            <small>No Questions</small>
-          {% endif %}
+  {% if topics|length > 0 %}
+    <h4><small>TOPICS</small></h4>
+    <hr>
+    {% for topic in topics %}
+    <div class="thumbnail">
+      <div class="row">
+        <div class="col-xs-3 col-sm-3" style="padding: 20px 40px;">
+          <img src="{% static 'questions/assets/default-topic-avatar.png' %}" alt="" width="96px">
+        </div>
+        <div class="col-xs-9 col-sm-9">
+          <div class="caption">
+            <a href="/topics/{{topic.id}}">
+              <h1 style="font-weight: bold;">{{topic.topic}}{% if topic.is_verified %}<img class="icon icons8-Ok" width="16" height="16" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABTklEQVQ4T6WTTVLCQBCFX0+SwiVHIFXK1pQewHgDbqBs1OzCScAVpRviCfQG6AHAcYsLPALuwGSmrYlOCkKCVJnt9Pte/7wQ/vlRlT64nwWOxhmA4PddKoEXedWW5foNQDCaN51V2ifQZRWYwYlqeD3Z9Rf2vQAYsbtKxwBZ15rhWGYN79xCCsDpcJYQ0cU+K2Hmh0nUzrvMAWZmV9PrLjGD38CQ1iRj15eR/5EDTu7eY8Ho1wGMWDW8UCzTjiAamTpN6E2vjwY5YFf7Vux8qZCYH60Jg24nN4fxFoCBTyU4dBRiEALjjDRtOZrGBDQrAeURNHN3GrUTc5kq8dYIVUs0EO1Alp1tBxtLrNsDA4v1tov2y2fMT/mTwmcCHf91TrOXrSAVkGU6qAuUCZA68OLKKK+7BsN5S4isQ5rzWLMgqbX7ZIKz82faJ8blmm80i64RIxJvhAAAAABJRU5ErkJggg==" style="margin-left:10px; margin-bottom: 10px;">{% endif %}</h1>
+            </a>
+            <h5>{{topic.details}}</h5>
+            {% if topic.question_count == 1 %}
+              <small>{{topic.question_count}} Question</small>
+            {% elif topic.question_count > 1 %}
+              <small>{{topic.question_count}} Questions</small>
+            {% else %}
+              <small>No Questions</small>
+            {% endif %}
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  {% endfor %}
+    {% endfor %}
+  {% else %}
+    <h1 style="font-weight:bold">Nobody posted questions, so no topics. 😞</h1>
+  {% endif %}
 {% endblock %}
 
 {% block rightbar %}

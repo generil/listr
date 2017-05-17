@@ -8,10 +8,21 @@ from .models import Person
 from .models import Question
 from .models import Answer
 from .models import Topic
+from .models import Instruction
+from .models import Comment
 
 # functions for the date
 
 ZERO = timedelta(0)
+# we have to settle for this for now
+nameArray = ['0','1', '2', '3', '4', '5', '6', '7', '8', '9', '10',
+						'11', '12', '13', '14', '15', '16', '17', '18', '19',
+						'20']
+# nameArray = //[100]
+# nameArray = []
+# for i in range(0, 10):
+# 	nameArray.append("'" + str(i) + "'")
+# this is fucking stupid
 
 class UTC(tzinfo):
 	def utcoffset(self, dt):
@@ -146,8 +157,10 @@ def question_detail(request, question_id):
 	all_answers = Answer.objects.filter(question = question)
 	date = prettydate(question.question_date)
 	date_relative = []
-
+	# instructions = []
 	for item in all_answers:
+		item.answers = Instruction.objects.filter(answer = item)
+		# print len(item.answers)
 		if isinstance(item.answer_date, datetime):
 			tmp = prettydate(item.answer_date)
 		else:
@@ -228,12 +241,24 @@ def addanswer(request, question_id):
 		return redirect('/')
 	if request.method == 'POST':
 		question = Question.objects.get(pk = question_id)
-		answer = request.POST.get('answer')
-		if not answer:
-			pass
-		else:
-			user = request.user
-			Answer.objects.create(answer = answer, question = question, respondent = user)
+		description = request.POST.get('description')
+		answers = []
+		i = 0
+
+		while request.POST.get(nameArray[i]) != None:
+			answer = request.POST.get(nameArray[i])
+			print i, answer
+			answers.append(answer)
+			i += 1
+
+		a = Answer.objects.create(description = description, question = question, respondent = request.user)
+		a.save()
+
+		ai = 0
+		for answer in answers:
+			Instruction.objects.create(instruction = answer, answer = a, number = ai)
+			ai += 1
+
 	return redirect('question_detail', question_id)
 
 def addtopic(request):
@@ -246,3 +271,18 @@ def addtopic(request):
 		Topic.objects.create(topic = topic, details = details, creator = creator)
 
 	return redirect('topics')
+
+def answer_detail(request, answer_id):
+	if not request.user.is_authenticated:
+		return redirect('/')
+	answer = Answer.objects.get(id = answer_id)
+	instructions = Instruction.objects.filter(answer = answer)
+	date = prettydate(answer.answer_date)
+	date_relative = prettydate(answer.answer_date)
+
+	context = {
+		'answer': answer,
+		'instructions': instructions,
+		'date': date_relative,
+	}
+	return render(request, 'answer_select.html', context)

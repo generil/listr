@@ -2,6 +2,10 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 
+def instruction_image_uploadpath(instance, filename):
+  return './storage/instructions/instr_{}_{}'.format(answer_id, filename)
+
+
 class Person(models.Model):
 	user = models.OneToOneField(User)
 
@@ -13,11 +17,11 @@ class Person(models.Model):
 	def __unicode__(self):
 		return str(self.user)
 
-def create_person(sender, instance, created, **kwargs):  
-  if created:  
-    profile, created = Person.objects.get_or_create(user=instance)  
+def create_person(sender, instance, created, **kwargs):
+  if created:
+    profile, created = Person.objects.get_or_create(user=instance)
 
-post_save.connect(create_person, sender=User) 
+post_save.connect(create_person, sender=User)
 
 class Topic(models.Model):
 	topic = models.CharField(max_length = 30, unique = True)
@@ -48,7 +52,7 @@ class Question(models.Model):
 		ordering = ['-question_date']
 
 class Answer(models.Model):
-	answer = models.CharField(max_length = 500)
+	description = models.CharField(max_length = 100, default = "Description")
 	question = models.ForeignKey(Question, on_delete = models.CASCADE)
 	respondent = models.ForeignKey(User, on_delete = models.CASCADE)
 	answer_date = models.DateTimeField(auto_now_add=True)
@@ -56,10 +60,22 @@ class Answer(models.Model):
 	downvotes = models.IntegerField(blank = True, null = True)
 
 	def __unicode__(self):
-		return self.answer
+		return self.description
 
 	class Meta:
 		ordering = ['-answer_date']
+
+class Instruction(models.Model):
+	instruction = models.CharField(max_length = 100)
+	answer = models.ForeignKey(Answer, on_delete = models.CASCADE)
+	number = models.IntegerField(default = 1)
+	image = models.FileField(upload_to=instruction_image_uploadpath, blank=True)
+
+	def __unicode__(self):
+		return self.instruction
+
+	class Meta:
+		ordering = ['number']
 
 class Comment(models.Model):
 	comment = models.CharField(max_length = 50)
