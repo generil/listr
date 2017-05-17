@@ -1,0 +1,28 @@
+.instructions {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  list-style-position: inside;
+}
+
+.instructions li {
+  counter-increment: step-counter;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.instructions li span {
+  position: absolute;
+  left: 50px;
+}
+
+.instructions li::before {
+  content: counter(step-counter);
+  margin-right: 5px;
+  font-size: 2em;
+  font-weight: bold;
+  padding: 3px 8px;
+  background-color: black;
+  color: white;
+  border-radius: 100px;
+}
