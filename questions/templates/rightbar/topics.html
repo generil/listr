@@ -2,7 +2,7 @@
 <hr>
 <div class="thumbnail">
   <div class="caption">
-    <form class="" action="{% url 'addtopic' %}" method="POST">
+    <form class="" action="{% url 'addtopic' %}" method="POST" enctype="multipart/form-data">
       {% csrf_token %}
       <div class="form-group imagepreview" style="text-align:center; display:none">
         <img id="preview" alt="" src="">
@@ -11,16 +11,17 @@
         <textarea class="form-control" rows="1" placeholder="Topic" name="topic"></textarea>
       </div>
       <div class="form-group">
-        <textarea class="form-control" rows="1" placeholder="Details" name="details"></textarea>
+        <textarea class="form-control" rows="3" placeholder="Details" name="details"></textarea>
       </div>
       <div class="form-group">
         <div class="input-group">
           <label class="input-group-btn">
             <span class="btn btn-primary">
-              <span id="add-t-image">Add avatar</span>&hellip; <input type="file" style="display: none;" multiple>
+              <span id="add-t-image">Add image</span>&hellip; 
+              <input type="file" name="topic_file" style="display: none;">
             </span>
           </label>
-          <input type="text" class="form-control" readonly>
+          <!-- <input type="text" class="form-control" readonly> dont uncomment this. the form doesnt work--> 
         </div>
       </div>
 

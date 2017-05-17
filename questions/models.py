@@ -3,8 +3,10 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 
 def instruction_image_uploadpath(instance, filename):
-  return './storage/instructions/instr_{}_{}'.format(answer_id, filename)
+  return './storage/instructions/instr_{}_{}'.format(instance.answer.id, filename)
 
+def topic_image_uploadpath(instance, filename):
+  return './storage/topics/topic_{}_{}'.format(instance.topic, filename)
 
 class Person(models.Model):
 	user = models.OneToOneField(User)
@@ -29,12 +31,18 @@ class Topic(models.Model):
 	creator = models.ForeignKey(User, on_delete = models.CASCADE)
 	create_date = models.DateTimeField(auto_now_add=True)
 	is_verified = models.BooleanField(default = False)
+	image = models.FileField(upload_to=topic_image_uploadpath, blank=True)
 
 	def __unicode__(self):
 		return self.topic
 
 	class Meta:
 		ordering = ['topic']
+
+	def image_url(self):
+		if self.image:
+			return self.image.url
+		return static('questions/assets/default-topic-avatar.png')
 
 class Question(models.Model):
 	question = models.CharField(max_length = 30)

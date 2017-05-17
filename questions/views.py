@@ -3,6 +3,9 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from datetime import tzinfo, timedelta, datetime
+from django.conf import settings
+from django.core.files.storage import FileSystemStorage
+
 
 from .models import Person
 from .models import Question
@@ -268,7 +271,12 @@ def addtopic(request):
 		topic = request.POST['topic']
 		details = request.POST['details']
 		creator = request.user
-		Topic.objects.create(topic = topic, details = details, creator = creator)
+
+		topic_image = request.FILES['topic_file']
+		fs = FileSystemStorage()
+		filename = fs.save(topic_image.name, topic_image)
+		
+		Topic.objects.create(topic = topic, details = details, creator = creator, image = filename)
 
 	return redirect('topics')
 
