@@ -309,3 +309,48 @@ def addcomment(request, answer_id):
 		Comment.objects.create(comment = comment, answer = answer, commenter = commenter)
 
 	return redirect('answer_detail', answer_id)
+
+def answer_upvote(request, answer_id):
+	if not request.user.is_authenticated:
+		return redirect('/')
+	redirect_url = request.GET.get('next')
+	if request.method == 'POST':
+		answer = Answer.objects.get(id = answer_id)
+		answer.upvotes += 1
+		answer.save()
+
+	return redirect(redirect_url)
+
+def answer_downvote(request, answer_id):
+	if not request.user.is_authenticated:
+		return redirect('/')
+	redirect_url = request.GET.get('next')
+	if request.method == 'POST':
+		answer = Answer.objects.get(id = answer_id)
+		answer.downvotes += 1
+		answer.save()
+
+	return redirect(redirect_url)
+
+def question_upvote(request, question_id):
+	if not request.user.is_authenticated:
+		return redirect('/')
+	redirect_url = request.GET.get('next')
+	if request.method == 'POST':
+		question = Question.objects.get(id = question_id)
+		question.upvotes += 1
+		question.save()	
+
+	return redirect(redirect_url)
+
+def question_downvote(request, question_id):
+	if not request.user.is_authenticated:
+		return redirect('/')
+	redirect_url = request.GET.get('next')
+	if request.method == 'POST':
+		question = Question.objects.get(id = question_id)
+		question.downvotes += 1
+		question.save()
+
+	return redirect(redirect_url)
+

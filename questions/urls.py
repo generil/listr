@@ -27,6 +27,12 @@ urlpatterns = [
   url(r'^addtopic/$', views.addtopic, name='addtopic'),
   # /addcomment/
   url(r'^addcomment/(?P<answer_id>[0-9]+)/$', views.addcomment, name='addcomment'),
-  # /upvote/
-  
+  # /answerupvote/
+  url(r'^answer_upvote/(?P<answer_id>[0-9]+)/$', views.answer_upvote, name='answer_upvote'),
+  # /answerdownvote/
+  url(r'^answer_downvote/(?P<answer_id>[0-9]+)/$', views.answer_downvote, name='answer_downvote'),
+  # /questionupvote/
+  url(r'^question_upvote/(?P<question_id>[0-9]+)/$', views.question_upvote, name='question_upvote'),
+  # /questiondownvote/
+  url(r'^question_downvote/(?P<question_id>[0-9]+)/$', views.question_downvote, name='question_downvote'),
 ]

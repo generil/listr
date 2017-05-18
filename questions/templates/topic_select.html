@@ -36,9 +36,23 @@
     <div class="panel-body" style="padding-top:0;padding-bottom:0;">
       <h3 style="margin-top:10px; font-weight:bold; word-wrap: break-word;"><a href="/questions/{{question.id}}">{{question.question}}</a></h3>
     </div>
+
     <div class="panel-footer" style="padding-top:10px; padding-bottom:10px;">
-      <button type="button" class="btn btn-primary btn-xs">Upvote <span style="font-weight:bold">0</span></button>
-      <button type="button" class="btn btn-danger btn-xs">Downvote</button><br>
+      
+<!--       <button type="button" class="btn btn-danger btn-xs">Downvote <span style="font-weight:bold">{{question.downvotes}}</button><br>
+        -->
+      <form class="" action="{% url 'question_upvote' question_id=question.pk%}?next={{ request.path }}" method="POST">
+      {% csrf_token %}
+          <button type="submit" class="btn btn-primary btn-xs">Upvotes | <span style="font-weight:bold">{{question.upvotes}}</span></button>
+      </form>
+
+      <form class="" action="{% url 'question_downvote' question_id=question.pk%}?next={{ request.path }}" method="POST">
+      {% csrf_token %}
+          <button type="submit" class="btn btn-danger btn-xs">Downvotes | <span style="font-weight:bold">{{question.downvotes}}</span></button><br>
+      </form>
+
+      <!-- <a href="/question_upvote/{{question.id}}" action=> Upvote</a> -->
+
       {% if question.ans_count == 1 %}
         <small> {{question.ans_count}} answer - <span style="color:darkgray">{{date}}</span></small>
       {% elif question.ans_count > 1 %}
