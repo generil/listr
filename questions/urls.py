@@ -27,4 +27,6 @@ urlpatterns = [
   url(r'^addtopic/$', views.addtopic, name='addtopic'),
   # /addcomment/
   url(r'^addcomment/(?P<answer_id>[0-9]+)/$', views.addcomment, name='addcomment'),
+  # /upvote/
+  
 ]
