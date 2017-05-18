@@ -2,12 +2,6 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 
-# def instruction_image_uploadpath(instance, filename):
-#   return './storage/instructions/instr_{}_{}'.format(instance.answer.id, filename)
-
-# def topic_image_uploadpath(instance, filename):
-#   return './storage/topics/topic_{}_{}'.format(instance.topic, filename)
-
 class Person(models.Model):
 	user = models.OneToOneField(User)
 
@@ -49,8 +43,8 @@ class Question(models.Model):
 	details = models.CharField(max_length = 100, default = "")
 	questioner = models.ForeignKey(User, on_delete = models.CASCADE)
 	question_date = models.DateTimeField(auto_now_add=True)
-	upvotes = models.IntegerField(blank = True, null = True)
-	downvotes = models.IntegerField(blank = True, null = True)
+	upvotes = models.IntegerField(default = 0)
+	downvotes = models.IntegerField(default = 0)
 	topic = models.ForeignKey(Topic, blank = True, null = True, on_delete = models.CASCADE)
 
 	def __unicode__(self):
@@ -64,8 +58,8 @@ class Answer(models.Model):
 	question = models.ForeignKey(Question, on_delete = models.CASCADE)
 	respondent = models.ForeignKey(User, on_delete = models.CASCADE)
 	answer_date = models.DateTimeField(auto_now_add=True)
-	upvotes = models.IntegerField(blank = True, null = True)
-	downvotes = models.IntegerField(blank = True, null = True)
+	upvotes = models.IntegerField(default = 0)
+	downvotes = models.IntegerField(default = 0)
 
 	def __unicode__(self):
 		return self.description
@@ -90,6 +84,10 @@ class Comment(models.Model):
 	answer = models.ForeignKey(Answer, on_delete = models.CASCADE)
 	commenter = models.ForeignKey(User, on_delete = models.CASCADE)
 	comment_date = models.DateTimeField(auto_now_add=True)
+	likes = models.IntegerField(default = 0)
 
 	def __unicode__(self):
 		return self.comment
+
+	class Meta:
+		ordering = ['-comment_date']

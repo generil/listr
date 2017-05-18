@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block content %}
-  <small>From the question: <b>Question</b></small>
+  <small>From <b>{{answer.question}}</b></small>
   <h3 style="font-weight:bold; word-wrap: break-word;">{{answer}}</h2>
   <small>@{{answer.respondent.username}} — <span style="color:darkgray">{{date}}</span></small>
   <hr>
