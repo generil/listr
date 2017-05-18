@@ -19,21 +19,6 @@ $(document).on('change', ':file', function() {
   img[0].style.display = 'block';
 });
 
-<<<<<<< HEAD
-$(document).ready(function() {
-  $(':file').on('fileselect', function(event, numFiles, label) {
-    var input = $(this).parents('.input-group').find(':text'),
-      log = numFiles > 1 ? numFiles + ' files selected' : label;
-    if (input.length) {
-      input.val(log);
-    } else {
-      // if (log) alert(log);
-    }
-  });
-});
-
-=======
->>>>>>> bdba6228f0a0b29092faf7810c19fdfb29f8dfde
 function readURL(input) {
   if (input.files && input.files[0]) {
     var reader = new FileReader();
