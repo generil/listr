@@ -274,7 +274,11 @@ def addtopic(request):
 
 		topic_image = request.FILES['topic_file']
 		fs = FileSystemStorage()
+		topic_image.name = 'topic_' + topic + '_' + topic_image.name
+		print topic_image.name
 		filename = fs.save(topic_image.name, topic_image)
+		print filename
+
 		
 		Topic.objects.create(topic = topic, details = details, creator = creator, image = filename)
 

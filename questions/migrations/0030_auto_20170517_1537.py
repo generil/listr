@@ -16,6 +16,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='topic',
             name='image',
-            field=models.FileField(blank=True, upload_to=questions.models.topic_image_uploadpath),
+            field=models.FileField(blank=True),
         ),
     ]

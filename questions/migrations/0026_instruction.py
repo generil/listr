@@ -20,7 +20,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('instruction', models.CharField(max_length=100)),
                 ('number', models.IntegerField(default=1)),
-                ('image', models.FileField(blank=True, upload_to=questions.models.instruction_image_uploadpath)),
+                ('image', models.FileField(blank=True)),
                 ('answer', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='questions.Answer')),
             ],
             options={

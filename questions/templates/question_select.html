@@ -35,9 +35,9 @@
     <div class="panel-body" style="padding-top:0; padding-bottom:10px">
       <p style="margin-top:10px; font-weight:bold; word-wrap: break-word;">{{answer.description}}</p>
       {% if answer.answers|length > 1 %}
-        <small><a href="{% url 'answer_detail' answer_id=answer.id %}">Show {{answer.answers|length}} Steps</a></small>
+        <small><a href="{% url 'answer_detail' answer_id=answer.id %}">Show {{answer.answers|length}} Items</a></small>
       {% elif answer.answers|length == 1 %}
-        <small><a href="{% url 'answer_detail' answer_id=answer.id %}">Show {{answer.answers|length}} Step</a></small>
+        <small><a href="{% url 'answer_detail' answer_id=answer.id %}">Show {{answer.answers|length}} Items</a></small>
       {% else %}
         <small><a href="{% url 'answer_detail' answer_id=answer.id %}">Show Comments</a></small>
       {% endif %}

@@ -2,11 +2,11 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 
-def instruction_image_uploadpath(instance, filename):
-  return './storage/instructions/instr_{}_{}'.format(instance.answer.id, filename)
+# def instruction_image_uploadpath(instance, filename):
+#   return './storage/instructions/instr_{}_{}'.format(instance.answer.id, filename)
 
-def topic_image_uploadpath(instance, filename):
-  return './storage/topics/topic_{}_{}'.format(instance.topic, filename)
+# def topic_image_uploadpath(instance, filename):
+#   return './storage/topics/topic_{}_{}'.format(instance.topic, filename)
 
 class Person(models.Model):
 	user = models.OneToOneField(User)
@@ -26,12 +26,12 @@ def create_person(sender, instance, created, **kwargs):
 post_save.connect(create_person, sender=User)
 
 class Topic(models.Model):
-	topic = models.CharField(max_length = 30, unique = True)
+	topic = models.CharField(max_length = 30)
 	details = models.CharField(max_length = 100, default = "")
 	creator = models.ForeignKey(User, on_delete = models.CASCADE)
 	create_date = models.DateTimeField(auto_now_add=True)
 	is_verified = models.BooleanField(default = False)
-	image = models.FileField(upload_to=topic_image_uploadpath, blank=True)
+	image = models.FileField(blank=True)
 
 	def __unicode__(self):
 		return self.topic
@@ -77,7 +77,7 @@ class Instruction(models.Model):
 	instruction = models.CharField(max_length = 100)
 	answer = models.ForeignKey(Answer, on_delete = models.CASCADE)
 	number = models.IntegerField(default = 1)
-	image = models.FileField(upload_to=instruction_image_uploadpath, blank=True)
+	image = models.FileField(blank=True)
 
 	def __unicode__(self):
 		return self.instruction
