@@ -9,7 +9,7 @@
     <hr>
     {% for question, date in questions %}
     <div class="panel panel-default">
-      <div class="panel-heading" style="padding-bottom:5px;">
+      <div class="panel-heading" style="padding-bottom:10px;">
         <div class="row">
           <div class="col-xs-1">
             <img src="{% static 'questions/assets/default-user-avatar.png' %}" height="30px">
@@ -24,7 +24,9 @@
       <div class="panel-body" style="padding-top:0;padding-bottom:0;">
         <h3 style="margin-top:10px; font-weight:bold; word-wrap: break-word;"><a href="/questions/{{question.id}}">{{question.question}}</a></h3>
       </div>
-      <div class="panel-footer" style="padding-top:5px; padding-bottom:5px;">
+      <div class="panel-footer" style="padding-top:10px; padding-bottom:10px;">
+        <button type="button" class="btn btn-primary btn-xs">Upvote <span style="font-weight:bold">0</span></button>
+        <button type="button" class="btn btn-danger btn-xs">Downvote</button><br>
         {% if question.ans_count == 1 %}
           <small> {{question.ans_count}} answer - <span style="color:darkgray">{{date}}</span></small>
         {% elif question.ans_count > 1 %}
