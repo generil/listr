@@ -14,11 +14,12 @@ $(document).on('change', ':file', function() {
     label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
   input.trigger('fileselect', [numFiles, label]);
 
-  document.getElementById('add-t-image').innerText = 'Change avatar';
+  document.getElementById('add-t-image').innerText = 'Change image';
   var img = document.getElementsByClassName('imagepreview');
   img[0].style.display = 'block';
 });
 
+<<<<<<< HEAD
 $(document).ready(function() {
   $(':file').on('fileselect', function(event, numFiles, label) {
     var input = $(this).parents('.input-group').find(':text'),
@@ -31,6 +32,8 @@ $(document).ready(function() {
   });
 });
 
+=======
+>>>>>>> bdba6228f0a0b29092faf7810c19fdfb29f8dfde
 function readURL(input) {
   if (input.files && input.files[0]) {
     var reader = new FileReader();
@@ -43,4 +46,16 @@ function readURL(input) {
 
 $('input[type="file"]').change(function() {
   readURL(this);
+});
+
+$(document).ready(function() {
+  var text_max = 1000;
+  $('#feedback').html(text_max);
+  $('#commentarea').keyup(function() {
+    console.log(text_max);
+    var text_length = $('#commentarea').val().length;
+    var text_remaining = text_max - text_length;
+
+    $('#feedback').html(text_remaining);
+  });
 });
