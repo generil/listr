@@ -4,14 +4,13 @@
 
 {% block content %}
 
-<h3 style="font-weight:bold">{{question}}</h3>
-<h5><i>{{question.details}}</i></h5>
-<small>
-  Asked {{question_date}} by {{question.questioner.first_name}} {{question.questioner.first_name}} @{{question.questioner}} in <span class="label label-primary" style="font-size: 12px"><a href="/topics/{{question.topic.id}}" class="topic-btn"> {{question.topic}} </a></span>
-</small>
-
-
 {% if answers|length > 0%}
+  <h3 style="font-weight:bold">{{question}}</h3>
+  <h5><i>{{question.details}}</i></h5>
+  <small>
+    Asked {{question_date}} by {{question.questioner.first_name}} {{question.questioner.first_name}} @{{question.questioner}} in <span class="label label-primary" style="font-size: 12px"><a href="/topics/{{question.topic.id}}" class="topic-btn"> {{question.topic}} </a></span>
+  </small>
+
   <br>
   {% if answers|length > 1%}
     <h4><small>{{answers|length}} ANSWERS</small></h4>
@@ -50,9 +49,7 @@
   </div>
   {% endfor %}
 {% else %}
-  <br>
-  <br>
-  <h5>No one answered the question.</h5>
+  <h3 style="font-weight:bold">Nobody answered the question. 😞</h3>
 {% endif %}
 
 {% endblock %}

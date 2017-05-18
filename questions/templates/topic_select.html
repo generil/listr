@@ -4,14 +4,7 @@
 {% block title %}{{topic}}{% endblock %}
 
 {% block content %}
-<!--<div style="text-align: center; padding-top: 20px;">
-  <img class="center-cropped" src="{{ topic.image.url }}" alt="" width="96px" height="96px">
-  <h1 class="topic-header" style="font-size:5em;font-weight:bold">{{topic}}</h1>
-  <div class="more">{{topic.details}}</div>
-  {% if topic.is_verified %}
-    <h5><img class="icon icons8-Ok" width="16" height="16" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABTklEQVQ4T6WTTVLCQBCFX0+SwiVHIFXK1pQewHgDbqBs1OzCScAVpRviCfQG6AHAcYsLPALuwGSmrYlOCkKCVJnt9Pte/7wQ/vlRlT64nwWOxhmA4PddKoEXedWW5foNQDCaN51V2ifQZRWYwYlqeD3Z9Rf2vQAYsbtKxwBZ15rhWGYN79xCCsDpcJYQ0cU+K2Hmh0nUzrvMAWZmV9PrLjGD38CQ1iRj15eR/5EDTu7eY8Ho1wGMWDW8UCzTjiAamTpN6E2vjwY5YFf7Vux8qZCYH60Jg24nN4fxFoCBTyU4dBRiEALjjDRtOZrGBDQrAeURNHN3GrUTc5kq8dYIVUs0EO1Alp1tBxtLrNsDA4v1tov2y2fMT/mTwmcCHf91TrOXrSAVkGU6qAuUCZA68OLKKK+7BsN5S4isQ5rzWLMgqbX7ZIKz82faJ8blmm80i64RIxJvhAAAAABJRU5ErkJggg=="><i> Verified by the Listr team</i></h5>
-  {% endif %}
-</div>-->
+
 <div class="row">
   <div class="col-xs-3 col-sm-3" style="padding: 20px 20px; text-align:center; padding-left: 15px; padding-bottom: 0px;">
     <img class="center-cropped" src="{{ topic.image.url }}" width="96px" height="96px">
@@ -64,8 +57,7 @@
   </div>
   {% endfor %}
 {% else %}
-  <br>
-  <p>No questions asked. Ask one on the right pane.</p>
+  <h3 style="font-weight:bold">Nobody added questions here. 😞</h3>
 {% endif %}
 
 {% endblock %}
