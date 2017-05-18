@@ -275,10 +275,7 @@ def addtopic(request):
 		topic_image = request.FILES['topic_file']
 		fs = FileSystemStorage()
 		topic_image.name = 'topic_' + topic + '_' + topic_image.name
-		print topic_image.name
 		filename = fs.save(topic_image.name, topic_image)
-		print filename
-
 		
 		Topic.objects.create(topic = topic, details = details, creator = creator, image = filename)
 
@@ -291,10 +288,24 @@ def answer_detail(request, answer_id):
 	instructions = Instruction.objects.filter(answer = answer)
 	date = prettydate(answer.answer_date)
 	date_relative = prettydate(answer.answer_date)
+	comments = Comment.objects.filter(answer = answer)
 
 	context = {
 		'answer': answer,
 		'instructions': instructions,
 		'date': date_relative,
+		'comments': comments
 	}
 	return render(request, 'answer_select.html', context)
+
+def addcomment(request, answer_id):
+	if not request.user.is_authenticated:
+		return redirect('/')
+	if request.method == 'POST':
+		answer = Answer.objects.get(id = answer_id)
+		comment = request.POST['comment']
+		commenter = request.user
+
+		Comment.objects.create(comment = comment, answer = answer, commenter = commenter)
+
+	return redirect('answer_detail', answer_id)

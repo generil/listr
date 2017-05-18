@@ -4,12 +4,13 @@
 
 <div class="thumbnail">
   <div class="caption">
-    <form class="" action="index.html" method="post">
+    <form class="" action="{% url 'addcomment' answer_id=answer.pk%}" method="POST">
+    {% csrf_token %}
       <div class="form-group">
         <div style="text-align:right">
           <small id="feedback" style="display:none"></small>
         </div>
-        <textarea id="commentarea" class="form-control" rows="3" maxlength="500" placeholder="Add Comment..."></textarea>
+        <textarea id="commentarea" class="form-control" rows="3" name="comment" maxlength="500" placeholder="Add Comment..."></textarea>
       </div>
       <button type="submit" class="btn btn-primary btn-sm">Post</button>
     </form>
@@ -18,13 +19,16 @@
 
 <div class="actionBox">
   <ul class="commentList">
+    {% for comment in comments %}
     <li>
       <div class="commenterImage">
         <img src="http://placekitten.com/50/50" />
       </div>
+      <h3> {{comment.commenter}} </h3>
       <div class="commentText">
-        <p class="more">Hello this is a test comment. Hello this is a test comment. Hello this is a test comment. Hello this is a test comment.Hello this is a test comment. Hello this is a test comment.Hello this is a test comment. Hello this is a test comment.Hello this is a test comment. Hello this is a test comment.Hello this is a test comment. Hello this is a test comment.Hello this is a test comment. Hello this is a test comment.Hello this is a test comment. Hello this is a test comment.Hello this is a test comment. Hello this is a test comment.Hello this is a test comment. Hello this is a test comment.Hello this is a test comment. Hello this is a test comment.Hello this is a test comment. Hello this is a test comment.Hello this is a test comment. Hello this is a test comment.Hello this is a test comment. Hello this is a test comment.Hello this is a test comment. Hello this is a test comment.</p> <span class="date sub-text">Date</span>
+        <p class="more"> {{comment.comment}} </p> <span class="date sub-text"> {{comment.comment_date}} </span>
       </div>
     </li>
+    {% endfor %}
   </ul>
 </div>
