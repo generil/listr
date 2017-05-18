@@ -67,3 +67,9 @@ body {
     color:#aaa;
     font-size:11px;
 }
+
+.center-cropped {
+  object-fit: scale-down;
+  object-position: center; /* Center the image within the element */
+  border-radius:500px; border: 0.5px solid lightgray;
+}
