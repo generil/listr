@@ -14,22 +14,17 @@ $(document).on('change', ':file', function() {
     label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
   input.trigger('fileselect', [numFiles, label]);
 
-  document.getElementById('add-t-image').innerText = 'Change avatar';
+  document.getElementById('add-t-image').innerText = 'Change image';
   var img = document.getElementsByClassName('imagepreview');
   img[0].style.display = 'block';
 });
 
-$(document).ready(function() {
-  $(':file').on('fileselect', function(event, numFiles, label) {
-    var input = $(this).parents('.input-group').find(':text'),
-      log = numFiles > 1 ? numFiles + ' files selected' : label;
-    if (input.length) {
-      input.val(log);
-    } else {
-      if (log) alert(log);
-    }
-  });
-});
+// $(document).ready(function() {
+//   $(':file').on('fileselect', function(event, numFiles, label) {
+//     var input = $(this).parents('.input-group').find(':text'),
+//       log = numFiles > 1 ? numFiles + ' files selected' : label;
+//   });
+// });
 
 function readURL(input) {
   if (input.files && input.files[0]) {
