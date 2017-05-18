@@ -42,15 +42,17 @@
       {% endif %}
     </div>
     <div class="panel-footer" style="padding-top:10px; padding-bottom:10px;">
-      <form class="" action="{% url 'answer_upvote' answer_id=answer.pk%}?next={{ request.path }}" method="POST">
-      {% csrf_token %}
-          <button type="submit" class="btn btn-primary btn-xs">Upvotes | <span style="font-weight:bold">{{answer.upvotes}}</span></button>
-      </form>
-
-      <form class="" action="{% url 'answer_downvote' answer_id=answer.pk%}?next={{ request.path }}" method="POST">
-      {% csrf_token %}
-          <button type="submit" class="btn btn-danger btn-xs">Downvotes | <span style="font-weight:bold">{{answer.downvotes}}</span></button><br>
-      </form>
+      <div>
+        <form action="{% url 'answer_upvote' answer_id=answer.pk%}?next={{ request.path }}" method="POST" style="display:inline-block;">
+        {% csrf_token %}
+            <button type="submit" class="btn btn-primary btn-xs">Upvote | <span style="font-weight:bold">{{answer.upvotes}}</span></button>
+        </form>
+        <form action="{% url 'answer_downvote' answer_id=answer.pk%}?next={{ request.path }}" method="POST" style="display:inline-block;>
+        {% csrf_token %}
+            <button type="submit" class="btn btn-danger btn-xs"">Downvote | <span style="font-weight:bold">{{answer.downvotes}}</span></button><br>
+        </form>
+      </div>
+      <small style="color:darkgray">{{date_answered}}</small>
     </div>
   </div>
   {% endfor %}
