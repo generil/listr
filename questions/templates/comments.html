@@ -1,3 +1,4 @@
+{% load static %}
 <br><br>
 <h5 style="font-weight:bold">No Comments</h5>
 <hr>
@@ -19,14 +20,15 @@
 
 <div class="actionBox">
   <ul class="commentList">
-    {% for comment in comments %}
+    {% for comment, comment_date in comments %}
     <li>
       <div class="commenterImage">
-        <img src="http://placekitten.com/50/50" />
+        <img class="center-cropped" src="{% static 'questions/assets/default-user-avatar.png' %}" width="30px" height="30px">
       </div>
-      <h3> {{comment.commenter}} </h3>
       <div class="commentText">
-        <p class="more"> {{comment.comment}} </p> <span class="date sub-text"> {{comment.comment_date}} </span>
+        <p style="font-weight:bold"> {{comment.commenter}} </p>
+        <small class="more"> {{comment.comment}} </small><br>
+        <span class="date sub-text"> {{comment_date}} </span>
       </div>
     </li>
     {% endfor %}

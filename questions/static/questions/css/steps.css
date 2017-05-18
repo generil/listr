@@ -19,10 +19,10 @@
 .instructions li::before {
   content: counter(step-counter);
   margin-right: 5px;
-  font-size: 2em;
+  font-size: 1em;
   font-weight: bold;
-  padding: 3px 8px;
-  background-color: black;
+  padding: 3px 8px;;
   color: white;
+  background: black;
   border-radius: 100px;
 }

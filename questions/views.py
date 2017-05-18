@@ -286,15 +286,25 @@ def answer_detail(request, answer_id):
 		return redirect('/')
 	answer = Answer.objects.get(id = answer_id)
 	instructions = Instruction.objects.filter(answer = answer)
-	date = prettydate(answer.answer_date)
+	comment_date = []
 	date_relative = prettydate(answer.answer_date)
 	comments = Comment.objects.filter(answer = answer)
+
+	for item in comments:
+		if isinstance(item.comment_date, datetime):
+			tmp = prettydate(item.comment_date)
+		else:
+			tmp = "No date specified"
+
+		comment_date.append(tmp)
+
+	zipped_data = zip(comments, comment_date)
 
 	context = {
 		'answer': answer,
 		'instructions': instructions,
 		'date': date_relative,
-		'comments': comments
+		'comments': zipped_data
 	}
 	return render(request, 'answer_select.html', context)
 

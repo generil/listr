@@ -45,7 +45,7 @@ $(document).ready(function() {
 });
 
 $(".more").shorten({
-	"showChars" : 100,
-	"moreText"	: "See More",
-	"lessText"	: "Less",
+	"showChars" : 150,
+	"moreText"	: "more",
+	"lessText"	: "less",
 });
