@@ -27,7 +27,7 @@
           <img src="{% static 'questions/assets/default-user-avatar.png' %}" height="30px">
         </div>
         <div class="col-xs-11">
-          <h5 style="font-weight:bold; margin-top:0px; margin-bottom:5px;">{{anwser.respondent.first_name}} {{ answer.respondent.last_name}}</h5>
+          <h5 style="font-weight:bold; margin-top:0px; margin-bottom:10px;">{{anwser.respondent.first_name}} {{ answer.respondent.last_name}}</h5>
           <h6 style="margin-top:5px; margin-bottom:0px;">@{{answer.respondent.username}}</h6>
         </div>
       </div>
@@ -42,7 +42,9 @@
         <small><a href="{% url 'answer_detail' answer_id=answer.id %}">Show Comments</a></small>
       {% endif %}
     </div>
-    <div class="panel-footer" style="padding-top:5px; padding-bottom:5px;">
+    <div class="panel-footer" style="padding-top:10px; padding-bottom:10px;">
+      <button type="button" class="btn btn-primary btn-xs">Upvote <span style="font-weight:bold">0</span></button>
+      <button type="button" class="btn btn-danger btn-xs">Downvote</button><br>
       <small style="color: darkgray">Answered {{date_answered}}</small>
     </div>
   </div>

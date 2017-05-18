@@ -34,13 +34,18 @@ $('input[type="file"]').change(function() {
 });
 
 $(document).ready(function() {
-  var text_max = 1000;
-  $('#feedback').html(text_max);
+  var text_max = 500;
+  $('#feedback').html(text_max + '/' + text_max);
   $('#commentarea').keyup(function() {
-    console.log(text_max);
+    document.getElementById('feedback').style.display = 'block';
     var text_length = $('#commentarea').val().length;
     var text_remaining = text_max - text_length;
-
-    $('#feedback').html(text_remaining);
+    $('#feedback').html(text_remaining + '/' + text_max);
   });
+});
+
+$(".more").shorten({
+	"showChars" : 100,
+	"moreText"	: "See More",
+	"lessText"	: "Less",
 });

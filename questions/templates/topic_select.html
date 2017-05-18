@@ -7,7 +7,7 @@
 <div style="text-align: center; padding-top: 20px;">
   <img src="{{ topic.image.url }}" alt="" width="96px">
   <h1 class="topic-header" style="font-size:5em;font-weight:bold">{{topic}}</h1>
-  <h4>{{topic.details}}</h4>
+  <div class="more">{{topic.details}}</div>
   {% if topic.is_verified %}
     <h5><img class="icon icons8-Ok" width="16" height="16" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABTklEQVQ4T6WTTVLCQBCFX0+SwiVHIFXK1pQewHgDbqBs1OzCScAVpRviCfQG6AHAcYsLPALuwGSmrYlOCkKCVJnt9Pte/7wQ/vlRlT64nwWOxhmA4PddKoEXedWW5foNQDCaN51V2ifQZRWYwYlqeD3Z9Rf2vQAYsbtKxwBZ15rhWGYN79xCCsDpcJYQ0cU+K2Hmh0nUzrvMAWZmV9PrLjGD38CQ1iRj15eR/5EDTu7eY8Ho1wGMWDW8UCzTjiAamTpN6E2vjwY5YFf7Vux8qZCYH60Jg24nN4fxFoCBTyU4dBRiEALjjDRtOZrGBDQrAeURNHN3GrUTc5kq8dYIVUs0EO1Alp1tBxtLrNsDA4v1tov2y2fMT/mTwmcCHf91TrOXrSAVkGU6qAuUCZA68OLKKK+7BsN5S4isQ5rzWLMgqbX7ZIKz82faJ8blmm80i64RIxJvhAAAAABJRU5ErkJggg=="><i> Verified by the Listr team</i></h5>
   {% endif %}
@@ -22,7 +22,7 @@
   <hr>
   {% for question, date in questions %}
   <div class="panel panel-default">
-    <div class="panel-heading" style="padding-bottom:5;">
+    <div class="panel-heading" style="padding-bottom:10px;">
       <div class="row">
         <div class="col-xs-1">
           <img src="{% static 'questions/assets/default-user-avatar.png' %}" height="30px">
@@ -36,7 +36,9 @@
     <div class="panel-body" style="padding-top:0;padding-bottom:0;">
       <h3 style="margin-top:10px; font-weight:bold; word-wrap: break-word;"><a href="/questions/{{question.id}}">{{question.question}}</a></h3>
     </div>
-    <div class="panel-footer" style="padding-top:5px; padding-bottom:5px;">
+    <div class="panel-footer" style="padding-top:10px; padding-bottom:10px;">
+      <button type="button" class="btn btn-primary btn-xs">Upvote <span style="font-weight:bold">0</span></button>
+      <button type="button" class="btn btn-danger btn-xs">Downvote</button><br>
       {% if question.ans_count == 1 %}
         <small> {{question.ans_count}} answer - <span style="color:darkgray">{{date}}</span></small>
       {% elif question.ans_count > 1 %}

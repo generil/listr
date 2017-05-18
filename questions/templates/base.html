@@ -22,11 +22,13 @@
       </div>
       <div class="col-md-4">
         {% block rightbar %}{% endblock %}
+        <small>&copy; 2017 Listr</small>
       </div>
     </div>
     <!-- SCRIPTS -->
     <script src="{% static 'questions/js/jquery.js' %}"></script>
     <script src="{% static 'questions/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'questions/js/shorten.js' %}"></script>
     <script src="{% static 'questions/js/app.js' %}"></script>
     <script src="{% static 'questions/js/script.js' %}"></script>
     {% block script %}{% endblock %}
