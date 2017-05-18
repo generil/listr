@@ -18,10 +18,11 @@
     <div class="container-fluid">
       <div class="col-md-6 col-md-offset-1">
         {% block content %}{% endblock %}
+        {% block comments %}{% endblock %}
       </div>
       <div class="col-md-4">
         {% block rightbar %}{% endblock %}
-      </div
+      </div>
     </div>
     <!-- SCRIPTS -->
     <script src="{% static 'questions/js/jquery.js' %}"></script>
