@@ -5,7 +5,7 @@
 
 {% block content %}
 <div style="text-align: center; padding-top: 20px;">
-  <img src="{{ topic.image.url }}" alt="" width="96px" style="border-radius:500px;">
+  <img class="center-cropped" src="{{ topic.image.url }}" alt="" width="96px" height="96px">
   <h1 class="topic-header" style="font-size:5em;font-weight:bold">{{topic}}</h1>
   <div class="more">{{topic.details}}</div>
   {% if topic.is_verified %}
