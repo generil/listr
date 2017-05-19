@@ -358,5 +358,15 @@ def question_downvote(request, question_id):
 
 	return redirect(redirect_url)
 
-def profile():
-	pass
+def profile(request, user_id):
+	if not request.user.is_authenticated:
+		return redirect('/')
+	user = User.objects.get(id = user_id)
+	questions = Question.objects.filter(questioner = user)
+	answers = Answer.objects.filter(respondent = user)
+	context = {
+		'user': user,
+		'questions': questions,
+		'answers': answers,
+	}
+	return render(request, 'profile.html', context)
