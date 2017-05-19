@@ -7,8 +7,15 @@
 
 {% block content %}
   <small>From <b><a href="/questions/{{answer.question.id}}">{{answer.question}}</a></b></small>
-  <h3 style="font-weight:bold; word-wrap: break-word;">{{answer}}</h2>
-  <small>@{{answer.respondent.username}} — <span style="color:darkgray">{{date}}</span></small>
+  <div class="row" style="margin-top:10px; margin-bottom:10px;">
+    <div class="col-xs-1">
+      <img class="center-cropped" src="{% static 'questions/assets/default-user-avatar.png' %}" height="30px" width="30px">
+    </div>
+    <div class="col-xs-11" style="padding-left: 5px;">
+      <h5 style="font-weight:bold; margin-top:0px; margin-bottom:5px;">{{anwser.respondent.first_name}} {{ answer.respondent.last_name}} <small>@{{answer.respondent.username}}</small></h5>
+      <h6 style="margin-bottom:0px; margin-top:5px;">Info</h6>
+    </div>
+  </div>
 
   <div style="margin-top: 5px;">
     <!-- upvote -->
@@ -30,11 +37,14 @@
   </div>
 
   <hr>
+  <p style="word-wrap: break-word;">{{answer}}</p>
   <ol class="instructions">
     {% for step in instructions %}
-    <li style="word-wrap: break-word"><span>{{step}}</span></li>
+    <li style="word-wrap: break-word" class="more"><span>{{step}}</span></li>
     {% endfor %}
   </ol>
+  <br><br>
+  <small style="color:darkgray">Answered {{date}}</small>
 {% endblock %}
 
 {% block comments %}

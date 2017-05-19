@@ -29,19 +29,28 @@
   <hr>
   {% for question, date in questions %}
   <div class="panel panel-default">
-    <div class="panel-heading" style="padding-bottom:10px;">
+    <div class="panel-heading" style="padding-bottom:5px; padding-top:5px;">
+      <h5 style="padding-top: 5px; padding-bottom: 5px; margin: 0"><small style="color:darkgray">{{date}}</small></h5>
+    </div>
+
+    <div class="panel-body" style="padding-top:0;padding-bottom:0;">
+      <h3 style="margin-top:10px; font-weight:bold; word-wrap: break-word;"><a href="/questions/{{question.id}}">{{question.question}}</a></h3>
       <div class="row">
         <div class="col-xs-1">
           <img class="center-cropped" src="{% static 'questions/assets/default-user-avatar.png' %}" height="30px" width="30px">
         </div>
         <div class="col-xs-11">
-          <h5 style="font-weight:bold; margin-top:0px; margin-bottom:5px;">{{question.questioner.first_name}} {{ question.questioner.last_name}}</h5>
-          <h6 style="margin: 0 auto;">@{{question.questioner}}</h6>
+          <h5 style="font-weight:bold; margin-top:0px; margin-bottom:5px;">{{question.questioner.first_name}} {{ question.questioner.last_name}} <small>@{{question.questioner}}</small></h5>
+            <h6 style="margin-bottom:0px; margin-top:5px;">Info</h6>
         </div>
       </div>
-    </div>
-    <div class="panel-body" style="padding-top:0;padding-bottom:0;">
-      <h3 style="margin-top:10px; font-weight:bold; word-wrap: break-word;"><a href="/questions/{{question.id}}">{{question.question}}</a></h3>
+      {% if question.ans_count == 1 %}
+        <h6> {{question.ans_count}} answer</span></h6>
+      {% elif question.ans_count > 1 %}
+        <h6> {{question.ans_count}} answers</span></h6>
+      {% else %}
+        <h6> No answers</span></h6>
+      {% endif %}
     </div>
 
     <div class="panel-footer" style="padding-top:10px; padding-bottom:10px;">
@@ -63,13 +72,6 @@
             </button><br>
         </form>
       </div>
-      {% if question.ans_count == 1 %}
-        <small> {{question.ans_count}} answer - <span style="color:darkgray">{{date}}</span></small>
-      {% elif question.ans_count > 1 %}
-        <small> {{question.ans_count}} answers - <span style="color:darkgray">{{date}}</span></small>
-      {% else %}
-        <small> No answers - <span style="color:darkgray">{{date}}</span></small>
-      {% endif %}
     </div>
   </div>
   {% endfor %}

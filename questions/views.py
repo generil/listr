@@ -364,6 +364,30 @@ def profile(request, user_id):
 	user = User.objects.get(id = user_id)
 	questions = Question.objects.filter(questioner = user)
 	answers = Answer.objects.filter(respondent = user)
+	question_date = []
+	answer_time = []
+	
+	for question in questions:
+		ans = Answer.objects.filter(question = question).count()
+		question.ans_count = ans
+
+	for item in questions:
+		if isinstance(item.question_date, datetime):
+			tmp = prettydate(item.question_date)
+		else:
+			tmp = "No date specified"
+		question_date.append(tmp)
+
+	for item in answers:
+		if isinstance(item.answer_date, datetime):
+			tmp = prettydate(item.answer_date)
+		else:
+			tmp = "No date specified"
+		answer_time.append(tmp)
+
+	questions = zip(questions, question_date)
+	answers = zip(answers, answer_time)
+
 	context = {
 		'user': user,
 		'questions': questions,
