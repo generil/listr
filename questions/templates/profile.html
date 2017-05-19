@@ -53,6 +53,7 @@
           {% for answer, date_answered in answers %}
           <div class="panel panel-default">
             <div class="panel-heading" style="padding-bottom:10px">
+              <small>From <b><a href="/questions/{{answer.question.id}}">{{answer.question}}</a></b></small>
             </div>
 
             <div class="panel-body" style="padding-top:0; padding-bottom:5px">
@@ -67,24 +68,6 @@
             </div>
 
             <div class="panel-footer" style="padding-top:10px; padding-bottom:10px;">
-              <div>
-                <!-- upvote  -->
-                <form action="{% url 'answer_upvote' answer_id=answer.pk%}?next={{ request.path }}" method="POST" style="display:inline-block;">
-                {% csrf_token %}
-                    <button type="submit" class="btn btn-primary btn-xs">
-                      <span class="glyphicon glyphicon-arrow-up"></span>
-                      <span style="font-weight:bold">{{answer.upvotes}}</span>
-                    </button>
-                </form>
-                <!-- downvote -->
-                <form action="{% url 'answer_downvote' answer_id=answer.pk%}?next={{ request.path }}" method="POST" style="display:inline-block;">
-                {% csrf_token %}
-                    <button type="submit" class="btn btn-danger btn-xs">
-                      <span class="glyphicon glyphicon-arrow-down"></span>
-                      <span style="font-weight:bold">{{answer.downvotes}}</span>
-                    </button><br>
-                </form>
-              </div>
               <small style="color:darkgray">
                 <span class="glyphicon glyphicon-comment"></span>
                 <span style="color:darkgray">0</span>
