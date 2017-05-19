@@ -33,11 +33,9 @@
       </div>
       <div class="commentText">
         <p style="font-weight:bold"> 
-        <a href="{% url 'profile' comment.commenter.id %}">
-          {{comment.commenter.first_name}} {{comment.commenter.last_name}} 
-        </a>
-        <br>
-        <small>@ {{comment.commenter}}</small>
+          <a href="{% url 'profile' comment.commenter.id %}">
+            {{comment.commenter.first_name}} {{comment.commenter.last_name}} 
+          </a>
         </p>
         <small class="more" style="word-wrap: normal;"> {{comment.comment}} </small><br>
 
