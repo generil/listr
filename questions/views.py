@@ -123,6 +123,7 @@ def questions(request):
 	if not request.user.is_authenticated:
 		return redirect('/')
 	questions_list = Question.objects.all()
+	topics = Topic.objects.all()
 	answers_count = []
 	date_relative = []
 	# number of answers in the question
@@ -141,7 +142,8 @@ def questions(request):
 	zipped_data = zip(questions_list, date_relative)
 
 	context = {
-		'questions': zipped_data
+		'questions': zipped_data,
+		'topics': topics
 	}
 	return render(request, 'questions.html', context)
 
