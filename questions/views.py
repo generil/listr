@@ -55,8 +55,6 @@ def prettydate(d):
 	else:
 		return '{} hours ago'.format(s/3600)
 
-# end of function
-
 def index(request):
 	return render(request, 'home.html')
 
@@ -359,3 +357,6 @@ def question_downvote(request, question_id):
 		question.save()
 
 	return redirect(redirect_url)
+
+def profile():
+	pass
