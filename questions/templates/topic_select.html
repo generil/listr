@@ -40,8 +40,13 @@
           <img class="center-cropped" src="{% static 'questions/assets/default-user-avatar.png' %}" height="30px" width="30px">
         </div>
         <div class="col-xs-11">
-          <h5 style="font-weight:bold; margin-top:0px; margin-bottom:5px;">{{question.questioner.first_name}} {{ question.questioner.last_name}} <small>@{{question.questioner}}</small></h5>
-            <h6 style="margin-bottom:0px; margin-top:5px;">Info</h6>
+          <h5 style="font-weight:bold; margin-top:0px; margin-bottom:5px;">
+          <a href="{% url 'profile' question.questioner.id %}">
+            {{question.questioner.first_name}} {{ question.questioner.last_name}} 
+          </a>
+          <small>@{{question.questioner}}</small>
+          </h5>
+          <h6 style="margin-bottom:0px; margin-top:5px;">Info</h6>
         </div>
       </div>
       {% if question.ans_count == 1 %}

@@ -242,8 +242,8 @@ def addanswer(request, question_id):
 
 		while request.POST.get(nameArray[i]) != None:
 			answer = request.POST.get(nameArray[i])
-			print i, answer
-			answers.append(answer)
+			if answer:
+				answers.append(answer)
 			i += 1
 
 		a = Answer.objects.create(description = description, question = question, respondent = request.user)
@@ -394,3 +394,14 @@ def profile(request, user_id):
 		'answers': answers,
 	}
 	return render(request, 'profile.html', context)
+
+def likecomment(request, comment_id):
+	if not request.user.is_authenticated:
+		return redirect('/')
+	redirect_url = request.GET.get('next')
+	if request.method == 'POST':
+		comment = Comment.objects.get(id = comment_id)
+		comment.likes += 1
+		comment.save()
+
+	return redirect(redirect_url)

@@ -21,7 +21,8 @@
             <img class="center-cropped" src="{% static 'questions/assets/default-user-avatar.png' %}" height="30px" width="30px">
           </div>
           <div class="col-xs-11" style="padding-left: 5px;">
-            <h5 style="font-weight:bold; margin-top:0px; margin-bottom:5px;">{{question.questioner.first_name}} {{ question.questioner.last_name}} <small>@{{question.questioner}}</small></h5>
+            <h5 style="font-weight:bold; margin-top:0px; margin-bottom:5px;">
+              <a href="{% url 'profile' question.questioner.id %}">{{question.questioner.first_name}} {{ question.questioner.last_name}} </a> <small>@{{question.questioner}}</small></h5>
             <h6 style="margin-bottom:0px; margin-top:5px;">Info</h6>
           </div>
         </div>
@@ -36,17 +37,32 @@
 
       <div class="panel-footer" style="padding-top:10px; padding-bottom:10px;">
         <!-- upvote -->
-        <button type="button" class="btn btn-primary btn-xs">
+        <!-- <button type="button" class="btn btn-primary btn-xs">
           <span class="glyphicon glyphicon-arrow-up"></span>
           <span style="font-weight:bold"></span>
-        </button>
+        </button> -->
+        <form action="{% url 'question_upvote' question_id=question.pk%}?next={{ request.path }}" method="POST" style="display:inline-block;">
+        {% csrf_token %}
+            <button type="submit" class="btn btn-primary btn-xs">
+              <span class="glyphicon glyphicon-arrow-up"></span>
+              <span style="font-weight:bold">{{question.upvotes}}</span>
+            </button>
+        </form>
         <!-- downvote -->
-        <button type="button" class="btn btn-danger btn-xs">
+<!--         <button type="button" class="btn btn-danger btn-xs">
           <span class="glyphicon glyphicon-arrow-down"></span>
           <span style="font-weight:bold"></span>
-        </button><br>
+        </button><br> -->
+        <form class="" action="{% url 'question_downvote' question_id=question.pk%}?next={{ request.path }}" method="POST" style="display:inline-block;">
+        {% csrf_token %}
+            <button type="submit" class="btn btn-danger btn-xs">
+              <span class="glyphicon glyphicon-arrow-down"></span>
+              <span style="font-weight:bold">{{question.downvotes}}</span>
+            </button><br>
+        </form>
+      </div> 
+
       </div>
-    </div>
     {% endfor %}
   {% else %}
     <h3 style="font-weight:bold">Nobody posted questions. 😞</h3>

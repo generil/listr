@@ -37,4 +37,6 @@ urlpatterns = [
   url(r'^question_downvote/(?P<question_id>[0-9]+)/$', views.question_downvote, name='question_downvote'),
   # /profile/
   url(r'^profile/(?P<user_id>[0-9]+)/$', views.profile, name='profile'),
+  # /likecomment/
+  url(r'^likecomment/(?P<comment_id>[0-9]+)/$', views.likecomment, name='likecomment'),
 ]

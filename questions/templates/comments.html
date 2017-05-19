@@ -32,12 +32,29 @@
         <img class="center-cropped" src="{% static 'questions/assets/default-user-avatar.png' %}" width="30px" height="30px">
       </div>
       <div class="commentText">
-        <p style="font-weight:bold"> {{comment.commenter}} </p>
+        <p style="font-weight:bold"> 
+        <a href="{% url 'profile' comment.commenter.id %}">
+          {{comment.commenter.first_name}} {{comment.commenter.last_name}} 
+        </a>
+        <br>
+        <small>@ {{comment.commenter}}</small>
+        </p>
         <small class="more" style="word-wrap: normal;"> {{comment.comment}} </small><br>
-        <button type="button" class="btn btn-xs btn-link" style="text-decoration:none;">
+
+        <!-- <button type="button" class="btn btn-xs btn-link" style="text-decoration:none;">
           <span class="glyphicon glyphicon-thumbs-up"></span>
           <span style="font-weight:bold">0</span>
-        </button>
+        </button> -->
+
+
+        <form action="{% url 'likecomment' comment.id %}?next={{ request.path }}" method="POST" style="display:inline-block;">
+        {% csrf_token %}
+            <button type="submit" class="btn btn-xs btn-link" style="text-decoration:none;">
+              <span class="glyphicon glyphicon-thumbs-up"></span>
+            </button>
+            <span style="font-weight:bold">{{comment.likes}}</span>
+        </form>
+
         <span class="date sub-text"> {{comment_date}} </span>
       </div>
     </li>
