@@ -155,7 +155,6 @@ def question_detail(request, question_id):
 	# instructions = []
 	for item in all_answers:
 		item.answers = Instruction.objects.filter(answer = item)
-		# print len(item.answers)
 		if isinstance(item.answer_date, datetime):
 			tmp = prettydate(item.answer_date)
 		else:
@@ -379,6 +378,7 @@ def profile(request, user_id):
 		question_date.append(tmp)
 
 	for item in answers:
+		item.answers = Instruction.objects.filter(answer = item)
 		if isinstance(item.answer_date, datetime):
 			tmp = prettydate(item.answer_date)
 		else:
