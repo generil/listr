@@ -410,3 +410,18 @@ def likecomment(request, comment_id):
 		comment.save()
 
 	return redirect(redirect_url)
+
+def addquestion_by_topic(request):
+	if not request.user.is_authenticated:
+		return redirect('/')
+	# redirect_url = request.GET.get('next')
+	if request.method == 'POST':
+		topic_name = request.POST.get('topic')
+		topic = Topic.objects.get(topic = topic_name)
+		question = request.POST.get('question')
+		details = request.POST.get('description')
+		user = request.user
+		# print type(topic)
+		Question.objects.create(question = question, details = details, questioner = user, topic = topic)
+	return redirect('topics')
+	# return redirect(redirect_url)

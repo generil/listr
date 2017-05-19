@@ -20,6 +20,9 @@ urlpatterns = [
   url(r'^topics/(?P<topic_id>[0-9]+)/$', views.topic_detail, name='topic_detail'),
   # /addquestion/
   url(r'^addquestion/(?P<topic_id>[0-9]+)/$', views.addquestion, name='addquestion'),
+  # /addquestion/
+  url(r'^addquestion_by_topic/$', views.addquestion_by_topic, name='addquestion-select-topic'),
+  # /answer/
   url(r'^answer/(?P<answer_id>[0-9]+)/$', views.answer_detail, name='answer_detail'),
   # /addanswer/
   url(r'^addanswer/(?P<question_id>[0-9]+)/$', views.addanswer, name='addanswer'),
