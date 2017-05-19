@@ -19,13 +19,7 @@ from .models import Comment
 ZERO = timedelta(0)
 # we have to settle for this for now
 nameArray = ['0','1', '2', '3', '4', '5', '6', '7', '8', '9', '10',
-						'11', '12', '13', '14', '15', '16', '17', '18', '19',
-						'20']
-# nameArray = //[100]
-# nameArray = []
-# for i in range(0, 10):
-# 	nameArray.append("'" + str(i) + "'")
-# this is fucking stupid
+			'11', '12', '13', '14', '15', '16', '17', '18', '19', '20']
 
 class UTC(tzinfo):
 	def utcoffset(self, dt):
@@ -276,7 +270,7 @@ def addtopic(request):
 		fs = FileSystemStorage()
 		topic_image.name = 'topic_' + topic + '_' + topic_image.name
 		filename = fs.save(topic_image.name, topic_image)
-		
+
 		Topic.objects.create(topic = topic, details = details, creator = creator, image = filename)
 
 	return redirect('topics')
@@ -289,6 +283,7 @@ def answer_detail(request, answer_id):
 	comment_date = []
 	date_relative = prettydate(answer.answer_date)
 	comments = Comment.objects.filter(answer = answer)
+	lencomments = len(comments)
 
 	for item in comments:
 		if isinstance(item.comment_date, datetime):
@@ -304,7 +299,8 @@ def answer_detail(request, answer_id):
 		'answer': answer,
 		'instructions': instructions,
 		'date': date_relative,
-		'comments': zipped_data
+		'comments': zipped_data,
+		'lencomments': lencomments
 	}
 	return render(request, 'answer_select.html', context)
 
@@ -349,7 +345,7 @@ def question_upvote(request, question_id):
 	if request.method == 'POST':
 		question = Question.objects.get(id = question_id)
 		question.upvotes += 1
-		question.save()	
+		question.save()
 
 	return redirect(redirect_url)
 
@@ -363,4 +359,3 @@ def question_downvote(request, question_id):
 		question.save()
 
 	return redirect(redirect_url)
-

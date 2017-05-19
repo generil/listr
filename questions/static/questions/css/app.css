@@ -70,7 +70,7 @@ body {
     border-radius: 50%;
 }
 
-.commentText p {
+.commentText p, .commentText small {
     margin: 0;
 }
 

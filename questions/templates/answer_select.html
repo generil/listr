@@ -9,6 +9,26 @@
   <small>From <b><a href="/questions/{{answer.question.id}}">{{answer.question}}</a></b></small>
   <h3 style="font-weight:bold; word-wrap: break-word;">{{answer}}</h2>
   <small>@{{answer.respondent.username}} — <span style="color:darkgray">{{date}}</span></small>
+
+  <div style="margin-top: 5px;">
+    <!-- upvote -->
+    <form class="" action="" method="POST" style="display:inline-block;">
+    <!-- {% csrf_token %} -->
+        <button type="submit" class="btn btn-primary btn-xs">
+          <span class="glyphicon glyphicon-arrow-up"></span>
+          <span style="font-weight:bold">{{question.upvotes}}</span>
+        </button>
+    </form>
+    <!-- downvote -->
+    <form class="" action="" method="POST" style="display:inline-block;">
+    <!-- {% csrf_token %} -->
+        <button type="submit" class="btn btn-danger btn-xs">
+          <span class="glyphicon glyphicon-arrow-down"></span>
+          <span style="font-weight:bold">{{question.downvotes}}</span>
+        </button><br>
+    </form>
+  </div>
+
   <hr>
   <ol class="instructions">
     {% for step in instructions %}

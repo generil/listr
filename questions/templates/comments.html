@@ -1,6 +1,12 @@
 {% load static %}
 <br><br>
-<h5 style="font-weight:bold">No Comments</h5>
+{% if lencomments > 1 %}
+  <h5 style="font-weight:bold">{{lencomments}} Comments</h5>
+{% elif lencomments == 1 %}
+  <h5 style="font-weight:bold">1 Comment</h5>
+{% else %}
+  <h5 style="font-weight:bold">No Comments</h5>
+{% endif %}
 <hr>
 
 <div class="thumbnail">
@@ -27,7 +33,11 @@
       </div>
       <div class="commentText">
         <p style="font-weight:bold"> {{comment.commenter}} </p>
-        <small class="more"> {{comment.comment}} </small><br>
+        <small class="more" style="word-wrap: normal;"> {{comment.comment}} </small><br>
+        <button type="button" class="btn btn-xs btn-link" style="text-decoration:none;">
+          <span class="glyphicon glyphicon-thumbs-up"></span>
+          <span style="font-weight:bold">0</span>
+        </button>
         <span class="date sub-text"> {{comment_date}} </span>
       </div>
     </li>

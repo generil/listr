@@ -4,13 +4,31 @@
 
 {% block content %}
 
-{% if answers|length > 0%}
-  <h3 style="font-weight:bold">{{question}}</h3>
-  <h5><i>{{question.details}}</i></h5>
-  <small>
-    Asked {{question_date}} by {{question.questioner.first_name}} {{question.questioner.first_name}} @{{question.questioner}} in <span class="label label-primary" style="font-size: 12px"><a href="/topics/{{question.topic.id}}" class="topic-btn"> {{question.topic}} </a></span>
-  </small>
+<h3 style="font-weight:bold">{{question}}</h3>
+<h5><i>{{question.details}}</i></h5>
+<small>
+  Asked {{question_date}} by {{question.questioner.first_name}} {{question.questioner.first_name}} @{{question.questioner}} in <span class="label label-primary" style="font-size: 12px; border-radius: 50px;"><a href="/topics/{{question.topic.id}}" class="topic-btn">{{question.topic}}</a></span>
+</small>
+<div style="margin-top: 5px;">
+  <!-- upvote -->
+  <form class="" action="" method="POST" style="display:inline-block;">
+  <!-- {% csrf_token %} -->
+      <button type="submit" class="btn btn-primary btn-xs">
+        <span class="glyphicon glyphicon-arrow-up"></span>
+        <span style="font-weight:bold">0</span>
+      </button>
+  </form>
+  <!-- downvote -->
+  <form class="" action="" method="POST" style="display:inline-block;">
+  <!-- {% csrf_token %} -->
+      <button type="submit" class="btn btn-danger btn-xs">
+        <span class="glyphicon glyphicon-arrow-down"></span>
+        <span style="font-weight:bold">0</span>
+      </button><br>
+  </form>
+</div>
 
+{% if answers|length > 0%}
   <br>
   {% if answers|length > 1%}
     <h4><small>{{answers|length}} ANSWERS</small></h4>
@@ -20,6 +38,7 @@
   <hr>
   {% for answer, date_answered in answers %}
   <div class="panel panel-default">
+
     <div class="panel-heading" style="padding-bottom:10px">
       <div class="row">
         <div class="col-xs-1">
@@ -31,6 +50,7 @@
         </div>
       </div>
     </div>
+
     <div class="panel-body" style="padding-top:0; padding-bottom:10px">
       <p style="margin-top:10px; font-weight:bold; word-wrap: break-word;">{{answer.description}}</p>
       {% if answer.answers|length > 1 %}
@@ -38,22 +58,37 @@
       {% elif answer.answers|length == 1 %}
         <small><a href="{% url 'answer_detail' answer_id=answer.id %}">Show {{answer.answers|length}} Items</a></small>
       {% else %}
-        <small><a href="{% url 'answer_detail' answer_id=answer.id %}">Show Comments</a></small>
+        <small><a href="{% url 'answer_detail' answer_id=answer.id %}">Show Answer</a></small>
       {% endif %}
     </div>
+
     <div class="panel-footer" style="padding-top:10px; padding-bottom:10px;">
       <div>
+        <!-- upvote  -->
         <form action="{% url 'answer_upvote' answer_id=answer.pk%}?next={{ request.path }}" method="POST" style="display:inline-block;">
         {% csrf_token %}
-            <button type="submit" class="btn btn-primary btn-xs">Upvote | <span style="font-weight:bold">{{answer.upvotes}}</span></button>
+            <button type="submit" class="btn btn-primary btn-xs">
+              <span class="glyphicon glyphicon-arrow-up"></span>
+              <span style="font-weight:bold">{{answer.upvotes}}</span>
+            </button>
         </form>
-        <form action="{% url 'answer_downvote' answer_id=answer.pk%}?next={{ request.path }}" method="POST" style="display:inline-block;>
+        <!-- downvote -->
+        <form action="{% url 'answer_downvote' answer_id=answer.pk%}?next={{ request.path }}" method="POST" style="display:inline-block;">
         {% csrf_token %}
-            <button type="submit" class="btn btn-danger btn-xs"">Downvote | <span style="font-weight:bold">{{answer.downvotes}}</span></button><br>
+            <button type="submit" class="btn btn-danger btn-xs">
+              <span class="glyphicon glyphicon-arrow-down"></span>
+              <span style="font-weight:bold">{{answer.downvotes}}</span>
+            </button><br>
         </form>
       </div>
+      <small style="color:darkgray">
+        <span class="glyphicon glyphicon-comment"></span>
+        <span style="color:darkgray">0</span>
+      </small>
+      <small> - </small>
       <small style="color:darkgray">{{date_answered}}</small>
     </div>
+
   </div>
   {% endfor %}
 {% else %}
