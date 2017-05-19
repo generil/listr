@@ -423,5 +423,4 @@ def addquestion_by_topic(request):
 		user = request.user
 		# print type(topic)
 		Question.objects.create(question = question, details = details, questioner = user, topic = topic)
-	return redirect('topics')
-	# return redirect(redirect_url)
+	return redirect('topic_detail', topic.id)
