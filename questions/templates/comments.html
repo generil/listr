@@ -51,8 +51,8 @@
         {% csrf_token %}
             <button type="submit" class="btn btn-xs btn-link" style="text-decoration:none;">
               <span class="glyphicon glyphicon-thumbs-up"></span>
+              <span style="font-weight:bold">{{comment.likes}}</span>
             </button>
-            <span style="font-weight:bold">{{comment.likes}}</span>
         </form>
 
         <span class="date sub-text"> {{comment_date}} </span>
