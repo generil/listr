@@ -157,6 +157,9 @@ def question_detail(request, question_id):
 	# instructions = []
 	for item in all_answers:
 		item.answers = Instruction.objects.filter(answer = item)
+		item.comments = Comment.objects.filter(answer = item)
+		item.comment_count = len(item.comments)
+
 		if isinstance(item.answer_date, datetime):
 			tmp = prettydate(item.answer_date)
 		else:
