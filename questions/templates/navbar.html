@@ -30,9 +30,9 @@
             <img class="center-cropped" src="{% static 'questions/assets/default-user-avatar.png' %}" width="24px" height="24px" style="border:none;">&nbsp;&nbsp;{{user.first_name}} <span class="caret"></span>
           </a>
           <ul class="dropdown-menu">
-            <li class="dropdown-header">Signed in as <b>{{user}}</b></li>
+            <li class="dropdown-header">Signed in as <span><a href="{% url 'profile'  request.user.id %}"><b>@{{user}}</b></a></span></li>
             <li role="separator" class="divider"></li>
-            <li><a href="{% url 'profile'  request.user.id %}">Profile</a></li>
+            <li><a href=""><span class="glyphicon glyphicon-pencil"></span> Edit profile</a></li>
             <li><a href="{% url 'logout' %}">Logout</a></li>
           </ul>
         </li>

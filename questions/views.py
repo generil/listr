@@ -370,7 +370,7 @@ def profile(request, user_id):
 	answers = Answer.objects.filter(respondent = user)
 	question_date = []
 	answer_time = []
-	
+
 	for question in questions:
 		ans = Answer.objects.filter(question = question).count()
 		question.ans_count = ans
@@ -384,6 +384,8 @@ def profile(request, user_id):
 
 	for item in answers:
 		item.answers = Instruction.objects.filter(answer = item)
+		item.comments = Comment.objects.filter(answer = item)
+		item.comment_count = len(item.comments)
 		if isinstance(item.answer_date, datetime):
 			tmp = prettydate(item.answer_date)
 		else:
