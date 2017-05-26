@@ -86,3 +86,13 @@ body {
     border-radius: 500px;
     border: 0.5px solid lightgray;
 }
+
+.inputfill {
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.inputfill:focus {
+    outline: none;
+    border-bottom: 1px solid cornflowerblue;
+}
