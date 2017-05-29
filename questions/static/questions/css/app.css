@@ -87,6 +87,17 @@ body {
     border: 0.5px solid lightgray;
 }
 
+<<<<<<< HEAD
 .navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus {
     color: black;
+=======
+.inputfill {
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.inputfill:focus {
+    outline: none;
+    border-bottom: 1px solid cornflowerblue;
+>>>>>>> 7e981af40cd68cb1411fcdacd42b1abe9785c0ae
 }

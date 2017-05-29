@@ -37,7 +37,7 @@ def prettydate(d):
 	diff = datetime.now(utc) - d
 	s = diff.seconds
 	if diff.days > 7 or diff.days < 0:
-		return d.strftime('%b %d, %y')
+		return d.strftime('%b %d, %Y')
 	elif diff.days == 1:
 		return '1 day ago'
 	elif diff.days > 1:
