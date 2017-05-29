@@ -24,10 +24,10 @@
             <h5 style="font-weight:bold; margin-top:0px; margin-bottom:5px;">
               <a href="{% url 'profile' question.questioner.id %}">{{question.questioner.first_name}} {{ question.questioner.last_name}} </a> <small>@{{question.questioner}}</small></h5>
             <h6 style="margin-bottom:0px; margin-top:5px;">Info</h6>
-          {% if question.image %}
-          <br>
-          <img src="{{question.image.url}}" width="100%" style="border-radius:4px; border: 1px solid darkgray">
-          {% endif %}
+            {% if question.image %}
+            <br>
+            <img src="{{question.image.url}}" width="100%" style="border-radius:4px; border: 1px solid darkgray">
+            {% endif %}
           </div>
         </div>
         {% if question.ans_count == 1 %}
