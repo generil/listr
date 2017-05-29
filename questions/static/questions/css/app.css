@@ -86,3 +86,7 @@ body {
     border-radius: 500px;
     border: 0.5px solid lightgray;
 }
+
+.navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus {
+    color: black;
+}
