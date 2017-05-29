@@ -10,9 +10,11 @@
     <h3 style="font-weight: 300; color:darkgray">@{{user}}</h3>
     <h3 style="font-size: 1.25em">Bio.</h3>
   </div>
+  {% block top %}{% endblock %}
 </div>
 
 <div class="row">
+  {% block bottom %}{% endblock %}
   <div class="col-sm-1 col-md-3 col-lg-3"></div>
   <div class="col-sm-10 col-md-6 col-lg-6">
     <ul class="nav nav-pills" style="display: flex; justify-content: center; margin-bottom: 20px;">
