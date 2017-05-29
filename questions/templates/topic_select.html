@@ -47,8 +47,15 @@
           <small>@{{question.questioner}}</small>
           </h5>
           <h6 style="margin-bottom:0px; margin-top:5px;">Info</h6>
+          <br>
+          {% if question.image %}
+          <img src="{{question.image.url}}" style="border:none; margin-top: -5; margin-bottom: -7; 
+          max-width:500px; max-height:500px;">
+          {% endif %}
+              <!-- <br> -->
         </div>
       </div>
+      <br>
       {% if question.ans_count == 1 %}
         <h6> {{question.ans_count}} answer</span></h6>
       {% elif question.ans_count > 1 %}

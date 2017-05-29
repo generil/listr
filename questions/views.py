@@ -79,6 +79,7 @@ def signup_view(request):
 		return redirect('questions')
 	context = {}
 	data = {}
+	
 	if request.method == 'POST':
 		data['first_name'] = request.POST.get('first_name')
 		data['last_name'] = request.POST.get('last_name')
@@ -88,12 +89,16 @@ def signup_view(request):
 		data['password2'] = request.POST.get('password2')
 
 		dataCheck = user_integrityCheck(data)
+		
 		if dataCheck == True:
-			User.objects.get_or_create(first_name = data['first_name'],
-				last_name = data['last_name'], username = data['username'], password = data['password1'],
+			User.objects.create_user(first_name = data['first_name'],
+				last_name = data['last_name'], 
+				username = data['username'], 
+				password = data['password1'],
 				email = data['email'])
+
 			user_auth = authenticate(username=data['username'], password=['password1'])
-			print user
+			# print user
 			login(request, user_auth)
 			return redirect('questions')
 		else:
@@ -232,7 +237,19 @@ def addquestion(request, topic_id):
 		question = request.POST.get('question')
 		details = request.POST.get('description')
 		user = request.user
-		Question.objects.create(question = question, details = details, questioner = user, topic = topic)
+
+		question_image = request.FILES.get('question_file')
+
+		if question_image != None:
+			fs = FileSystemStorage()
+			question_image.name = 'question_' + question + '_' + question_image.name
+			filename = fs.save(question_image.name, question_image)
+
+			Question.objects.create(question = question, details = details, questioner = user, topic = topic, image = filename)
+
+		else:
+			Question.objects.create(question = question, details = details, questioner = user, topic = topic)
+
 	return redirect('topic_detail', topic_id)
 
 def addanswer(request, question_id):
@@ -254,8 +271,19 @@ def addanswer(request, question_id):
 		a.save()
 
 		ai = 0
+
 		for answer in answers:
-			Instruction.objects.create(instruction = answer, answer = a, number = ai)
+			instruction_image = request.FILES.get('instruction_file_' + str(nameArray[ai]))
+
+			if instruction_image != None:
+				fs = FileSystemStorage()
+				instruction_image.name = 'instruction_' + a + '_' + instruction_image.name
+				filename = fs.save(instruction_image.name, instruction_image)
+				print "hey!"
+				Instruction.objects.create(instruction = answers[ai], answer = a, number = ai, image = filename)
+			else:
+				print "without picture"
+				Instruction.objects.create(instruction = answers[ai], answer = a, number = ai)
 			ai += 1
 
 	return redirect('question_detail', question_id)
@@ -269,11 +297,16 @@ def addtopic(request):
 		creator = request.user
 
 		topic_image = request.FILES['topic_file']
-		fs = FileSystemStorage()
-		topic_image.name = 'topic_' + topic + '_' + topic_image.name
-		filename = fs.save(topic_image.name, topic_image)
 
-		Topic.objects.create(topic = topic, details = details, creator = creator, image = filename)
+		if topic_image != None:
+			fs = FileSystemStorage()
+			topic_image.name = 'topic_' + topic + '_' + topic_image.name
+			filename = fs.save(topic_image.name, topic_image)
+
+			Topic.objects.create(topic = topic, details = details, creator = creator, image = filename)
+
+		else:
+			Topic.objects.create(topic = topic, details = details, creator = creator)
 
 	return redirect('topics')
 
@@ -422,5 +455,21 @@ def addquestion_by_topic(request):
 		question = request.POST.get('question')
 		details = request.POST.get('description')
 		user = request.user
-		Question.objects.create(question = question, details = details, questioner = user, topic = topic)
+
+		question_image = request.FILES.get('question_file')
+
+		if question_image != None:
+			fs = FileSystemStorage()
+			question_image.name = 'question_' + question + '_' + question_image.name
+			filename = fs.save(question_image.name, question_image)
+
+			Question.objects.create(question = question, details = details, questioner = user, topic = topic, image = filename)
+
+		else:
+			Question.objects.create(question = question, details = details, questioner = user, topic = topic)
+
+		# Question.objects.create(question = question, details = details, questioner = user, topic = topic)
 	return redirect('topic_detail', topic.id)
+
+
+# def edit_profile_view(request)

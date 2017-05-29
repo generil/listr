@@ -3,7 +3,7 @@
 <hr>
 <div class="thumbnail">
   <div class="caption">
-    <form class="" action="{% url 'addquestion-select-topic' %}?next={{ request.path }}" method="POST">
+    <form class="" action="{% url 'addquestion-select-topic' %}?next={{ request.path }}" method="POST" enctype="multipart/form-data"> 
     {% csrf_token %}
       <div class="form-group">
         <textarea class="form-control" rows="2" placeholder="Question" name="question"></textarea>
@@ -12,11 +12,21 @@
         <textarea class="form-control" rows="5" placeholder="Description (Optional)" name="description"></textarea>
       </div>
       <div class="form-group">
-        <select class="selectpicker" data-live-search="true" data-width="100%" title="Topic" name="topic">
+        <select class="selectpicker" data-live-search="true" data-width="100%" title="Topic" name="topic" required="">
           {% for topic in topics %}
             <option>{{topic}}</option>
           {% endfor %}
         </select>
+      </div>
+      <div class="form-group">
+        <div class="input-group">
+          <label class="input-group-btn">
+            <span class="btn btn-default btn-block" style="border-radius: 4px;">
+              <span id="add-t-image">Add image</span>&hellip;
+              <input type="file" name="question_file" style="display: none;">
+            </span>
+          </label>
+        </div>
       </div>
       <button type="submit" class="btn btn-primary btn-block">POST QUESTION</button>
     </form>

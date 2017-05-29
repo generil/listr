@@ -5,8 +5,9 @@ from django.db.models.signals import post_save
 class Person(models.Model):
 	user = models.OneToOneField(User)
 
-	institution = models.CharField(max_length = 30)
-	position = models.CharField(max_length = 30)
+	description = models.CharField(max_length = 200, default = "description")
+	institution = models.CharField(max_length = 50)
+	position = models.CharField(max_length = 50)
 	join_date = models.DateTimeField(auto_now_add=True)
 	is_verified = models.BooleanField(default = True)
 
@@ -46,6 +47,7 @@ class Question(models.Model):
 	upvotes = models.IntegerField(default = 0)
 	downvotes = models.IntegerField(default = 0)
 	topic = models.ForeignKey(Topic, blank = True, null = True, on_delete = models.CASCADE)
+	image = models.FileField(blank=True)
 
 	def __unicode__(self):
 		return self.question

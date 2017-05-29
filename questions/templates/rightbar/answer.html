@@ -2,7 +2,7 @@
 <hr>
 <div class="thumbnail">
   <div class="caption">
-    <form class="" action="{% url 'addanswer' question_id=question.pk%}" method="POST">
+    <form class="" action="{% url 'addanswer' question_id=question.pk%}" method="POST" enctype="multipart/form-data">
       {% csrf_token %}
       <div class="form-group">
         <textarea class="form-control" rows="3" name="description" placeholder="Description" required></textarea>
@@ -13,7 +13,17 @@
         <ul style="list-style-type: none; padding: 0;" class="step-list">
           <li><textarea class="form-control" name="0" rows="5" id="textarea" placeholder="Step or Item"></textarea></li>
         </ul>
-        <button type="button" class="btn btn-default btn-block add-step" onclick="addstep()">Add Item</button>
+        <div class="form-group">
+        <div class="input-group">
+          <label class="input-group-btn">
+            <span class="btn btn-default btn-block" style="border-radius: 4px;">
+              <span id="add-t-image">Add image</span>&hellip;
+              <input type="file" name="question_file" style="display: none;">
+            </span>
+          </label>
+        </div>
+      </div>
+        <button type="button" class="btn btn-default btn-block add-step">Add Item</button>
       </div>
       <button type="submit" class="btn btn-primary btn-block">POST ANSWER</button>
     </form>

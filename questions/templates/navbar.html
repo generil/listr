@@ -32,7 +32,7 @@
           <ul class="dropdown-menu">
             <li class="dropdown-header">Signed in as <span><a href="{% url 'profile'  request.user.id %}"><b>@{{user}}</b></a></span></li>
             <li role="separator" class="divider"></li>
-            <li><a href=""><span class="glyphicon glyphicon-pencil"></span> Edit profile</a></li>
+            <li><a href="{% url 'profile' request.user.id %}"><span class="glyphicon glyphicon-pencil"></span> Edit profile</a></li>
             <li><a href="{% url 'logout' %}">Logout</a></li>
           </ul>
         </li>
