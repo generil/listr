@@ -10,7 +10,7 @@
   {% endif %}
   <h1 style="font-size: 3em; font-weight: bold; margin-bottom:5px;">{{user.first_name}} {{user.last_name}}</h1>
   <h3 style="font-weight: 300; color:darkgray; margin-top:0">@{{user}}</h3>
-  <p style="margin-top:0">{{user.profile.position}} at {{user.profile.description}}</p>
+  <p style="margin-top:0">{{user.profile.position}} at {{user.profile.institution}}</p>
   <h3 style="margin-top:0"><small>{{user.profile.description}}</small></h3>
 </div>
 {% endblock %}
