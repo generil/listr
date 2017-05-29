@@ -3,13 +3,14 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 
 class Person(models.Model):
-	user = models.OneToOneField(User)
+	user = models.OneToOneField(User, related_name="profile")
 
-	description = models.CharField(max_length = 200, default = "description")
+	description = models.CharField(max_length = 200)
 	institution = models.CharField(max_length = 50)
 	position = models.CharField(max_length = 50)
 	join_date = models.DateTimeField(auto_now_add=True)
 	is_verified = models.BooleanField(default = True)
+	avatar = models.FileField(blank = True)
 
 	def __unicode__(self):
 		return str(self.user)

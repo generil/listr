@@ -27,12 +27,16 @@
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+          {% if user.profile.avatar %}
+            <img class="center-cropped" src="{{ user.profile.avatar.url }}" width="24px" height="24px" style="border:none;">&nbsp;&nbsp;{{user.first_name}} <span class="caret"></span>
+          {% else %}
             <img class="center-cropped" src="{% static 'questions/assets/default-user-avatar.png' %}" width="24px" height="24px" style="border:none;">&nbsp;&nbsp;{{user.first_name}} <span class="caret"></span>
+          {% endif %}
           </a>
           <ul class="dropdown-menu">
             <li class="dropdown-header">Signed in as <span><a href="{% url 'profile'  request.user.id %}"><b>@{{user}}</b></a></span></li>
             <li role="separator" class="divider"></li>
-            <li><a href="{% url 'profile' request.user.id %}"><span class="glyphicon glyphicon-pencil"></span> Edit profile</a></li>
+            <li><a href="{% url 'edit_profile_view' %}"><span class="glyphicon glyphicon-pencil"></span> Edit profile</a></li>
             <li><a href="{% url 'logout' %}">Logout</a></li>
           </ul>
         </li>

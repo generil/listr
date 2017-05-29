@@ -9,15 +9,17 @@
   <small>From <b><a href="/questions/{{answer.question.id}}">{{answer.question}}</a></b></small>
   <div class="row" style="margin-top:10px; margin-bottom:10px;">
     <div class="col-xs-1">
-      <img class="center-cropped" src="{% static 'questions/assets/default-user-avatar.png' %}" height="30px" width="30px">
+{% if user.profile.avatar %}
+    <img class="center-cropped" src="{{ answer.respondent.profile.avatar.url }}" width="23px" height="23px" style="border:none;">
+  {% else %}
+    <img class="center-cropped" src="{% static 'questions/assets/default-user-avatar.png' %}" width="23px" height="23px" style="border:none;">
+  {% endif %}
     </div>
     <div class="col-xs-11" style="padding-left: 5px;">
       <h5 style="font-weight:bold; margin-top:0px; margin-bottom:5px;">
-      <a href="{% url 'profile' answer.respondent.id %}"> 
-        {{answer.respondent.first_name}} {{ answer.respondent.last_name}}
-      </a> 
-        <small>@{{answer.respondent.username}}</small></h5>
-      <h6 style="margin-bottom:0px; margin-top:5px;">Info</h6>
+              <a href="{% url 'profile' answer.respondent.id %}">{{answer.respondent.first_name}} {{ answer.respondent.last_name}} </a> <br><small>@{{answer.respondent}}</small></h5>
+            <h6 style="margin-bottom:0px; margin-top:5px;">{{answer.respondent.profile.position}} at {{answer.respondent.profile.institution}}</h6>
+            <h6 style="margin-bottom:0px; margin-top:5px; font-style: italic;">{{answer.respondent.profile.description}}</h6>
     </div>
   </div>
 

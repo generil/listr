@@ -6,8 +6,17 @@
 <small class="label label-default" style="font-size: 12px; border-radius: 50px;"><a href="/topics/{{question.topic.id}}" class="topic-btn">{{question.topic}}</a></small>
 <h3 style="font-weight:bold; margin-top:10px;">{{question}}</h3>
 <p class="more">{{question.details}}</p>
+{% if user.profile.avatar %}
+    <img class="center-cropped" src="{{ question.questioner.profile.avatar.url }}" width="23px" height="23px" style="border:none;">
+  {% else %}
+    <img class="center-cropped" src="{% static 'questions/assets/default-user-avatar.png' %}" width="23px" height="23px" style="border:none;">
+  {% endif %}
+<h5 style="font-weight:bold; margin-top:0px; margin-bottom:5px;">
+              <a href="{% url 'profile' question.questioner.id %}">{{question.questioner.first_name}} {{ question.questioner.last_name}} </a> <br><small>@{{question.questioner}}</small></h5>
+            <h6 style="margin-bottom:0px; margin-top:5px;">{{question.questioner.profile.position}} at {{question.questioner.profile.institution}}</h6>
+            <h6 style="margin-bottom:0px; margin-top:5px; font-style: italic;">{{user.profile.description}}</h6>
 <small>
-  Asked {{question_date}} by <a href="">{{question.questioner.first_name}} {{question.questioner.last_name}}</a>
+  Asked {{question_date}} 
 </small>
 
 <div style="padding-top: 5px;">
@@ -42,16 +51,17 @@
     <div class="panel-heading" style="padding-bottom:10px">
       <div class="row">
         <div class="col-xs-1">
-          <img class="center-cropped" src="{% static 'questions/assets/default-user-avatar.png' %}" height="30px" width="30px">
+{% if user.profile.avatar %}
+    <img class="center-cropped" src="{{ answer.respondent.profile.avatar.url }}" width="23px" height="23px" style="border:none;">
+  {% else %}
+    <img class="center-cropped" src="{% static 'questions/assets/default-user-avatar.png' %}" width="23px" height="23px" style="border:none;">
+  {% endif %}
         </div>
         <div class="col-xs-11" style="padding-left: 5px;">
           <h5 style="font-weight:bold; margin-top:0px; margin-bottom:5px;">
-            <a href="{% url 'profile' answer.respondent.id %}"> 
-              {{ answer.respondent.first_name }} {{ answer.respondent.last_name }}  
-            </a>
-            <small>@{{answer.respondent.username}}</small>
-          </h5>
-          <h6 style="margin-bottom:0px; margin-top:5px;">Info</h6>
+              <a href="{% url 'profile' question.questioner.id %}">{{question.questioner.first_name}} {{ question.questioner.last_name}} </a> <br><small>@{{question.questioner}}</small></h5>
+            <h6 style="margin-bottom:0px; margin-top:5px;">{{question.questioner.profile.position}} at {{question.questioner.profile.institution}}</h6>
+            <h6 style="margin-bottom:0px; margin-top:5px; font-style: italic;">{{user.profile.description}}</h6>
         </div>
       </div>
     </div>

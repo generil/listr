@@ -29,13 +29,18 @@
     {% for comment, comment_date in comments %}
     <li>
       <div class="commenterImage">
-        <img class="center-cropped" src="{% static 'questions/assets/default-user-avatar.png' %}" width="30px" height="30px">
+{% if user.profile.avatar %}
+    <img class="center-cropped" src="{{ comment.commenter.profile.avatar.url }}" width="96px" height="96px" style="border:none;">
+  {% else %}
+    <img class="center-cropped" src="{% static 'questions/assets/default-user-avatar.png' %}" width="96px" height="96px" style="border:none;">
+  {% endif %}
       </div>
       <div class="commentText">
         <p style="font-weight:bold"> 
-          <a href="{% url 'profile' comment.commenter.id %}">
-            {{comment.commenter.first_name}} {{comment.commenter.last_name}} 
-          </a>
+         <h5 style="font-weight:bold; margin-top:0px; margin-bottom:5px;">
+              <a href="{% url 'profile' comment.commenter.id %}">{{comment.commenter.first_name}} {{ comment.commenter.last_name}} </a> <br><small>@{{comment.commenter}}</small></h5>
+            <h6 style="margin-bottom:0px; margin-top:5px;">{{comment.commenter.profile.position}} at {{comment.commenter.profile.institution}}</h6>
+            <h6 style="margin-bottom:0px; margin-top:5px; font-style: italic;">{{comment.commenter.profile.description}}</h6>
         </p>
         <small class="more" style="word-wrap: normal;"> {{comment.comment}} </small><br>
 

@@ -42,4 +42,8 @@ urlpatterns = [
   url(r'^profile/(?P<user_id>[0-9]+)/$', views.profile, name='profile'),
   # /likecomment/
   url(r'^likecomment/(?P<comment_id>[0-9]+)/$', views.likecomment, name='likecomment'),
+  # /edit_profile_view/
+  url(r'^edit_profile_view/$', views.edit_profile_view, name='edit_profile_view'),
+  # /edit_profile_view/
+  url(r'^edit_profile/$', views.edit_profile, name='edit_profile')
 ]

@@ -97,9 +97,12 @@ def signup_view(request):
 				password = data['password1'],
 				email = data['email'])
 
-			user_auth = authenticate(username=data['username'], password=['password1'])
+			username = data['username']
+			password = data['password1']
+			# print username, password
+			user = authenticate(username = username, password = password)
 			# print user
-			login(request, user_auth)
+			login(request, user)
 			return redirect('questions')
 		else:
 			context = dataCheck[1]
@@ -472,4 +475,53 @@ def addquestion_by_topic(request):
 	return redirect('topic_detail', topic.id)
 
 
-# def edit_profile_view(request)
+def edit_profile_view(request):
+	if not request.user.is_authenticated:
+		return redirect('/')
+	context = {}
+	return render(request, 'edit_profile.html', context)
+
+def edit_profile(request):
+	if not request.user.is_authenticated:
+		return redirect('/')
+	if request.method == 'POST':
+		new_first_name = request.POST.get('first_name')
+		new_last_name = request.POST.get('last_name')
+		institution = request.POST.get('institution')
+		position = request.POST.get('position')
+		description = request.POST.get('description')
+		user = request.user
+
+		person = Person.objects.get(id = user.id)
+		print person
+
+		if new_first_name != '':
+			user.first_name = new_first_name
+
+		if new_last_name != '':
+			user.last_name = new_last_name
+		user.save()
+
+		if institution != '':
+			person.institution = institution
+
+		if position != '':
+			person.position = position
+
+		if description != '':
+			person.description = description
+
+		person.save()
+
+		user_avatar = request.FILES.get('avatar')
+		# print user_avatar
+
+		if user_avatar != None:
+			fs = FileSystemStorage()
+			user_avatar.name = 'user_' + str(request.user) + '_' + user_avatar.name
+			filename = fs.save(user_avatar.name, user_avatar)
+
+			person.avatar = filename
+			person.save()
+
+	return redirect('questions')
