@@ -79,7 +79,7 @@ def signup_view(request):
 		return redirect('questions')
 	context = {}
 	data = {}
-	
+
 	if request.method == 'POST':
 		data['first_name'] = request.POST.get('first_name')
 		data['last_name'] = request.POST.get('last_name')
@@ -89,11 +89,11 @@ def signup_view(request):
 		data['password2'] = request.POST.get('password2')
 
 		dataCheck = user_integrityCheck(data)
-		
+
 		if dataCheck == True:
 			User.objects.create_user(first_name = data['first_name'],
-				last_name = data['last_name'], 
-				username = data['username'], 
+				last_name = data['last_name'],
+				username = data['username'],
 				password = data['password1'],
 				email = data['email'])
 
@@ -433,7 +433,7 @@ def profile(request, user_id):
 		'questions': questions,
 		'answers': answers,
 	}
-	return render(request, 'profile.html', context)
+	return render(request, 'your_profile.html', context)
 
 def likecomment(request, comment_id):
 	if not request.user.is_authenticated:
