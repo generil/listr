@@ -3,7 +3,7 @@
 <hr>
 <div class="thumbnail">
   <div class="caption">
-    <form class="" action="{% url 'addquestion-select-topic' %}?next={{ request.path }}" method="POST" enctype="multipart/form-data"> 
+    <form class="" action="{% url 'addquestion-select-topic' %}?next={{ request.path }}" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
       <div class="form-group">
         <textarea class="form-control" rows="2" placeholder="Question" name="question"></textarea>
@@ -27,6 +27,9 @@
             </span>
           </label>
         </div>
+      </div>
+      <div class="form-group imagepreview" style="display:none">
+        <img id="preview" alt="" src="" width="100%" style="border-radius:4px; border: 1px solid darkgray">
       </div>
       <button type="submit" class="btn btn-primary btn-block">POST QUESTION</button>
     </form>

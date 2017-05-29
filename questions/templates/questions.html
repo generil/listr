@@ -24,14 +24,12 @@
             <h5 style="font-weight:bold; margin-top:0px; margin-bottom:5px;">
               <a href="{% url 'profile' question.questioner.id %}">{{question.questioner.first_name}} {{ question.questioner.last_name}} </a> <small>@{{question.questioner}}</small></h5>
             <h6 style="margin-bottom:0px; margin-top:5px;">Info</h6>
-          <br>
           {% if question.image %}
-          <img src="{{question.image.url}}" style="border:none; margin-top: -5; margin-bottom: -7; 
-          max-width:500px; max-height:500px;">
+          <br>
+          <img src="{{question.image.url}}" width="100%" style="border-radius:4px; border: 1px solid darkgray">
           {% endif %}
           </div>
         </div>
-        <br>
         {% if question.ans_count == 1 %}
           <h6> {{question.ans_count}} answer</h6>
         {% elif question.ans_count > 1 %}
@@ -66,7 +64,7 @@
               <span style="font-weight:bold">{{question.downvotes}}</span>
             </button><br>
         </form>
-      </div> 
+      </div>
 
       </div>
     {% endfor %}

@@ -16,6 +16,7 @@ $(document).on('change', ':file', function() {
 
   document.getElementById('add-t-image').innerText = 'Change image';
   var img = document.getElementsByClassName('imagepreview');
+  console.log(img);
   img[0].style.display = 'block';
 });
 
