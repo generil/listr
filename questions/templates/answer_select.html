@@ -17,9 +17,8 @@
     </div>
     <div class="col-xs-11" style="padding-left: 5px;">
       <h5 style="font-weight:bold; margin-top:0px; margin-bottom:5px;">
-              <a href="{% url 'profile' answer.respondent.id %}">{{answer.respondent.first_name}} {{ answer.respondent.last_name}} </a> <br><small>@{{answer.respondent}}</small></h5>
-            <h6 style="margin-bottom:0px; margin-top:5px;">{{answer.respondent.profile.position}} at {{answer.respondent.profile.institution}}</h6>
-            <h6 style="margin-bottom:0px; margin-top:5px; font-style: italic;">{{answer.respondent.profile.description}}</h6>
+        <a href="{% url 'profile' answer.respondent.id %}">{{answer.respondent.first_name}} {{ answer.respondent.last_name}} </a> <br><small>@{{answer.respondent}} - </small><small style="margin-bottom:0px; margin-top:5px; color:black; font-weight:500">{{answer.respondent.profile.position}} at {{answer.respondent.profile.institution}}</small>
+      </h5>
     </div>
   </div>
 
