@@ -1,5 +1,15 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i');
+
+body {
+	font-family: -apple-system, BlinkMacSystemFont, 'SF UI Text', 'Roboto', 'Segoe UI', 'Helvetica Neue', 'Helvetica', arial, sans-serif;
+}
+
+h1, h2, h3 {
+	font-family: -apple-system, BlinkMacSystemFont, 'SF UI Display', 'Roboto', 'Segoe UI', 'Helvetica Neue', 'Helvetica', arial, sans-serif;
+}
+
 * {
-  font-family: 'Museo Sans', --apple-system, BlinkMacSystemFont, 'Segoe UI', 'Ubuntu', 'Helvetica', arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF UI Display', 'Roboto', 'Segoe UI', 'Helvetica Neue', 'Helvetica', arial, sans-serif;
 }
 
 body {
@@ -118,7 +128,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .headerer {
   color: white;
-  font-family: 'Museo Slab', --apple-system, BlinkMacSystemFont, 'Segoe UI', 'Ubuntu', 'Helvetica', arial, sans-serif;
   font-size: 4em;
   font-weight: 800;
 }
