@@ -1,6 +1,6 @@
 ![Listr](http://i.imgur.com/E1xGL3b.png)
 ### Be steps ahead.
-Made with :heart: by [Alfie](http://fb.com/jams.salvacion) and [Generil](http://fb.com/generildls)
+Made with :heart: by [Alfie](http://github.com/alfisalvacion) and [Generil](http://github.com/generil)
 
 Listr is a Q&A platform that lets you ask any questions and people will answer your question strictly in list or step-by-step form.
 
