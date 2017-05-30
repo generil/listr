@@ -63,23 +63,31 @@
     </div>
 
     <div class="panel-footer" style="padding-top:10px; padding-bottom:10px;">
-      <div>
-        <!-- upvote -->
-        <form action="{% url 'question_upvote' question_id=question.pk%}?next={{ request.path }}" method="POST" style="display:inline-block;">
-        {% csrf_token %}
-            <button type="submit" class="btn btn-primary btn-xs">
-              <span class="glyphicon glyphicon-arrow-up"></span>
-              <span style="font-weight:bold">{{question.upvotes}}</span>
-            </button>
-        </form>
+      <div class="row">
+        <div class="col-lg-10">
+          <form action="{% url 'question_upvote' question_id=question.pk%}?next={{ request.path }}" method="POST" style="display:inline-block;">
+          {% csrf_token %}
+              <button type="submit" class="btn btn-primary btn-xs">
+                <span class="glyphicon glyphicon-arrow-up"></span>
+                <span style="font-weight:bold">{{question.upvotes}}</span>
+              </button>
+          </form>
 
-        <form class="" action="{% url 'question_downvote' question_id=question.pk%}?next={{ request.path }}" method="POST" style="display:inline-block;">
-        {% csrf_token %}
-            <button type="submit" class="btn btn-danger btn-xs">
-              <span class="glyphicon glyphicon-arrow-down"></span>
-              <span style="font-weight:bold">{{question.downvotes}}</span>
-            </button><br>
-        </form>
+          <form class="" action="{% url 'question_downvote' question_id=question.pk%}?next={{ request.path }}" method="POST" style="display:inline-block;">
+          {% csrf_token %}
+              <button type="submit" class="btn btn-danger btn-xs">
+                <span class="glyphicon glyphicon-arrow-down"></span>
+                <span style="font-weight:bold">{{question.downvotes}}</span>
+              </button><br>
+          </form>
+        </div>
+        <div class="col-lg-2">
+          <div class="text-right">
+            <button type="button" class="btn btn-xs btn-danger">
+              <span class="glyphicon glyphicon-trash"></span>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
