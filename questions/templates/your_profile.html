@@ -35,7 +35,10 @@
               </div>
               <div class="col-lg-2">
                 <div class="text-right">
-                  <button type="button" class="btn btn-xs btn-danger">
+                  <form action = "{% url 'delete_question' question.id%}" method="POST">
+                    {% csrf_token %}
+                      <button type="submit" class="btn btn-xs btn-danger">
+                  </form>
                     <span class="glyphicon glyphicon-trash"></span>
                   </button>
                 </div>
@@ -67,6 +70,7 @@
         <div class="panel panel-default">
           <div class="panel-heading" style="padding-bottom:10px">
             <small>From <b><a href="/questions/{{answer.question.id}}">{{answer.question}}</a></b></small>
+
           </div>
 
           <div class="panel-body" style="padding-top:0; padding-bottom:5px">
@@ -91,7 +95,7 @@
         </div>
         {% endfor %}
       {% else %}
-        <h3 style="font-weight:bold; text-align:center;">No questions.</h3>
+        <h3 style="font-weight:bold; text-align:center;">No answers.</h3>
       {% endif %}
     </div>
   </div>

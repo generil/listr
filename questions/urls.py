@@ -45,5 +45,9 @@ urlpatterns = [
   # /edit_profile_view/
   url(r'^edit_profile_view/$', views.edit_profile_view, name='edit_profile_view'),
   # /edit_profile_view/
-  url(r'^edit_profile/$', views.edit_profile, name='edit_profile')
+  url(r'^edit_profile/$', views.edit_profile, name='edit_profile'),
+  # /delete_question/
+  url(r'^delete_question/(?P<question_id>[0-9]+)/$', views.delete_question, name='delete_question'),
+  url(r'^delete_answer/(?P<answer_id>[0-9]+)/$', views.delete_answer, name='delete_answer'),
+  url(r'^delete_comment/(?P<comment_id>[0-9]+)/$', views.delete_comment, name='delete_comment')
 ]
