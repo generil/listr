@@ -7,13 +7,13 @@
   <form action="{% url 'edit_profile' %}" enctype="multipart/form-data" method="POST">
     {% csrf_token %}
       <div class="form-group imagepreview">
-          <div style="text-align:center; margin-bottom:10px;">
-  {% if user.profile.avatar %}
-    <img class="center-cropped" src="{{ user.profile.avatar.url }}" width="96px" height="96px" style="border:none;">
-  {% else %}
-    <img class="center-cropped" src="{% static 'questions/assets/default-user-avatar.png' %}" width="96px" height="96px" style="border:none;">
-  {% endif %}
-          </div>
+        <div style="text-align:center; margin-bottom:10px;">
+          {% if user.profile.avatar %}
+            <img id="preview" class="center-cropped" src="{{user.profile.avatar.url}}" width="96px" height="96px" style="border:none;">
+          {% else %}
+            <img id="preview" class="center-cropped" src="{% static 'questions/assets/default-user-avatar.png' %}" width="96px" height="96px" style="border:1px solid darkgray;">
+          {% endif %}
+        </div>
       </div>
       <div class="form-group" style="text-align:center">
           <div class="input-group">
@@ -27,12 +27,10 @@
       </div>
       <div class="form-group">
           <div style="text-align:center">
-              <h1 style="font-weight: bold;"><input type="text" class="inputfill" name="first_name" placeholder=" {{user.first_name}}"></h1>
-              <h1 style="font-weight: bold;"><input type="text" class="inputfill" name="last_name" placeholder=" {{user.last_name}}"></h1>
-              <h3 style="font-size: 1.25em"><input type="text" class="form-control" rows="5" placeholder="
-              {{user.profile.institution}}" name="institution"></textarea></h3>
-              <h3 style="font-size: 1.25em"><input type="text" class="form-control" rows="5" placeholder="
-              {{user.profile.position}}" name="position"></textarea></h3>
+              <h1 style="font-weight: bold;"><input type="text" class="inputfill" name="first_name" placeholder="{{user.first_name}}"></h1>
+              <h1 style="font-weight: bold;"><input type="text" class="inputfill" name="last_name" placeholder="{{user.last_name}}"></h1>
+              <h3 style="font-size: 1.25em"><input type="text" class="form-control" rows="5" placeholder="{{user.profile.institution}}" name="institution"></textarea></h3>
+              <h3 style="font-size: 1.25em"><input type="text" class="form-control" rows="5" placeholder="{{user.profile.position}}" name="position"></textarea></h3>
           </div>
           <h3 style="font-size: 1.25em"><textarea class="form-control" rows="5" placeholder="{{user.profile.description}}" name="description"></textarea></h3>
           <div style="text-align:center;">

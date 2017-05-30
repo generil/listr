@@ -500,6 +500,7 @@ def edit_profile(request):
 
 		if new_last_name != '':
 			user.last_name = new_last_name
+
 		user.save()
 
 		if institution != '':
