@@ -18,7 +18,7 @@
         <h3 style="margin-top:10px; font-weight:bold; word-wrap: break-word;"><a href="/questions/{{question.id}}">{{question.question}}</a></h3>
         <div class="row">
           <div class="col-xs-1">
-            {% if user.profile.avatar %}
+            {% if question.questioner.profile.avatar %}
               <img class="center-cropped" src="{{ question.questioner.profile.avatar.url }}" width="23px" height="23px" style="border:none;">
             {% else %}
               <img class="center-cropped" src="{% static 'questions/assets/default-user-avatar.png' %}" width="23px" height="23px" style="border:none;">

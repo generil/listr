@@ -33,16 +33,18 @@
               <div class="col-lg-10">
                 <h5 style="padding-top: 5px; padding-bottom: 5px; margin: 0"><span class="label label-default" style="border-radius:50px;"><a href="/topics/{{question.topic.id}}" class="topic-btn"> {{question.topic}} </a></span>&nbsp;&nbsp;<small style="color:darkgray">{{date}}</small></h5>
               </div>
-              <div class="col-lg-2">
-                <div class="text-right">
-                  <form action = "{% url 'delete_question' question.id%}" method="POST">
-                    {% csrf_token %}
-                      <button type="submit" class="btn btn-xs btn-danger">
-                  </form>
-                    <span class="glyphicon glyphicon-trash"></span>
-                  </button>
+              {% if question.questioner.id == request.user.id %}
+                <div class="col-lg-2">
+                  <div class="text-right">
+                    <form action = "{% url 'delete_question' question.id%}" method="POST">
+                      {% csrf_token %}
+                        <button type="submit" class="btn btn-xs btn-danger">
+                    </form>
+                      <span class="glyphicon glyphicon-trash"></span>
+                    </button>
+                  </div>
                 </div>
-              </div>
+              {% endif %}
             </div>
           </div>
           <div class="panel-body" style="padding-top:0;padding-bottom:0;">
@@ -69,8 +71,21 @@
         {% for answer, date_answered in answers %}
         <div class="panel panel-default">
           <div class="panel-heading" style="padding-bottom:10px">
-            <small>From <b><a href="/questions/{{answer.question.id}}">{{answer.question}}</a></b></small>
-
+              <div class="row">
+                <div class="col-lg-10">
+                  <small>From <b><a href="/questions/{{answer.question.id}}">{{answer.question}}</a></b></small>
+                </div>
+                <div class="col-lg-2">
+                  <div class="text-right">
+                    <form action = "{% url 'delete_answer' answer.id%}" method="POST">
+                      {% csrf_token %}
+                        <button type="submit" class="btn btn-xs btn-danger">
+                          <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
           </div>
 
           <div class="panel-body" style="padding-top:0; padding-bottom:5px">
