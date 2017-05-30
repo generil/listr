@@ -12,7 +12,11 @@
   {% endif %}{{question}}
 </h3>
 <p class="more">{{question.details}}</p>
-  <h5 style="font-weight:bold; margin-top:0px; margin-bottom:5px;">
+{% if question.image %}
+            <img src="{{question.image.url}}" width="100%" style="border-radius:4px; border: 1px solid silver">
+            {% endif %}
+            <!-- <br> -->
+  <h5 style="font-weight:bold; margin-top:11px; margin-bottom:5px;">
     <a href="{% url 'profile' question.questioner.id %}">{{question.questioner.first_name}} {{ question.questioner.last_name}} </a> <small> @{{question.questioner}}</small>
   </h5>
   <h6 style="margin-bottom:0px; margin-top:5px; font-weight:500">{{question.questioner.profile.position}} at {{question.questioner.profile.institution}}</h6>
@@ -52,7 +56,7 @@
     <div class="panel-heading" style="padding-bottom:10px">
       <div class="row">
         <div class="col-xs-1">
-          {% if user.profile.avatar %}
+          {% if answer.respondent.profile.avatar %}
             <img class="center-cropped" src="{{ answer.respondent.profile.avatar.url }}" width="23px" height="23px" style="border:none;">
           {% else %}
             <img class="center-cropped" src="{% static 'questions/assets/default-user-avatar.png' %}" width="23px" height="23px" style="border:none;">
@@ -60,7 +64,7 @@
         </div>
         <div class="col-xs-11" style="padding-left: 5px;">
           <h5 style="font-weight:bold; margin-top:0px; margin-bottom:5px;">
-            <a href="{% url 'profile' question.questioner.id %}">{{question.questioner.first_name}} {{ question.questioner.last_name}} </a> <br><small>@{{question.questioner}} - </small><small style="margin-bottom:0px; margin-top:5px; color:black; font-weight:500">{{question.questioner.profile.position}} at {{question.questioner.profile.institution}}</small>
+            <a href="{% url 'profile' answer.respondent.id %}">{{answer.respondent.first_name}} {{ answer.respondent.last_name}} </a> <br><small>@{{answer.respondent}} - </small><small style="margin-bottom:0px; margin-top:5px; color:black; font-weight:500">{{answer.respondent.profile.position}} at {{answer.respondent.profile.institution}}</small>
           </h5>
         </div>
       </div>
