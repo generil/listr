@@ -38,7 +38,7 @@
       <div class="row">
         <div class="col-xs-1">
             {% if user.profile.avatar %}
-    <img class="center-cropped" src="{{ question.user.profile.avatar.url }}" width="23px" height="23px" style="border:none;">
+    <img class="center-cropped" src="{{ question.questioner.profile.avatar.url }}" width="23px" height="23px" style="border:none;">
   {% else %}
     <img class="center-cropped" src="{% static 'questions/assets/default-user-avatar.png' %}" width="23px" height="23px" style="border:none;">
   {% endif %}
