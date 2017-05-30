@@ -29,7 +29,21 @@
         {% for question, date in questions %}
         <div class="panel panel-default">
           <div class="panel-heading" style="padding-bottom:5px; padding-top:5px;">
-            <h5 style="padding-top: 5px; padding-bottom: 5px; margin: 0"><span class="label label-default" style="border-radius:50px;"><a href="/topics/{{question.topic.id}}" class="topic-btn"> {{question.topic}} </a></span>&nbsp;&nbsp;<small style="color:darkgray">{{date}}</small></h5>
+            <div class="row">
+              <div class="col-lg-10">
+                <h5 style="padding-top: 5px; padding-bottom: 5px; margin: 0"><span class="label label-default" style="border-radius:50px;"><a href="/topics/{{question.topic.id}}" class="topic-btn"> {{question.topic}} </a></span>&nbsp;&nbsp;<small style="color:darkgray">{{date}}</small></h5>
+              </div>
+              <div class="col-lg-2">
+                <div class="text-right">
+                  <form action = "{% url 'delete_question' question.id%}" method="POST">
+                    {% csrf_token %}
+                      <button type="submit" class="btn btn-xs btn-danger">
+                  </form>
+                    <span class="glyphicon glyphicon-trash"></span>
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="panel-body" style="padding-top:0;padding-bottom:0;">
             <h3 style="margin-top:10px; font-weight:bold; word-wrap: break-word;"><a href="/questions/{{question.id}}">{{question.question}}</a></h3>
@@ -56,6 +70,7 @@
         <div class="panel panel-default">
           <div class="panel-heading" style="padding-bottom:10px">
             <small>From <b><a href="/questions/{{answer.question.id}}">{{answer.question}}</a></b></small>
+
           </div>
 
           <div class="panel-body" style="padding-top:0; padding-bottom:5px">
@@ -80,7 +95,7 @@
         </div>
         {% endfor %}
       {% else %}
-        <h3 style="font-weight:bold; text-align:center;">No questions.</h3>
+        <h3 style="font-weight:bold; text-align:center;">No answers.</h3>
       {% endif %}
     </div>
   </div>

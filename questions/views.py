@@ -481,6 +481,7 @@ def edit_profile_view(request):
 	context = {}
 	return render(request, 'edit_profile.html', context)
 
+
 def edit_profile(request):
 	if not request.user.is_authenticated:
 		return redirect('/')
@@ -526,3 +527,28 @@ def edit_profile(request):
 			person.save()
 
 	return redirect('questions')
+
+
+def delete_question(request, question_id):
+	if not request.user.is_authenticated:
+		return redirect('/')
+	if request.method == 'POST':
+		question_tbd = Question.objects.get(id = question_id)
+		question_tbd.delete()
+	return redirect('profile', request.user.id)
+
+def delete_answer(request, answer_id):
+	if not request.user.is_authenticated:
+		return redirect('/')
+	if request.method == 'POST':
+		answer_tbd = Answer.objects.get(id = answer_id)
+		answer_tbd.delete()
+	return redirect('profile', request.user.id)
+
+def delete_comment(request, comment_id):
+	if not request.user.is_authenticated:
+		return redirect('/')
+	if request.method == 'POST':
+		comment_tbd = Comment.objects.get(id = comment_id)
+		comment_tbd.delete()
+	return redirect('profile', request.user.id)
