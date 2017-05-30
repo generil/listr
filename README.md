@@ -33,3 +33,59 @@ We want to do this for the sake of knowledge. We want information to be as easil
 ----
 
 # Screenshots
+
+### Login
+
+![Listr](questions/static/questions/assets/screenshots/login.png)
+
+### Signup
+
+![Listr](questions/static/questions/assets/screenshots/signup.png)
+
+### Info
+
+![Listr](questions/static/questions/assets/screenshots/info.png)
+
+### Ask a Question
+
+![Listr](questions/static/questions/assets/screenshots/ask_question.png)
+
+![Listr](questions/static/questions/assets/screenshots/ask_question2.png)
+
+### View Question
+
+![Listr](questions/static/questions/assets/screenshots/question_select.png)
+
+### Answer a Question
+
+![Listr](questions/static/questions/assets/screenshots/add_answer.png)
+
+### Answers Page
+
+![Listr](questions/static/questions/assets/screenshots/answe_detail.png)
+
+![Listr](questions/static/questions/assets/screenshots/answer_detail.png)
+
+### Comment Section
+
+![Listr](questions/static/questions/assets/screenshots/comments.png)
+
+### Choose a topic
+
+![Listr](questions/static/questions/assets/screenshots/topic_list.png)
+
+### Selected Topics
+
+![Listr](questions/static/questions/assets/screenshots/topic_detail.png)
+
+![Listr](questions/static/questions/assets/screenshots/topic_details.png)
+
+![Listr](questions/static/questions/assets/screenshots/topic_select.png)
+
+### Profile Page
+
+![Listr](questions/static/questions/assets/screenshots/other_profile_view.png)
+
+![Listr](questions/static/questions/assets/screenshots/profile_answers_delete.png)
+
+![Listr](questions/static/questions/assets/screenshots/profile_questions_delete.png)
